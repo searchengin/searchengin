@@ -1,0 +1,2 @@
+class WhoTag < ApplicationRecord
+end

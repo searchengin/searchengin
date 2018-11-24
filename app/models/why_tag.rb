@@ -1,0 +1,2 @@
+class WhyTag < ApplicationRecord
+end

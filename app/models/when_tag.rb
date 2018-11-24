@@ -1,0 +1,2 @@
+class WhenTag < ApplicationRecord
+end

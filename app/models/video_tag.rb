@@ -1,0 +1,2 @@
+class VideoTag < ApplicationRecord
+end

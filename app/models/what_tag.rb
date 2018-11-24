@@ -1,0 +1,2 @@
+class WhatTag < ApplicationRecord
+end

@@ -1,0 +1,30 @@
+<div class="sidebar">
+  <%= link_to root_path, class: ('active' if controller_name == 'dashboard') do %>
+    <i class="far fa-eye"> Discover </i>
+  <% end %>
+  <%= link_to news_index_path, class: ('active' if controller_name == 'news') do %>
+    <i class="far fa-newspaper"> News </i>
+  <% end %>
+  <%= link_to urls_path, class: ('active' if controller_name == 'urls') do %>
+    <i class="far fa-newspaper"> Add URL </i>
+  <% end %>
+  <a href="javascript:void(0)"><i class="fas fa-tag"> Tag Index </i></a>
+  <a href="javascript:void(0)"><i class="fas fa-cogs"> API </i></a>
+  <a href="javascript:void(0)"><i class="fas fa-cog"> Settings </i></a>
+  <a href="javascript:void(0)"><i class="fas fa-user-tag"> Verify Tags </i></a>
+  <% if user_signed_in? %>
+    <%= link_to destroy_user_session_path, method: :delete do %>
+      <i class="fas fa-sign-out-alt"> Sign Out</i>
+    <% end %>
+  <% else %>
+    <a href="javascript:void(0)" data-toggle="modal" data-target="#loginModal">
+      <i class="fas fa-sign-in-alt">
+        Sign in
+      </i>
+    </a>
+    <%#= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path %>
+    <%#= link_to "Sign in with Twitter", user_twitter_omniauth_authorize_path %>
+  <% end %>
+</div>
+
+<%= render 'shared/login_modal' %>

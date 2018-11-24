@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  domain: MyText
+  points: 1
+  average: 1
+  urls_count: 1
+
+two:
+  domain: MyText
+  points: 1
+  average: 1
+  urls_count: 1

@@ -1,0 +1,2 @@
+class WhereTag < ApplicationRecord
+end

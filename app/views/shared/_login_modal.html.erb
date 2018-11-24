@@ -1,0 +1,38 @@
+<div class="modal" id="loginModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Sign in</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+
+      <!-- Modal body -->
+      <div class="modal-body">
+
+        <% if user_signed_in? %>
+          <%= link_to 'Sign Out', destroy_user_session_path, method: :delete %>
+        <% else %>
+          <%= link_to user_facebook_omniauth_authorize_path, class: "btn btn-primary" do %>
+            <!-- <i class="fab fa-facebook-square fa-4x"></i> -->
+            <i class="fab fa-facebook fa-2x">
+              Facebook
+            </i>
+          <% end %>
+          <%= link_to user_twitter_omniauth_authorize_path, class: "btn btn-primary" do %>
+            <i class="fab fa-twitter fa-2x">
+              Twitter
+            </i>
+          <% end %>
+        <% end %>
+      </div>
+
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+
+    </div>
+  </div>
+</div>
