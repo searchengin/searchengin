@@ -5,7 +5,7 @@
   <%= link_to news_index_path, class: ('active' if controller_name == 'news') do %>
     <i class="far fa-newspaper"> News </i>
   <% end %>
-  <%= link_to urls_path, class: ('active' if controller_name == 'urls') do %>
+  <%= link_to new_url_path, class: ('active' if controller_name == 'urls') do %>
     <i class="far fa-newspaper"> Add URL </i>
   <% end %>
   <a href="javascript:void(0)"><i class="fas fa-tag"> Tag Index </i></a>

@@ -2,6 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.wdth100{
+	width:100%;
+	float: left;
+}
+
 .sidebar {
   margin: 0;
   padding: 0;
@@ -51,6 +56,128 @@ div.content {
 
 .mglft_25{
   margin-left: 25px;
+}
+
+
+
+.searcheng .arrow.left {
+    top: 20px;
+	left: -8px;
+}
+
+.arrow.left {
+    top: 50%;
+    left: -8px;
+    margin-top: -8px;
+    border-left-width: 0;
+    border-right-color: #eee;
+    border-right-color: rgba(0,0,0,0.1);
+}
+
+.arrow {
+    border-width: 8px;
+    z-index: 10;
+}
+
+.arrow.left:after {
+    content: " ";
+    left: 1px;
+    border-left-width: 0;
+    border-right-color: #ccc;
+    bottom: -7px;
+}
+
+.arrow:after {
+    border-width: 7px;
+    content: "";
+}
+
+.arrow, .arrow:after {
+    position: absolute;
+    display: block;
+    width: 0;
+    height: 0;
+    border-color: transparent;
+    border-style: solid;
+}
+
+.searcheng{
+	position: relative;
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.searcheng_row{
+	margin-left: 46px;
+	position: relative;
+}
+
+.searcheng:before{
+	position: absolute;
+    top: 0;
+    bottom: -40px;
+    left: 18px;
+    width: 1px;
+    background: #e0e4e8;
+    content: '';
+}
+
+.searcheng_col{
+    border: 1px solid #ccc;
+    background-color: #ececec;
+    border-radius: 2px 2px 0 0;
+    position: relative;
+    font-size: 12px;
+    padding: 12px;
+}
+
+.searcheng_col>a{
+	color: #575757;
+}
+
+.searcheng_col2{
+	display: flex;
+	justify-content: space-between;
+	margin-top: 10px;
+
+}
+
+.img_box{
+	width: 111px;
+	float: left;
+}
+
+.img_box>img{
+	max-width: 100%;
+	max-height: 100%;
+}
+
+.searc_col_rt{
+	width: calc(100% - 111px);
+	float: left;
+	background: #f3f5f9;
+	position: relative;
+    padding:  8px 15px;
+}
+
+.post_likes{
+    position: absolute;
+    right: 15px;
+    bottom: 5px;
+    margin:0;
+    padding: 0px;
+}
+
+
+.post_likes li{
+	list-style: none;
+	display: inline-block;
+	margin: 0 8px;
+}
+
+.post_likes li a{
+	    color: #575757;
+    font-size: 14px;
 }
 
 @media screen and (max-width: 700px) {
