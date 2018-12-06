@@ -1,4 +1,5 @@
 class UrlsController < ApplicationController
+  before_action :authenticate_user!
 
   def index
 
@@ -19,10 +20,14 @@ class UrlsController < ApplicationController
     # @url.subdomain = Url.store_domain_info
     # @url.protocol = Url.store_domain_info
     # UrlWorker.perform_async(url_object)
-    if @url.save
-      redirect_to @url
-    else
-      render 'new'
+    respond_to do |format|
+      if @url.save
+        format.html { redirect_to root_url, notice: 'Url was successfully processed.' }
+        # format.json { render :show, status: :created, url: @url }
+      else
+        format.html { render :new }
+        format.json { render json: @url.errors, status: :unprocessable_entity }
+      end
     end
   end
 

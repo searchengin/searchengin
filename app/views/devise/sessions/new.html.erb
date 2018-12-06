@@ -1,0 +1,33 @@
+<div class="content">
+  <h2>Sign/Log in</h2>
+
+  <%#= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="form-inputs">
+      <%#= f.input :email,
+                  required: false,
+                  autofocus: true,
+                  input_html: { autocomplete: "email" } %>
+      <%#= f.input :password,
+                  required: false,
+                  input_html: { autocomplete: "current-password" } %>
+      <%#= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+    </div>
+
+    <div class="form-actions">
+      <%#= f.button :submit, "Log in" %>
+    </div>
+  <%# end %>
+
+  <%#= render "devise/shared/links" %>
+  <%= link_to user_facebook_omniauth_authorize_path, class: "btn btn-primary" do %>
+    <i class="fab fa-facebook fa-2x">
+      Facebook
+    </i>
+  <% end %>
+  <%= link_to user_twitter_omniauth_authorize_path, class: "btn btn-primary" do %>
+    <i class="fab fa-twitter fa-2x">
+      Twitter
+    </i>
+  <% end %>
+
+</div>
