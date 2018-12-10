@@ -1,15 +1,16 @@
 class Url < ApplicationRecord
+  require 'webshot'
+
   belongs_to :user
   has_many :alias_tag
-  # has_many :images, as: :imageable, dependent: :destroy
+
+  mount_uploader :screenshot, ImageUploader
 
   after_create :store_domain_info
 
-
-
-
   def store_domain_info
     begin
+
       protocol, url = self.url.split('://')
       url = url.split('/').first
       domain_list = url.split('.')
@@ -20,14 +21,32 @@ class Url < ApplicationRecord
         subdomain = ""
         domain = url
       end
-
       self.update(protocol: protocol)
       self.update(subdomain: subdomain)
       self.update(domain: domain)
 
-      self.update_domain
+      # ws = Webshot::Screenshot.instance
+      # screenshot = ws.capture self.url, "#{domain_list[0]}.png"
+      # thumb = MiniMagick::Image.open(screenshot.path)
+      # thumb.write "#{domain_list[0]}.png"
+      # self.update(screenshot: thumb)
+      # File.delete "#{domain_list[0]}.png"
+      ScreenshotWorker.perform_async(self.id, domain_list[0])
+
     rescue Exception
     end
+  end
+
+
+  def self.screenshot_capture(url_id, domain_list)
+    url = Url.find_by(id: url_id)
+    ws = Webshot::Screenshot.instance
+    screenshot = ws.capture url.url, "#{domain_list}.png"
+    thumb = MiniMagick::Image.open(screenshot.path)
+    thumb.write "#{domain_list}.png"
+
+    url.update(screenshot: thumb)
+    File.delete "#{domain_list}.png"
   end
 
 
