@@ -21,6 +21,7 @@ class UrlsController < ApplicationController
     # UrlWorker.perform_async(url_object)
     respond_to do |format|
       if @url.save
+        # ScreenshotWorker.perform_async(@url.id)
         format.html { redirect_to root_url, notice: 'Url was successfully processed.' }
         # format.json { render :show, status: :created, url: @url }
       else
@@ -32,6 +33,11 @@ class UrlsController < ApplicationController
 
   def show
     @url = Url.find(params[:id])
+  end
+
+  def tags
+    @url = Url.find(params[:url])
+    @type = params[:title]
   end
 
   private

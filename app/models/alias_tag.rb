@@ -1,3 +1,2 @@
-class AliasTag < ApplicationRecord
-  belongs_to :url
+class AliasTag < Tag
 end

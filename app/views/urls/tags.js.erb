@@ -1,0 +1,22 @@
+<% if params[:title] == "Who_tag" %>
+  $("#main-tag-modal").html('<%= j render("who_modal", url: @url, type: @type)%>')
+  $('#who-tag-modal').modal('show')
+<% elsif params[:title] == "Add_where_tag" %>
+  $("#main-tag-modal").html('<%= j render("where_modal", url: @url, type: @type)%>')
+  $('#where-tag-modal').modal('show')
+<% elsif params[:title] == "Add_what_tag" %>
+  $("#main-tag-modal").html('<%= j render("what_modal", url: @url, type: @type)%>')
+  $('#what-tag-modal').modal('show')
+<% elsif params[:title] == "Add_when_tag" %>
+  $("#main-tag-modal").html('<%= j render("when_modal", url: @url, type: @type)%>')
+  $('#when-tag-modal').modal('show')
+<% elsif params[:title] == "Info" %>
+  $("#main-tag-modal").html('<%= j render("info_modal", url: @url, type: @type)%>')
+  $('#info-modal').modal('show')
+<% elsif params[:title] == "Add_Photo" %>
+  $("#main-tag-modal").html('<%= j render("photo_modal", url: @url, type: @type)%>')
+  $('#photo-modal').modal('show')
+ <% elsif params[:title] == "Embedded_videos" %>
+  $("#main-tag-modal").html('<%= j render("video_modal", url: @url, type: @type)%>')
+  $('#video-modal').modal('show')
+<% end %>

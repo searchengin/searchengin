@@ -1,0 +1,81 @@
+<%#= @url %>
+
+<!-- <div class="content">
+
+    <section class="searcheng wdth100">
+
+      <!-- <a href="javscript:void(0);"> -->
+      <!-- <a href="<%#= url.url %>" target="_blank"> -->
+        <%#= image_tag url.favicon_url, class: 'pull-left thumb-sm m-r-sm img-circle favicon_img' %>
+      <!-- </a> -->
+
+     <!--  <div class="searcheng_row wdth100">
+        <span class="arrow left"></span>
+        <div class="searcheng_col panel-heading wdth100">
+          <a href="<%#= url.url %>" target="_blank">
+            <span> <%#= url.url %> </span>
+            <h5><%#= url.title %></h5>
+          </a>
+        </div>
+        <div class="searcheng_col2 wdth100">
+          <span class="img_box">
+          </span>
+
+        </div>
+      </div>
+    </section> -->
+
+    <li><%= link_to tags_path(url: url, title: "Who_tag" ),title: 'Add Who Tag', method: :post, remote: true do %>
+      <i class="fas fa-thumbs-up"></i>
+    <% end %></li>
+
+    <li><%= link_to tags_path(url: url, title: "Add_where_tag"),title: 'Add Where Tag', method: :post, remote: true do %>
+      <i class="fas fa-thumbs-up"></i>
+    <% end %></li>
+
+    <li><%= link_to tags_path(url: url, title: "Add_what_tag" ),title: 'Add What Tag', method: :post, remote: true do %>
+      <i class="fas fa-thumbs-up"></i>
+    <% end %></li>
+
+    <li><%= link_to tags_path(url: url, title: "Add_when_tag" ),title: 'Add When Tag', method: :post, remote: true do %>
+      <i class="fas fa-thumbs-up"></i>
+    <% end %></li>
+
+    <li><%= link_to tags_path(url: url, title: "Info"),title: 'Info', method: :post, remote: true do %>
+      <i class="fas fa-thumbs-up"></i>
+    <% end %></li>
+
+    <li><%= link_to tags_path(url: url, title: "Add_Photo"),title: 'Add Photo', method: :post, remote: true do %>
+      <i class="fas fa-thumbs-up"></i>
+    <% end %></li>
+
+    <li><%= link_to tags_path(url: url, title: "Embedded_videos"),title: 'Embedded Video,tweet,HTML', method: :post, remote: true do %>
+      <i class="fas fa-thumbs-up"></i>
+    <% end %></li>
+
+
+
+  <!-- <section class="searcheng wdth100">
+    <a href="javscript:void(0);"><img alt="espnfc.us" class="pull-left thumb-sm m-r-sm img-circle" src="http://s2.googleusercontent.com/s2/favicons?domain_url=espnfc.us&amp;sz=32"></a>
+    <div class="searcheng_row wdth100">
+      <span class="arrow left"></span>
+      <div class="searcheng_col panel-heading wdth100">
+        <a href="javascript:void(0)">
+          <span> @espnfc.us</span>
+          <h5>Fortuna Düsseldorf News and Scores - ESPN FC</h5>
+        </a>
+      </div>
+      <div class="searcheng_col2 wdth100">
+        <span class="img_box"><img src="https://bootcamps-uploads.s3.amazonaws.com/store/6e1684d25edb98004390cf33e643bc84?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJF5QHW2P5ZLAGVDQ%2F20181204%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20181204T104215Z&X-Amz-Expires=900&X-Amz-SignedHeaders=host&X-Amz-Signature=d1a3a233a6ef89cbe752a4fe3bce793c93e1f2b603d442d51cf6597602bd31a1"></span>
+        <div class="searc_col_rt">
+          <ul class="post_likes">
+            <li><a href="javascript:void(0);"><i class="fas fa-code"></i></a></li>
+            <li><a href="javascript:void(0);"><i class="fas fa-thumbs-up"></i></a></li>
+            <li><a href="javascript:void(0);"><i class="fas fa-thumbs-down"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section> -->
+
+</div>

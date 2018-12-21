@@ -24,9 +24,23 @@
           </span>
           <div class="searc_col_rt">
             <ul class="post_likes">
-              <li><a href="javascript:void(0);"><i class="fas fa-code"></i></a></li>
-              <li><a href="javascript:void(0);"><i class="fas fa-thumbs-up"></i></a></li>
-              <li><a href="javascript:void(0);"><i class="fas fa-thumbs-down"></i></a></li>
+              <!-- <li><a href="javascript:void(0);"><i class="fas fa-code" ></i></a></li> -->
+              <%= link_to get_url_object_path(url.id),remote: :true, class:  'url_data' do %>
+               <i class='fas fa-code'></i>
+               <% end %>
+              <!-- <li><i class="fas fa-code url_data" data-toggle="modal" data-target="#embed-modal" data-remote="true"></i></li> -->
+              <!-- <li><a href="javascript:void(0);"><i class="fas fa-thumbs-up"></i></a></li> -->
+
+              <li><%= link_to like_path(url: url), method: :post, remote: true do %>
+                <i class="fas fa-thumbs-up"></i>
+              <% end %></li>
+
+              <!-- <li><a href="javascript:void(0);"><i class="fas fa-thumbs-down"></i></a></li> -->
+
+              <li><%= link_to dislike_path(url: url), method: :post, remote: true do %>
+                <i class="fas fa-thumbs-down"></i>
+                <% end %></li>
+              </li>
             </ul>
           </div>
         </div>
@@ -61,3 +75,46 @@
   </section>
 
 </div>
+
+
+<div class="modal fade" id="embed-modal" tabindex="-1" role="dialog" aria-labelledby="embed-modalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Embed Post</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+         <div id="select_id">
+         </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id= "main-tag-modal">
+
+</div>
+<script>
+
+  // $(document).on("click",".url_data", function(e){
+  //   e.preventDefault();
+  //   var _self = $(this);
+  //   var urlId = $(this).data('id');
+  //   console.log(_self )
+  //    $(".modal-body #bookId").val( urlId );
+  //    // As pointed out in comments,
+  //    // it is superfluous to have to manually call the modal.
+  //    // $('#addBookDialog').modal('show');
+
+  // })
+</script>
+
