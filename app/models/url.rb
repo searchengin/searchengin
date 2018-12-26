@@ -3,6 +3,12 @@ class Url < ApplicationRecord
 
   belongs_to :user
   has_many :tags
+  has_many :who_tags
+  has_many :where_tags
+  has_many :what_tags
+  has_many :when_tags
+  has_many :why_tags
+  has_many :video_tags
 
   mount_uploader :screenshot, ImageUploader
 
@@ -35,6 +41,14 @@ class Url < ApplicationRecord
 
     rescue Exception
     end
+  end
+
+  def likes
+    Like.where(url_id: self.id)
+  end
+
+  def dislikes
+    Dislike.where(url_id: self.id)
   end
 
 

@@ -1,0 +1,37 @@
+<% if params.has_key?(:where_tag) %>
+  $('#where-tag-modal').modal('hide')
+  $('#embed-modal').modal('hide')
+  $("#diff-tag_<%= @url.id %>").html('<%= @data.where_datum.location %>',
+    '<%= @data.where_datum.description %>')
+
+<% elsif params.has_key?(:what_tag) %>
+  $('#what-tag-modal').modal('hide')
+  $('#embed-modal').modal('hide')
+  $("#diff-tag_<%= @url.id %>").html('<%= j render("tags_data", data: @data)%>')
+
+<% elsif params.has_key?(:why_tag) %>
+  $('#info-modal').modal('hide')
+  $('#embed-modal').modal('hide')
+  $("#diff-tag_<%= @url.id %>").html('<%= j render("tags_data", data: @data)%>')
+
+<% elsif params.has_key?(:when_tag) %>
+  $('#when-tag-modal').modal('hide')
+  $('#embed-modal').modal('hide')
+  $("#diff-tag_<%= @url.id %>").html('<%= j render("tags_data", data: @data)%>')
+
+
+<% elsif params.has_key?(:who_tag) %>
+  $('#who-tag-modal').modal('hide')
+  $('#embed-modal').modal('hide')
+  $("#diff-tag_<%= @url.id %>").html('<%= j render("tags_data", data: @data)%>')
+
+<% elsif params.has_key?(:video_tag) %>
+  $('#video-tag-modal').modal('hide')
+  $('#embed-modal').modal('hide')
+  $("#diff-tag_<%= @url.id %>").html('<%= j render("tags_data", data: @data)%>')
+
+ <% elsif params.has_key?(:photo_tag) %>
+  $('#photo-tag-modal').modal('hide')
+  $('#embed-modal').modal('hide')
+  $("#diff-tag_<%= @url.id %>").html('<%= j render("tags_data", data: @data)%>')
+<% end %>

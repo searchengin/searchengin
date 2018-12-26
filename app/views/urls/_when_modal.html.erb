@@ -9,10 +9,11 @@
       </div>
       <div class="modal-body">
         <div class="container-fluid">
-         <div id="who_tag">
+         <div id="when_tag">
           <h1>Whene</h1>
-         <%= simple_form_for setup_whene_tag(WhenTag.new), url: create_path(url: params[:url]), method: :post do |f| %>
-              <%= f.fields_for :where_datum do |i| %>
+         <%= simple_form_for setup_whene_tag(WhenTag.new), url: create_path(url: params[:url]),remote: true, method: :post do |f| %>
+              <%= f.hidden_field :user_id, value: current_user.id %>
+              <%= f.fields_for :when_datum do |i| %>
                 <%= i.input :date %>
                 <%= i.input :time %>
                 <%= i.input :description %>

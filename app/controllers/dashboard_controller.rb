@@ -15,13 +15,14 @@ class DashboardController < ApplicationController
   def like
     url = Url.find(params[:url])
     user = url.user_id
-    Like.create(user_id: user, url_id: params[:url])
 
     url.likes.each do |like|
       if like.user_id == current_user.id
         like.delete
       end
     end
+
+    @like = Like.create(user_id: user, url_id: params[:url])
 
     url.dislikes.each do |dislike|
       if dislike.user_id == current_user.id
@@ -33,13 +34,14 @@ class DashboardController < ApplicationController
   def dislike
     url = Url.find(params[:url])
     user = url.user_id
-    Dislike.create(user_id: user, url_id: params[:url])
 
-    url.dislike.each do |dislike|
+    url.dislikes.each do |dislike|
       if dislike.user_id = current_user.id
         dislike.delete
       end
     end
+
+    Dislike.create(user_id: user, url_id: params[:url])
 
   end
 

@@ -25,7 +25,7 @@ module FormHelper
     why_tag
   end
 
-  def setup_video_tag setup_video_tag
+  def setup_video_tag video_tag
     video_tag.build_video_datum
     video_tag
   end

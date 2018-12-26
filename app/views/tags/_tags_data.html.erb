@@ -1,0 +1,58 @@
+<% if params.has_key?(:where_tag) %>
+  <div>
+    <%= @data.what_datum.location %>
+    <%= @data.what_datum.description %>
+  </div>
+
+<% elsif params.has_key?(:what_tag) %>
+  <div>
+    <%= @data.what_datum.item_name %>
+    <%= @data.what_datum.category %>
+    <%= @data.what_datum.website_url %>
+    <%= @data.what_datum.description %>
+  </div>
+
+<% elsif params.has_key?(:why_tag) %>
+  <div>
+    <%= @data.why_datum.subject %>
+    <%= @data.why_datum.subcategory %>
+    <%= @data.why_datum.title %>
+    <%= @data.why_datum.description %>
+  </div>
+
+
+<% elsif params.has_key?(:when_tag) %>
+  <div>
+    <%= @data.what_datum.date %>
+    <%= @data.what_datum.time %>
+    <%= @data.what_datum.description %>
+  </div>
+
+
+<% elsif params.has_key?(:who_tag) %>
+  <div>
+    <%= @data.what_datum.name %>
+    <%= @data.what_datum.account %>
+    <%= @data.what_datum.website_url %>
+    <%= @data.what_datum.description %>
+  </div>
+
+
+<% elsif params.has_key?(:video_tag) %>
+  <div>
+    <%= @data.what_datum.video_url %>
+    <%= @data.what_datum.category %>
+    <%= @data.what_datum.html_code %>
+    <%= @data.what_datum.description %>
+  </div>
+
+
+ <% elsif params.has_key?(:photo_tag) %>
+  <div>
+    <%#= @data.what_datum.item_name %>
+    <%#= @data.what_datum.category %>
+    <%#= @data.what_datum.website_url %>
+    <%#= @data.what_datum.description %>
+  </div>
+
+<% end %>

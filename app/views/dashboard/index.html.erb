@@ -22,6 +22,9 @@
             <%= image_tag url.screenshot_url, class: 'pull-left thumb-sm m-r-sm img-circle ' if url.screenshot_url.present? %>
             <!-- <img src="https://bootcamps-uploads.s3.amazonaws.com/store/6e1684d25edb98004390cf33e643bc84?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJF5QHW2P5ZLAGVDQ%2F20181204%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20181204T104215Z&X-Amz-Expires=900&X-Amz-SignedHeaders=host&X-Amz-Signature=d1a3a233a6ef89cbe752a4fe3bce793c93e1f2b603d442d51cf6597602bd31a1"> -->
           </span>
+          <span>
+            <%#= url.what_tags %>
+          </span>
           <div class="searc_col_rt">
             <ul class="post_likes">
               <!-- <li><a href="javascript:void(0);"><i class="fas fa-code" ></i></a></li> -->
@@ -30,18 +33,23 @@
                <% end %>
               <!-- <li><i class="fas fa-code url_data" data-toggle="modal" data-target="#embed-modal" data-remote="true"></i></li> -->
               <!-- <li><a href="javascript:void(0);"><i class="fas fa-thumbs-up"></i></a></li> -->
-
               <li><%= link_to like_path(url: url), method: :post, remote: true do %>
                 <i class="fas fa-thumbs-up"></i>
+                <%= url.likes.count rescue 0 %>
               <% end %></li>
 
               <!-- <li><a href="javascript:void(0);"><i class="fas fa-thumbs-down"></i></a></li> -->
 
               <li><%= link_to dislike_path(url: url), method: :post, remote: true do %>
                 <i class="fas fa-thumbs-down"></i>
+                <%= url.dislikes.count rescue 0 %>
                 <% end %></li>
               </li>
             </ul>
+          </div>
+          <div>
+            <div id="diff-tag_<%= url.id %>">
+            </div>
           </div>
         </div>
       </div>

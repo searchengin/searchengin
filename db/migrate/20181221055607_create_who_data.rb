@@ -6,6 +6,7 @@ class CreateWhoData < ActiveRecord::Migration[5.2]
       t.string     :website_url
       t.text       :description
       t.integer    :who_tag_id
+      t.integer    :url_id
 
       t.timestamps
     end

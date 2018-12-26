@@ -9,9 +9,10 @@
       </div>
       <div class="modal-body">
         <div class="container-fluid">
-         <div id="who_tag">
+         <div id="where_modal">
           <h1>Where</h1>
-         <%= simple_form_for setup_where_tag(WhereTag.new), url: create_path(url: params[:url]), method: :post do |f| %>
+         <%= simple_form_for setup_where_tag(WhereTag.new), url: create_path(url: params[:url]), remote: true, method: :post do |f| %>
+              <%= f.hidden_field :user_id, value: current_user.id %>
               <%= f.fields_for :where_datum do |i| %>
                 <%= i.input :location %>
                 <%= i.input :description %>

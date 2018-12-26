@@ -1,4 +1,5 @@
 class WhyTag < Tag
   has_one :why_datum
-  accepts_nested_attributes_fo :why_datum, allow_Destroy: true
+  belongs_to :url
+  accepts_nested_attributes_for :why_datum, allow_destroy: true
 end
