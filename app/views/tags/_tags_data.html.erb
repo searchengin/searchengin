@@ -23,36 +23,36 @@
 
 <% elsif params.has_key?(:when_tag) %>
   <div>
-    <%= @data.what_datum.date %>
-    <%= @data.what_datum.time %>
-    <%= @data.what_datum.description %>
+    <%= @data.when_datum.date %>
+    <%= @data.when_datum.time %>
+    <%= @data.when_datum.description %>
   </div>
 
 
 <% elsif params.has_key?(:who_tag) %>
   <div>
-    <%= @data.what_datum.name %>
-    <%= @data.what_datum.account %>
-    <%= @data.what_datum.website_url %>
-    <%= @data.what_datum.description %>
+    <%= @data.who_datum.name %>
+    <%= @data.who_datum.account %>
+    <%= @data.who_datum.website_url %>
+    <%= @data.who_datum.description %>
   </div>
 
 
 <% elsif params.has_key?(:video_tag) %>
   <div>
-    <%= @data.what_datum.video_url %>
-    <%= @data.what_datum.category %>
-    <%= @data.what_datum.html_code %>
-    <%= @data.what_datum.description %>
+    <%= @data.video_datum.video_url %>
+    <%= @data.video_datum.category %>
+    <%= @data.video_datum.html_code %>
+    <%= @data.video_datum.description %>
   </div>
 
 
  <% elsif params.has_key?(:photo_tag) %>
   <div>
-    <%#= @data.what_datum.item_name %>
-    <%#= @data.what_datum.category %>
-    <%#= @data.what_datum.website_url %>
-    <%#= @data.what_datum.description %>
+    <%= @data.photo_datum.item_name %>
+    <%= @data.photo_datum.category %>
+    <%= @data.photo_datum.website_url %>
+    <%= @data.photo_datum.description %>
   </div>
 
 <% end %>

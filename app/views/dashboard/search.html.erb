@@ -1,0 +1,12 @@
+<div class="content">
+  <div class="searcheng_row wdth100">
+    <div class="searcheng_col panel-heading wdth100">
+        <% @results.each do |result| %>
+          Name: <%= result.item_name %><br>
+          Category:<%= result.category %><br>
+          Website Url: <%= result.website_url %><br>
+          Description: <%= result.description %><br>
+          <% end %>
+    </div>
+  </div>
+</div>

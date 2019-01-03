@@ -16,7 +16,7 @@
 <% elsif params[:title] == "Add_Photo" %>
   $("#main-tag-modal").html('<%= j render("photo_modal", url: @url, type: @type)%>')
   $('#photo-modal').modal('show')
- <% elsif params[:title] == "Embedded_videos" %>
+ <% elsif params[:title] == "EmbeddedVideos" %>
   $("#main-tag-modal").html('<%= j render("video_modal", url: @url, type: @type)%>')
   $('#video-modal').modal('show')
 <% end %>

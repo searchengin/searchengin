@@ -9,6 +9,7 @@ class Url < ApplicationRecord
   has_many :when_tags
   has_many :why_tags
   has_many :video_tags
+  has_many :photo_tags
 
   mount_uploader :screenshot, ImageUploader
 
@@ -16,7 +17,6 @@ class Url < ApplicationRecord
 
   def store_domain_info
     begin
-
       protocol, url = self.url.split('://')
       url = url.split('/').first
       domain_list = url.split('.')

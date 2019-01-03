@@ -21,7 +21,7 @@ class TagsController < ApplicationController
     elsif params[:video_tag]
       @data = @url.video_tags.build(tag_params)
     end
-    @data.save(:validate => false)
+    @data.save!(validate: false)
     #tags = url.tags.first.create(tag_params)
   end
 
@@ -49,6 +49,10 @@ class TagsController < ApplicationController
       when params.has_key?(:why_tag)
         params.require(:why_tag).permit(:user_id,
           why_datum_attributes: [:subject, :subcategory, :title, :description, :link]
+          )
+      when params.has_key?(:photo_tag)
+        params.require(:photo_tag).permit(:user_id,
+          photo_datum_attributes: [:photo_url]
           )
       else
         params.require(:video_tag).permit(:user_id,
