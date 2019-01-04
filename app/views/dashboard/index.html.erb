@@ -12,8 +12,8 @@
       <div class="searcheng_row wdth100">
         <span class="arrow left"></span>
         <div class="searcheng_col panel-heading wdth100">
-          <a href="<%= url.url %>" target="_blank">
-            <span> <%= url.url %> </span>
+          <a href="<%= get_domain_path(url.domain_user.username) %>" target="_blank">
+            <span> <%= "@" + url.domain %> </span>
             <h5><%= url.title %></h5>
           </a>
         </div>
