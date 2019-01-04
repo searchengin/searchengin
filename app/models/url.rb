@@ -30,7 +30,7 @@ class Url < ApplicationRecord
       self.update(protocol: protocol)
       self.update(subdomain: subdomain)
       self.update(domain: domain)
-
+      self.update_domain
       ws = Webshot::Screenshot.instance
       screenshot = ws.capture self.url, "#{domain_list[0]}.png"
       thumb = MiniMagick::Image.open(screenshot.path)
@@ -38,10 +38,58 @@ class Url < ApplicationRecord
       self.update(screenshot: thumb)
       File.delete "#{domain_list[0]}.png"
       # ScreenshotWorker.perform_async(self.id, domain_list[0])
-
     rescue Exception
     end
   end
+
+  def domain_object
+    if Domain.where(domain: self.domain).count == 0
+      Domain.create(domain: self.domain)
+    end
+    Domain.find(domain: self.domain)
+  end
+
+  def update_domain
+    self.domain_object.calculate_points
+  end
+
+  def domain_user
+    user = User.find_by(username: self.domain)
+    unless user
+      user = User.new(username: self.domain, email: nil)
+      user.save(validate: false)
+    end
+    unless Domain.where(domain: self.domain).count > 0
+      self.update_domain
+    end
+    user
+  end
+
+  # def user
+  #   user = User.where(id: self.user_id).first
+  #   user = User.find_by(username: self.domain)
+  #   unless user
+  #     user = User.new(username: self.domain, email: nil)
+  #     user.save
+  #   end
+  #   if Domain.where(domain: self.domain).count > 0
+  #     user = User.find_by(username: self.domain)
+  #     unless user
+  #       user = User.new(username: self.domain, email: nil)
+  #       user.save
+  #     end
+  #   else
+  #     unless user
+  #       self.update_domain
+  #       user = User.find_by(username: self.domain)
+  #       unless user
+  #         user = User.new(username: self.domain, email: nil)
+  #         user.save
+  #       end
+  #     end
+  #   end
+  #   user
+  # end
 
   def likes
     Like.where(url_id: self.id)

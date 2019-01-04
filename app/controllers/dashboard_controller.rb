@@ -9,6 +9,19 @@ class DashboardController < ApplicationController
     @url = Url.find(params[:id])
   end
 
+  def get_domain
+    domain = Domain.where("domain LIKE (?)", "#{params[:id]}%")
+
+    if domain.present?
+      domain_name = domain.first.domain
+    else
+      url = Url.find(params[:id])
+      domain = Domain.create(domain: url.domain)
+      domain_name = domain.domain
+    end
+    @urls = Url.where(domain: domain_name)
+  end
+
   def search
   end
 
