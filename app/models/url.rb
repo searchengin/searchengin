@@ -46,7 +46,7 @@ class Url < ApplicationRecord
     if Domain.where(domain: self.domain).count == 0
       Domain.create(domain: self.domain)
     end
-    Domain.find(domain: self.domain)
+    Domain.find_by(domain: self.domain)
   end
 
   def update_domain
