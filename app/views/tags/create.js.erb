@@ -1,8 +1,7 @@
 <% if params.has_key?(:where_tag) %>
   $('#where-tag-modal').modal('hide')
   $('#embed-modal').modal('hide')
-  $("#diff-tag_<%= @url.id %>").html('<%= @data.where_datum.location %>',
-    '<%= @data.where_datum.description %>')
+  $("#diff-tag_<%= @url.id %>").html('<%=  j render("tags_data", data: @data) %>')
 
 <% elsif params.has_key?(:what_tag) %>
   $('#what-tag-modal').modal('hide')

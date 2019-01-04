@@ -1,8 +1,8 @@
-<div class="modal fade" id="where-tag-modal" tabindex="-1" role="dialog" aria-labelledby="embed-modalTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
+<div class="post_modal modal fade" id="where-tag-modal" tabindex="-1" role="dialog" aria-labelledby="embed-modalTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Embed Post</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">Where</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -10,16 +10,14 @@
       <div class="modal-body">
         <div class="container-fluid">
          <div id="where_modal">
-          <h1>Where</h1>
          <%= simple_form_for setup_where_tag(WhereTag.new), url: create_path(url: params[:url]), remote: true, method: :post do |f| %>
               <%= f.hidden_field :user_id, value: current_user.id %>
               <%= f.fields_for :where_datum do |i| %>
                 <%= i.input :location %>
                 <%= i.input :description %>
               <% end %>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <%= f.submit "SAVE", class: "btn btn-primary" %>
+              <div class="modal-footer" style="float: left;border:none;padding: 0px;">
+                <%= f.submit "Submit", class: "btn default_btn" %>
               </div>
             <% end %>
           </div>

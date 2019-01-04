@@ -1,4 +1,4 @@
-<div class="modal fade" id="info-modal" tabindex="-1" role="dialog" aria-labelledby="embed-modalTitle" aria-hidden="true">
+<div class="post_modal modal fade" id="info-modal" tabindex="-1" role="dialog" aria-labelledby="embed-modalTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -15,14 +15,206 @@
               <%= f.hidden_field :user_id, value: current_user.id %>
               <%= f.fields_for :why_datum do |i| %>
                 <%= i.input :subject %>
-                <%= i.input :subcategory %>
-                <%= i.input :title %>
-                <%= i.input :description %>
-                <%= i.input :link %>
+                <div class="form-group">
+                      <label>Subject</label>
+                      <div class="row">
+                        <div class="col-md-4">
+                          <div class="radio">
+                            <label>
+                              <%= i.radio_button :subject, id: 'subject', name: 'subject', type: 'radio', value: 'Arts' %>
+                              <span>Arts</span>
+                            </label>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="radio">
+                            <label>
+                              <%= i.radio_button :subject, id: 'subject', name: 'subject', type: 'radio', value: 'Business' %>
+                                <span>Business</span>
+                            </label>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="radio">
+                            <label>
+                              <%= i.radio_button :subject, id: 'subject', name: 'subject', type: 'radio', value: 'Computers' %>
+                                <span>Computers</span>
+                              </label>
+                          </div>
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="col-md-4">
+                          <div class="radio">
+                            <label>
+                              <%= i.radio_button :subject, id: 'subject', name: 'subject', type: 'radio', value: 'Games' %>
+                                <span>Games</span>
+                              </label>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="radio">
+                            <label>
+                              <%= i.radio_button :subject, id: 'subject', name: 'subject', type: 'radio', value: 'Health' %>
+                                <span>Health</span>
+                              </label>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="radio">
+                            <label>
+                              <%= i.radio_button :subject, id: 'subject', name: 'subject', type: 'radio', value: 'Book' %>
+                                <span>Book</span>
+                              </label>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                          <div class="radio">
+                            <label>
+                              <%= i.radio_button :subject, id: 'subject', name: 'subject', type: 'radio', value: 'Syndrome' %>
+                                <span>Syndrome</span>
+                              </label>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="radio">
+                            <label>
+                              <%= i.radio_button :subject, id: 'subject', name: 'subject', type: 'radio', value: 'Home/Family' %>
+                                <span>Home/Family</span>
+                              </label>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="radio">
+                            <label>
+                              <%= i.radio_button :subject, id: 'subject', name: 'subject', type: 'radio', value: 'Cars/Auto' %>
+                                <span>Cars/Auto</span>
+                              </label>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                          <div class="radio">
+                            <label>
+                              <%= i.radio_button :subject, id: 'subject', name: 'subject', type: 'radio', value: 'News' %>
+                                <span>News</span>
+                              </label>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="radio">
+                            <label>
+                              <%= i.radio_button :subject, id: 'subject', name: 'subject', type: 'radio', value: 'Recreation' %>
+                                <span>Recreation</span>
+                              </label>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="radio">
+                            <label>
+                              <%= i.radio_button :subject, id: 'subject', name: 'subject', type: 'radio', value: 'Computers' %>
+                                <span>Computers</span>
+                              </label>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                          <div class="radio">
+                            <label>
+                              <%= i.radio_button :subject, id: 'subject', name: 'subject', type: 'radio', value: 'Sports' %>
+                                <span>Sports</span>
+                            </label>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="radio">
+                            <label>
+                              <%= i.radio_button :subject, id: 'subject', name: 'subject', type: 'radio', value: 'Reference' %>
+                                <span>Reference</span>
+                              </label>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="radio">
+                            <label>
+                              <%= i.radio_button :subject, id: 'subject', name: 'subject', type: 'radio', value: 'Regional' %>
+                                <span>Regional</span>
+                              </label>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                          <div class="radio">
+                            <label>
+                              <%= i.radio_button :subject, id: 'subject', name: 'subject', type: 'radio', value: 'Science' %>
+                                <span>Science</span>
+                            </label>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="radio">
+                            <label>
+                              <%= i.radio_button :subject, id: 'subject', name: 'subject', type: 'radio', value: 'Shopping' %>
+                                <span>Shopping</span>
+                              </label>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="radio">
+                            <label>
+                              <%= i.radio_button :subject, id: 'subject', name: 'subject', type: 'radio', value: 'Society' %>
+                                <span>Society</span>
+                              </label>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                          <div class="radio">
+                            <label>
+                              <%= i.radio_button :subject, id: 'subject', name: 'subject', type: 'radio', value: 'Sports' %>
+                                <span>Sports</span>
+                            </label>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="radio">
+                            <label>
+                              <%= i.radio_button :subject, id: 'subject', name: 'subject', type: 'radio', value: 'Travel' %>
+                                <span>Travel</span>
+                              </label>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="radio">
+                            <label>
+                              <%= i.radio_button :subject, id: 'subject', name: 'subject', type: 'radio', value: 'Kids & Teens' %>
+                                <span>Society</span>
+                              </label>
+                          </div>
+                        </div>
+                    </div>
+                    <div class="radio">
+                        <label>
+                           <%= i.radio_button :subject, id: 'subject', name: 'subject', type: 'radio', value: 'Other' %>
+                            <span>Other</span></label>
+                    </div>
+                    <div class="form-group other">
+                        <input class="form-control" id="subject" name="subject" type="text">
+                    </div>
+                      <%= i.input :subcategory %>
+                      <%= i.input :title %>
+                      <%= i.input :description %>
+                      <%= i.input :link %>
+                 </div>
               <% end %>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <%= f.submit "SAVE", class: "btn btn-primary" %>
+              <div class="modal-footer" style="float: left;border:none;padding: 0px;">
+                <%= f.submit "Submit", class: "btn default_btn" %>
               </div>
             <% end %>
           </div>

@@ -1,80 +1,61 @@
-<%#= @url %>
-
-<!-- <div class="content">
-
-    <section class="searcheng wdth100">
-
-      <!-- <a href="javscript:void(0);"> -->
-      <!-- <a href="<%#= url.url %>" target="_blank"> -->
-        <%#= image_tag url.favicon_url, class: 'pull-left thumb-sm m-r-sm img-circle favicon_img' %>
-      <!-- </a> -->
-
-     <!--  <div class="searcheng_row wdth100">
-        <span class="arrow left"></span>
-        <div class="searcheng_col panel-heading wdth100">
-          <a href="<%#= url.url %>" target="_blank">
-            <span> <%#= url.url %> </span>
-            <h5><%#= url.title %></h5>
-          </a>
-        </div>
-        <div class="searcheng_col2 wdth100">
-          <span class="img_box">
-          </span>
-
-        </div>
+<div class="panel_head wdth100">
+  <a href="javascript:void(0)">
+      <div class="wdth100">
+          <%= image_tag url.favicon_url, class: 'pull-left thumb-sm m-r-sm img-circle favicon_img' %>
+          <span>@abbreviations.com</span>
       </div>
-    </section> -->
+      <small>abbreviations.com</small>
+  </a>
+  <a href="javascript:void(0);" class="text-right">Friday January 04</a>
+</div>
+<div class="panel_body wdth100">
+  <div class="panel_row wdth100">
+    <div class="panel_img">
+      <%= image_tag url.screenshot_url, class: 'pull-left thumb-sm m-r-sm img-circle ' if url.screenshot_url.present? %>
+    </div>
+    <div class="panel_cntnt">
+      <p>
+        <a class="panel_icn" href="http://searcheng.in/e/R7xdjw">
+          <i class="fas fa-table"></i>
+        </a>
+        <%= url.description %>
+      </p>
+        <a href="http://www.espnfc.us/club/fortuna-dusseldorf/9707/index" style="border-bottom: 1px dashed #575757; word-break: break-all;" target="_blank"><i class="icon-external-link"></i>  https://www.abbreviations.com/TCD
+        </a>
+    </div>
+  </div>
+</div>
     <li><%= link_to tags_path(url: url, title: "Who_tag" ),title: 'Add Who Tag', method: :post, remote: true do %>
-      <i class="fas fa-thumbs-up"><%=  url.tags.where(type: "WhoTag").count %></i>
+      <i class="fas fa-user text_info"></i>
+      <small><%=  url.tags.where(type: "WhoTag").count %></small>
     <% end %></li>
 
     <li><%= link_to tags_path(url: url, title: "Add_where_tag"),title: 'Add Where Tag', method: :post, remote: true do %>
-      <i class="fas fa-thumbs-up"><%=  url.tags.where(type: "WhereTag").count %></i>
+      <i class="fas fa-map-marker-alt text_info"></i>
+      <small><%=  url.tags.where(type: "WhereTag").count %></small>
     <% end %></li>
 
     <li><%= link_to tags_path(url: url, title: "Add_what_tag" ),title: 'Add What Tag', method: :post, remote: true do %>
-      <i class="fas fa-thumbs-up"><%=  url.tags.where(type: "WhatTag").count %></i>
+      <i class="fas fa-tags text_info"></i>
+      <small><%=  url.tags.where(type: "WhatTag").count %></small>
     <% end %></li>
 
     <li><%= link_to tags_path(url: url, title: "Add_when_tag" ),title: 'Add When Tag', method: :post, remote: true do %>
-      <i class="fas fa-thumbs-up"><%=  url.tags.where(type: "WhenTag").count %></i>
+      <i class="fas fa-calendar-alt text_info"></i>
+      <small><%=  url.tags.where(type: "WhenTag").count %></small>
     <% end %></li>
 
     <li><%= link_to tags_path(url: url, title: "Info"),title: 'Info', method: :post, remote: true do %>
-      <i class="fas fa-thumbs-up"><%=  url.tags.where(type: "WhyTag").count %></i>
+      <i class="fas fa-info-circle text_info"></i>
+      <small><%=  url.tags.where(type: "WhyTag").count %></small>
     <% end %></li>
 
     <li><%= link_to tags_path(url: url, title: "Add_Photo"),title: 'Add Photo', method: :post, remote: true do %>
-      <i class="fas fa-thumbs-up"><%=  url.tags.where(type: "PhotoTag").count %></i>
+      <i class="fas fa-camera text_info"></i>
+      <small><%=  url.tags.where(type: "PhotoTag").count %></small>
     <% end %></li>
 
     <li><%= link_to tags_path(url: url, title: "EmbeddedVideos"),title: 'Embedded Video,tweet,HTML', method: :post, remote: true do %>
-      <i class="fas fa-thumbs-up"><%=  url.tags.where(type: "VideoTag").count %></i>
+      <i class="fas fa-code text_info"></i>
+      <small><%=  url.tags.where(type: "VideoTag").count %></small>
     <% end %></li>
-
-
-
-  <!-- <section class="searcheng wdth100">
-    <a href="javscript:void(0);"><img alt="espnfc.us" class="pull-left thumb-sm m-r-sm img-circle" src="http://s2.googleusercontent.com/s2/favicons?domain_url=espnfc.us&amp;sz=32"></a>
-    <div class="searcheng_row wdth100">
-      <span class="arrow left"></span>
-      <div class="searcheng_col panel-heading wdth100">
-        <a href="javascript:void(0)">
-          <span> @espnfc.us</span>
-          <h5>Fortuna Düsseldorf News and Scores - ESPN FC</h5>
-        </a>
-      </div>
-      <div class="searcheng_col2 wdth100">
-        <span class="img_box"><img src="https://bootcamps-uploads.s3.amazonaws.com/store/6e1684d25edb98004390cf33e643bc84?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAJF5QHW2P5ZLAGVDQ%2F20181204%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20181204T104215Z&X-Amz-Expires=900&X-Amz-SignedHeaders=host&X-Amz-Signature=d1a3a233a6ef89cbe752a4fe3bce793c93e1f2b603d442d51cf6597602bd31a1"></span>
-        <div class="searc_col_rt">
-          <ul class="post_likes">
-            <li><a href="javascript:void(0);"><i class="fas fa-code"></i></a></li>
-            <li><a href="javascript:void(0);"><i class="fas fa-thumbs-up"></i></a></li>
-            <li><a href="javascript:void(0);"><i class="fas fa-thumbs-down"></i></a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section> -->
-
-</div>
