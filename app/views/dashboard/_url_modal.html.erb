@@ -24,33 +24,32 @@
         </div>
       </div>
     </section> -->
-
     <li><%= link_to tags_path(url: url, title: "Who_tag" ),title: 'Add Who Tag', method: :post, remote: true do %>
-      <i class="fas fa-thumbs-up"></i>
+      <i class="fas fa-thumbs-up"><%=  url.tags.where(type: "WhoTag").count %></i>
     <% end %></li>
 
     <li><%= link_to tags_path(url: url, title: "Add_where_tag"),title: 'Add Where Tag', method: :post, remote: true do %>
-      <i class="fas fa-thumbs-up"></i>
+      <i class="fas fa-thumbs-up"><%=  url.tags.where(type: "WhereTag").count %></i>
     <% end %></li>
 
     <li><%= link_to tags_path(url: url, title: "Add_what_tag" ),title: 'Add What Tag', method: :post, remote: true do %>
-      <i class="fas fa-thumbs-up"></i>
+      <i class="fas fa-thumbs-up"><%=  url.tags.where(type: "WhatTag").count %></i>
     <% end %></li>
 
     <li><%= link_to tags_path(url: url, title: "Add_when_tag" ),title: 'Add When Tag', method: :post, remote: true do %>
-      <i class="fas fa-thumbs-up"></i>
+      <i class="fas fa-thumbs-up"><%=  url.tags.where(type: "WhenTag").count %></i>
     <% end %></li>
 
     <li><%= link_to tags_path(url: url, title: "Info"),title: 'Info', method: :post, remote: true do %>
-      <i class="fas fa-thumbs-up"></i>
+      <i class="fas fa-thumbs-up"><%=  url.tags.where(type: "WhyTag").count %></i>
     <% end %></li>
 
     <li><%= link_to tags_path(url: url, title: "Add_Photo"),title: 'Add Photo', method: :post, remote: true do %>
-      <i class="fas fa-thumbs-up"></i>
+      <i class="fas fa-thumbs-up"><%=  url.tags.where(type: "PhotoTag").count %></i>
     <% end %></li>
 
-    <li><%= link_to tags_path(url: url, title: "Embedded_videos"),title: 'Embedded Video,tweet,HTML', method: :post, remote: true do %>
-      <i class="fas fa-thumbs-up"></i>
+    <li><%= link_to tags_path(url: url, title: "EmbeddedVideos"),title: 'Embedded Video,tweet,HTML', method: :post, remote: true do %>
+      <i class="fas fa-thumbs-up"><%=  url.tags.where(type: "VideoTag").count %></i>
     <% end %></li>
 
 

@@ -26,12 +26,12 @@
   $("#diff-tag_<%= @url.id %>").html('<%= j render("tags_data", data: @data)%>')
 
 <% elsif params.has_key?(:video_tag) %>
-  $('#video-tag-modal').modal('hide')
+  $('#video-modal').modal('hide')
   $('#embed-modal').modal('hide')
   $("#diff-tag_<%= @url.id %>").html('<%= j render("tags_data", data: @data)%>')
 
  <% elsif params.has_key?(:photo_tag) %>
-  $('#photo-tag-modal').modal('hide')
+  $('#photo-modal').modal('hide')
   $('#embed-modal').modal('hide')
   $("#diff-tag_<%= @url.id %>").html('<%= j render("tags_data", data: @data)%>')
 <% end %>

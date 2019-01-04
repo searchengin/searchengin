@@ -30,4 +30,9 @@ module FormHelper
     video_tag
   end
 
+  def setup_photo_tag photo_tag
+    photo_tag.build_photo_datum
+    photo_tag
+  end
+
 end

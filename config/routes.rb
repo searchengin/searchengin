@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :news
   get 'dashboard/index'
   get '/@:id', to: 'dashboard#get_domain', as: :get_domain
+  get 'dashboard/result'
   get 'dashboard/get_url_object/:id', to: 'dashboard#get_url_object', as: :get_url_object
   get 'dashboard/search', to: 'dashboard#search', as: :search
   post 'dashboard/like', to: 'dashboard#like', as: :like
