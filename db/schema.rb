@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_22_123549) do
+ActiveRecord::Schema.define(version: 2018_12_27_092814) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,10 +20,8 @@ ActiveRecord::Schema.define(version: 2018_11_22_123549) do
     t.string "code"
     t.string "title"
     t.text "description"
-    t.bigint "url_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["url_id"], name: "index_alias_tags_on_url_id"
   end
 
   create_table "categories", force: :cascade do |t|
@@ -66,6 +64,30 @@ ActiveRecord::Schema.define(version: 2018_11_22_123549) do
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
+  create_table "photo_data", force: :cascade do |t|
+    t.string "name"
+    t.string "username"
+    t.integer "postphoto_id"
+    t.boolean "verified"
+    t.datetime "verified_time"
+    t.integer "verified_user_id"
+    t.string "is_bot"
+    t.boolean "rejected"
+    t.string "rejected_comment"
+    t.datetime "rejected_time"
+    t.integer "rejected_user_id"
+    t.string "rejected_cancel_comment"
+    t.datetime "rejected_cancel_time"
+    t.integer "rejected_cancel_user_id"
+    t.integer "points"
+    t.string "url"
+    t.string "photo_url"
+    t.string "text"
+    t.integer "photo_tag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "subcategories", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -93,6 +115,7 @@ ActiveRecord::Schema.define(version: 2018_11_22_123549) do
     t.bigint "url_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "type"
     t.index ["rejected_cancel_user_id"], name: "index_tags_on_rejected_cancel_user_id"
     t.index ["rejected_user_id"], name: "index_tags_on_rejected_user_id"
     t.index ["url_id"], name: "index_tags_on_url_id"
@@ -148,11 +171,31 @@ ActiveRecord::Schema.define(version: 2018_11_22_123549) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "video_data", force: :cascade do |t|
+    t.text "video_url"
+    t.string "category"
+    t.text "description"
+    t.text "html_code"
+    t.integer "video_tag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "video_tags", force: :cascade do |t|
     t.text "video_url"
     t.string "category"
     t.text "description"
     t.text "html_code"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "what_data", force: :cascade do |t|
+    t.string "item_name"
+    t.string "category"
+    t.string "website_url"
+    t.text "description"
+    t.integer "what_tag_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -166,10 +209,27 @@ ActiveRecord::Schema.define(version: 2018_11_22_123549) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "when_data", force: :cascade do |t|
+    t.date "date"
+    t.time "time"
+    t.text "description"
+    t.integer "when_tag_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "when_tags", force: :cascade do |t|
     t.date "date"
     t.time "time"
     t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "where_data", force: :cascade do |t|
+    t.string "location"
+    t.text "description"
+    t.integer "where_tag_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -181,11 +241,33 @@ ActiveRecord::Schema.define(version: 2018_11_22_123549) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "who_data", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "account"
+    t.string "website_url"
+    t.text "description"
+    t.integer "who_tag_id"
+    t.integer "url_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "who_tags", force: :cascade do |t|
     t.string "name", null: false
     t.string "account"
     t.string "website_url"
     t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "why_data", force: :cascade do |t|
+    t.string "subject"
+    t.string "subcategory"
+    t.string "title"
+    t.string "link"
+    t.text "description"
+    t.integer "why_tag_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -200,7 +282,6 @@ ActiveRecord::Schema.define(version: 2018_11_22_123549) do
     t.datetime "updated_at", null: false
   end
 
-  add_foreign_key "alias_tags", "urls"
   add_foreign_key "dislikes", "tags"
   add_foreign_key "dislikes", "urls"
   add_foreign_key "dislikes", "users"
