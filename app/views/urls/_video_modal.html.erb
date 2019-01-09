@@ -2,7 +2,8 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Embed Post</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">Embed (Video, Tweets, HTML)
+        </h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -10,7 +11,6 @@
       <div class="modal-body">
         <div class="container-fluid">
          <div id="video_tag">
-          <h1>Video</h1>
           <%= simple_form_for setup_video_tag(VideoTag.new), url: create_path(url: params[:url]),remote: true, method: :post do |f| %>
               <%= f.hidden_field :user_id, value: current_user.id %>
               <%= f.fields_for :video_datum do |i| %>

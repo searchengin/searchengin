@@ -10,11 +10,10 @@
       <div class="modal-body">
         <div class="container-fluid">
          <div id="photo_tag">
-          <h1>Photo</h1>
           <%= simple_form_for setup_photo_tag(PhotoTag.new), url: create_path(url: params[:url]),remote: true, method: :post do |f| %>
               <%= f.hidden_field :user_id, value: current_user.id %>
               <%= f.fields_for :photo_datum do |i| %>
-                <%= i.input :photo_url %>
+                <%= i.input :photo_url, as: :file %>
               <% end %>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

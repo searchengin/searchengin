@@ -11,10 +11,10 @@
         <div class="container-fluid">
           <div id="who_tag">
             <%= simple_form_for setup_who_tag(WhoTag.new), url: create_path(url: params[:url]),remote: true, remote: true, method: :post do |f| %>
-              <%= f.input :name %>
+              <%= f.input :name, label: "Name/Business" %>
               <%= f.hidden_field :user_id, value: current_user.id %>
               <%= f.fields_for :who_datum do |i| %>
-                <%= i.input :account %>
+                <%#= i.input :account %>
                 <%= i.input :website_url %>
                 <%= i.input :description %>
               <% end %>

@@ -139,12 +139,16 @@ div.content {
   display: flex;
   justify-content: space-between;
   margin-top: 10px;
-  min-height: 84px;
+  background-color: #ececec;
+  align-items: center;
+  height: 92px;
+  position: relative;
 }
 
 .img_box{
   width: 111px;
   float: left;
+  display: flex;
 }
 
 .img_box>img{
@@ -153,32 +157,43 @@ div.content {
 }
 
 .searc_col_rt{
-  width: calc(100% - 111px);
-  float: left;
-  background: #f3f5f9;
-  position: relative;
-    padding:  8px 15px;
+  width: auto;
+  position: absolute;
+  display: inline-block;
+  bottom: 4px;
+  right: 6px;
 }
 
 .post_likes{
-  position: absolute;
-  right: 15px;
-  bottom: 5px;
-  margin:0;
+  margin: 0;
   padding: 0px;
+  width: auto;
+  float: right;
 }
 
 
 .post_likes li{
   list-style: none;
   display: inline-block;
-  margin: 0 8px;
+  padding: 0 5px;
+  position: relative;
 }
+
+.post_likes li:nth-child(2):before{
+    content: '/';
+    position: absolute;
+    right: 0;
+    top: 2px;
+}
+
+.post_likes li:last-child{padding-left: 0px;}
 
 .post_likes li a{
   color: #575757;
-  font-size: 14px;
+  font-size: 12px;
+  letter-spacing: 3px;
 }
+
 
 .is-like {
   color: #92cf5c;
@@ -377,6 +392,31 @@ div.content {
   color: #979797;
   margin-bottom: 0px;
 }
+
+
+.search_desc{
+  display: flex;
+  flex-direction: column;
+  padding-left: 10px;
+}
+
+.search_desc span>i{
+  color: #575757;
+  font-size: 13px;
+  margin-right: 4px;
+}
+
+.search_desc>span,
+.search_desc>span>a{
+  font-size: 13px;
+}
+
+.search_desc>span>a{
+  color: #575757;
+  padding-bottom: 5px;
+  border-bottom: 1px dashed #575757;
+}
+
 
 @media screen and (max-width: 700px) {
   .sidebar {
