@@ -25,7 +25,9 @@
       <% else %>
       <a href="javascript:void(0);">
         <%= link_to @url.url do %>
-          <%= image_tag @url.screenshot_url %>
+          <% if @url.screenshot_url.present?%>
+            <%= image_tag @url.screenshot_url %>
+          <% end %>
         <% end %>
       </a>
       <% end %>
