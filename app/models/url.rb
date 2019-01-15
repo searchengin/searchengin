@@ -100,6 +100,8 @@ class Url < ApplicationRecord
   end
 
 
+
+
   # def self.screenshot_capture(url_id, domain_list)
   #   url = Url.find_by(id: url_id)
   #   ws = Webshot::Screenshot.instance

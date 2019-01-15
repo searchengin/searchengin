@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   post 'dashboard/dislike', to: 'dashboard#dislike', as: :dislike
   post 'urls/tags', to: 'urls#tags', as: :tags
   post 'tags/create', to: 'tags#create', as: :create
+  get 'dashboard/verify_domain/:id', to: 'dashboard#verify_domain', as: :verify_domain
+  #get 'urls/url_details/:id', to: 'urls#url_details', as: :url_details
 
 
   root 'dashboard#index'

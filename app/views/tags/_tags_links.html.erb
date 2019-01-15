@@ -1,0 +1,35 @@
+    <%= link_to tags_path(url: @url, title: "Who_tag" ),title: 'Add Who Tag', method: :post,class:"mg10", remote: true do %>
+      <i class="fas fa-user text_info"></i>
+      <small><%=  @url.tags.where(type: "WhoTag").count %></small>
+    <% end %>
+
+
+    <%= link_to tags_path(url: @url, title: "Add_where_tag"),title: 'Add Where Tag', method: :post,class:"mg10", remote: true do %>
+      <i class="fas fa-map-marker-alt text_info"></i>
+      <small><%=  @url.tags.where(type: "WhereTag").count %></small>
+    <% end %>
+
+   <%= link_to tags_path(url: @url, title: "Add_what_tag" ),title: 'Add What Tag',class:"mg10",method: :post, remote: true do %>
+      <i class="fas fa-tags text_info"></i>
+      <small><%=  @url.tags.where(type: "WhatTag").count %></small>
+    <% end %>
+
+   <%= link_to tags_path(url: @url, title: "Add_when_tag" ),title: 'Add When Tag',class:"mg10", method: :post, remote: true do %>
+      <i class="fas fa-calendar-alt text_info"></i>
+      <small><%=  @url.tags.where(type: "WhenTag").count %></small>
+    <% end %>
+
+   <%= link_to tags_path(url: @url, title: "Info"),title: 'Info', method: :post,class:"mg10", remote: true do %>
+      <i class="fas fa-info-circle text_info"></i>
+      <small><%=  @url.tags.where(type: "WhyTag").count %></small>
+    <% end %>
+
+   <%= link_to tags_path(url: @url, title: "Add_Photo"),title: 'Add Photo', method: :post,class:"mg10", remote: true do %>
+      <i class="fas fa-camera text_info"></i>
+      <small><%=  @url.tags.where(type: "PhotoTag").count %></small>
+    <% end %>
+
+   <%= link_to tags_path(url: @url, title: "EmbeddedVideos"),title: 'Embedded Video,tweet,HTML', method: :post,class:"mg10", remote: true do %>
+      <i class="fas fa-code text_info"></i>
+      <small><%=  @url.tags.where(type: "VideoTag").count %></small>
+    <% end %>

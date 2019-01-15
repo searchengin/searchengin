@@ -1,5 +1,135 @@
-<div class="content">
-  <%= @url.url  %>
-    
+<div class="right_sidebar">
+  <div class="scroll_section wdth100">
+    <form class="login_url wdth100">
+      <div class="form-group">
+        <label>Long Url</label>
+        <%= text_field_tag  @url, nil, placeholder: @url.url, class: "form-control cstm_input" %>
+      </div>
+      <div class="form-group">
+        <label>Short Url</label>
+        <div class="input_wrappr">
+          <%= text_field_tag  @url, nil, placeholder: 'http://searcheng.in/' + 'urls/' +(@url.id).to_s, class: "form-control cstm_input" %>
+          <span class="plugin"><img src="images/plugin.png"></span>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="news_details wdth100">
+    <div class="post_media wdth100 news_img">
+      <% if @url.cover_data.present? %>
+      <a href="javascript:void(0);">
+        <%= link_to @url.url do %>
+          <%= image_tag @url.cover_data %>
+        <% end %>
+      </a>
+      <% else %>
+      <a href="javascript:void(0);">
+        <%= link_to @url.url do %>
+          <%= image_tag @url.screenshot_url %>
+        <% end %>
+      </a>
+      <% end %>
+    <div class="text_wrapper wdth100">
+      <h2 class="news_title"><a href="javascript:void(0);"><%= @title %></a></h2>
+      <p><%= @url.description %></p>
+      <a href="javascript:void(0);" class="news_link dash"><i class="fas fa-external-link-alt"></i>
+        <span class="dash_border"><%= @url.url%></span>
+      </a>
+      <%= render 'tags/tags_links' %>
+    </div>
+  </div>
+  <% @tags.each  do |tag| %>
+
+  <span class="wrapp_row">
+    <span class="row_icn"><i class="fas fa-info-circle"></i></span>
+    <div class="reslt_body wdth100">
+      <div class="reslt_row wdth100">
+        <span class="arrow left"></span>
+        <div class="reslt_col wdth100">
+          <div class="wdth100">
+            <% if tag.type == "WhereTag" %>
+          <div>
+            <% if tag.where_datum.present? %>
+            <%= tag.where_datum.created_at.strftime('%A %B %d') %>
+              <%= tag.where_datum.location %>
+            <% end %>
+            <% if tag.where_datum.present? %>
+              <%= tag.where_datum.description %>
+            <% end %>
+          </div>
+        <% end %>
+        <% if tag.type == "WhatTag" %>
+          <div>
+          <% if tag.what_datum.present? %>
+            <%= tag.what_datum.created_at.strftime('%A %B %d') %>
+              <%= eval(tag.what_datum.category)[:value] %>
+            <% end %>
+            <% if tag.what_datum.website_url? %>
+              <%= tag.what_datum.website_url %>
+            <% end %>
+            <% if tag.what_datum.description? %>
+              <%= tag.what_datum.description %>
+            <% end %>
+          </div>
+        <% end %>
+        <% if tag.type == "WhyTag" %>
+          <div>
+            <% if tag.why_datum.subject? %>
+            <%= tag.why_datum.created_at.strftime('%A %B %d') %>
+              <%= tag.why_datum.subject %>
+            <% end %>
+            <% if tag.why_datum.title? %>
+               <%= tag.why_datum.title %>
+            <% end %>
+            <% if tag.why_datum.subcategory? %>
+               <%= tag.why_datum.subcategory %>
+            <% end %>
+            <% if tag.why_datum.description? %>
+               <%= tag.why_datum.description %>
+            <% end %>
+            <% if tag.why_datum.link? %>
+               <%= tag.why_datum.link %>
+            <% end %>
+          </div>
+        <% end %>
+        <% if tag.type == "WhenTag" %>
+          <div>
+            <% if tag.when_datum.date? %>
+            <%= tag.when_datum.created_at.strftime('%A %B %d') %>
+              <%= tag.when_datum.date %>
+            <% end %>
+            <% if tag.when_datum.time? %>
+              <%= tag.when_datum.time %>
+            <% end %>
+            <% if tag.when_datum.description? %>
+              <%= tag.when_datum.description %>
+            <% end %>
+          </div>
+        <% end %>
+          </div>
+        </div>
+      </div>
+      <ul class="post_likes">
+        <a class="url_data" data-remote="true" href="/dashboard/get_url_object/28">
+         <i class="fas fa-code"></i>
+        </a>
+        <li>
+          <a data-remote="true" rel="nofollow" data-method="post" href="/dashboard/like?url=28">
+          <i class="fas fa-thumbs-up text-success" id="like_28">0</i>
+          </a>
+        </li>
+        <li>
+          <a data-remote="true" rel="nofollow" data-method="post" href="/dashboard/dislike?url=28">
+          <i class="fas fa-thumbs-down" id="dislike_28">0</i>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </span>
+
+  <% end %>
 </div>
+<div id= "main-tag-modal">
+</div>
+
 
