@@ -27,7 +27,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'cognitivebing'
 gem 'dnslookup'
 gem 'dnsruby'
-gem 'mandrill-api', '~> 1.0', '>= 1.0.53'
+#gem 'mandrill-api', '~> 1.0', '>= 1.0.53'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
