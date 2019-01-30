@@ -1,6 +1,5 @@
 class DashboardController < ApplicationController
   # before_action :authenticate_user!
-# include Dnsruby
 
 
   def index
@@ -118,7 +117,21 @@ class DashboardController < ApplicationController
                 order by points desc
                 limit 3
               ")
-      end
+            @urls_data[k] = []
+            tags.each do |tag|
+              tag = Tag.find(tag['id'])
+              @urls_data[k].append(tag)
+              #@keywords = "#{@keywords}, #{tag.meta_keyword}"
+              #@description = "#{@description}, #{tag.meta_description}"
+              # if [1, 3, 4].include? @user_ad_index
+              #   if tag.user
+              #     if tag.user.ad_client and tag.user.ad_slot
+              #       @users_for_ad[@user_ad_index] = tag.user
+              #     end
+              #   end
+              # end
+            end
+          end
     else
        urls = connection.exec_query("
             with query_filter as (
@@ -196,51 +209,80 @@ class DashboardController < ApplicationController
   end
 
   def like
-    #like = Like.where(user_id: current_user.id, url_id: params[:url])
-    likes = Like.where(url_id: params[:url])
-    if likes.count > 0
-      likes.each do |like|
-        if like.user_id == current_user.id
-          like.delete
+    if params[:tag].present?
+      likes = Like.where(tag_id: params[:tag])
+      if likes.count > 0
+        likes.each do |like|
+          if like.user_id == current_user.id
+            like.delete
+          end
         end
+      else
+        like = Like.create(user_id: current_user.id, tag_id: params[:tag])
       end
+      @like_count =  Like.where(tag_id: params[:tag]).count
     else
-      like = Like.create(user_id: current_user.id, url_id: params[:url])
+      likes = Like.where(url_id: params[:url])
+      if likes.count > 0
+        likes.each do |like|
+          if like.user_id == current_user.id
+            like.delete
+          end
+        end
+      else
+        like = Like.create(user_id: current_user.id, url_id: params[:url])
+      end
+      @like_count =  Like.where(url_id: params[:url]).count
     end
-    @like_count =  Like.where(url_id: params[:url]).count
   end
 
   def dislike
-    dislikes = Dislike.where(url_id: params[:url])
-    if dislikes.count > 0
-      dislikes.each do |dislike|
-        if dislike.user_id == current_user.id
-          dislike.delete
+    if params[:tag].present?
+       dislikes = Dislike.where(tag_id: params[:tag])
+      if dislikes.count > 0
+        dislikes.each do |dislike|
+          if dislike.user_id == current_user.id
+            dislike.delete
+          end
         end
+      else
+       dislike = Dislike.create(user_id: current_user.id,tag_id: params[:tag])
       end
+        @dislike_count = Dislike.where(url_id: params[:url]).count
     else
-     dislike = Dislike.create(user_id: current_user.id, url_id: params[:url])
-    end
-      @dislike_count = Dislike.where(url_id: params[:url]).count
+      dislikes = Dislike.where(url_id: params[:url])
+      if dislikes.count > 0
+        dislikes.each do |dislike|
+          if dislike.user_id == current_user.id
+            dislike.delete
+          end
+        end
+      else
+       dislike = Dislike.create(user_id: current_user.id, url_id: params[:url])
+      end
+        @dislike_count = Dislike.where(url_id: params[:url]).count
+      end
   end
 
 
-  # def verify_domain
-  #   #username = params[:username]
-  #   #user = User.find(username: @username)
+  def verify_domain
+    #username = params[:username]
+    #user = User.find(username: @username)
+    url = Url.find(params[:id])
+    domain = url.domain
+    DomainService.new(domain).call
+    # #mandrill = Mandrill::API.new ENV['MANDRILL_APIKEY']
+    # #res = Resolver.new
+    # #ret = res.query(url)
+    # res = Dnsruby::Resolver.new
+    # binding.pry
+    # ret = res.query(domain, Types.TXT)
+    # ret.answer.first.strings
+    # p ret.answer
 
-  #   url = Url.find(params[:id])
-  #   domain = url.domain
-  #   #mandrill = Mandrill::API.new ENV['MANDRILL_APIKEY']
-  #   #res = Resolver.new
-  #   #ret = res.query(url)
-  #   res = Dnsruby::Resolver.new
-  #   ret = res.query(domain, Types.TXT)
-  #   p ret.answer
-
-  #   Dnsruby::DNS.open {|dns|
-  #     dns.each_resource(domain, Types.A) {|r| p r}
-  #   }
-  # end
+    # Dnsruby::DNS.open {|dns|
+    #   dns.each_resource(domain, Types.A) {|r| p r}
+    # }
+  end
 
 end

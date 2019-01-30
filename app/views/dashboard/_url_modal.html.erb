@@ -6,7 +6,8 @@
       </div>
       <small>abbreviations.com</small>
   </a>
-  <a href="javascript:void(0);" class="text-right">Friday January 04</a>
+  <a href="javascript:void(0);" class="text-right"><%= Time.now.strftime('%A %B %d')
+ %></a>
 </div>
 <div class="panel_body wdth100">
   <div class="panel_row wdth100">
@@ -58,6 +59,6 @@
     <% end %></li>
 
     <li><%= link_to tags_path(url: url, title: "EmbeddedVideos"),title: 'Embedded Video,tweet,HTML', method: :post, remote: true do %>
-      <i class="fas fa-code text_info"></i>
+      <i class="fas fa-file-code"></i>
       <small><%=  url.tags.where(type: "VideoTag").count %></small>
     <% end %></li>

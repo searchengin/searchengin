@@ -30,6 +30,6 @@
     <% end %>
 
    <%= link_to tags_path(url: @url, title: "EmbeddedVideos"),title: 'Embedded Video,tweet,HTML', method: :post,class:"mg10", remote: true do %>
-      <i class="fas fa-code text_info"></i>
+      <i class="fas fa-file-code"></i>
       <small><%=  @url.tags.where(type: "VideoTag").count %></small>
     <% end %>

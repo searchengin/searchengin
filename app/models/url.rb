@@ -2,14 +2,14 @@ class Url < ApplicationRecord
   require 'webshot'
 
   belongs_to :user
-  has_many :tags
-  has_many :who_tags
-  has_many :where_tags
-  has_many :what_tags
-  has_many :when_tags
-  has_many :why_tags
-  has_many :video_tags
-  has_many :photo_tags
+  has_many :tags, dependent: :destroy
+  has_many :who_tags, dependent: :destroy
+  has_many :where_tags, dependent: :destroy
+  has_many :what_tags, dependent: :destroy
+  has_many :when_tags, dependent: :destroy
+  has_many :why_tags, dependent: :destroy
+  has_many :video_tags, dependent: :destroy
+  has_many :photo_tags, dependent: :destroy
 
   mount_uploader :screenshot, ImageUploader
 
