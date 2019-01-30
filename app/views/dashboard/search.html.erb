@@ -28,7 +28,7 @@
                <i class="fab fa-searchengin"></i>
                <% end %>
                <%= link_to url.url, class: 'search_desc' do %>
-               <%= url.description.truncate(140) if url.description.present? %>
+               <%= url.description.truncate(130) if url.description.present? %>
                <% end %>
                </span>
                <%= link_to url.url, class: '' do %>
