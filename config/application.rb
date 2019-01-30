@@ -1,6 +1,16 @@
 require_relative 'boot'
 
 require 'rails/all'
+require 'cognitivebing'
+require 'rubygems'
+require 'dnsruby'
+require 'mandrill'
+
+# require 'bing-search'
+# require 'net/https'
+# require 'uri'
+# require 'json'
+
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.

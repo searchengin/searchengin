@@ -266,23 +266,15 @@ class DashboardController < ApplicationController
 
 
   def verify_domain
-    #username = params[:username]
-    #user = User.find(username: @username)
     url = Url.find(params[:id])
     domain = url.domain
-    DomainService.new(domain).call
-    # #mandrill = Mandrill::API.new ENV['MANDRILL_APIKEY']
-    # #res = Resolver.new
-    # #ret = res.query(url)
-    # res = Dnsruby::Resolver.new
-    # binding.pry
-    # ret = res.query(domain, Types.TXT)
-    # ret.answer.first.strings
-    # p ret.answer
-
-    # Dnsruby::DNS.open {|dns|
-    #   dns.each_resource(domain, Types.A) {|r| p r}
-    # }
+    verified = DomainService.new(domain).call
+    if verified
+        flash[:success] = 'Site verified!'
+         redirect_to get_domain_path(domain)
+      else
+        flash[:Error] = 'Site verification failed!'
+         redirect_to get_domain_path(domain)
+      end
   end
-
 end
