@@ -4,7 +4,7 @@ require 'rails/all'
 require 'cognitivebing'
 require 'rubygems'
 require 'dnsruby'
-require 'mandrill'
+# require 'mandrill'
 
 # require 'bing-search'
 # require 'net/https'
