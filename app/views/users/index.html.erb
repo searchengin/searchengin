@@ -1,0 +1,18 @@
+<div class="content">
+  <h2>Users</h2>
+  <% @users.each do |user| %>
+    <section class="searcheng wdth100">
+      <i class="fa fa-users pull-left thumb-sm m-r-sm img-circle favicon_img" aria-hidden="true"></i>
+      <%#= image_tag url., class: 'pull-left thumb-sm m-r-sm img-circle favicon_img' %>
+      <div class="searcheng_row wdth100">
+        <span class="arrow left"></span>
+        <div class = "searcheng_col panel-heading wdth100 bdr_btom0">
+          <h5><%= user.email %></h5>
+          <div id = "follow_unfollow_user_<%= user.slug %>">
+            <%= render 'follow_unfollow_user', user: user %>
+          </div>
+        </div>
+      </div>
+    </section>
+  <% end %>
+</div>

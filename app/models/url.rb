@@ -56,7 +56,7 @@ class Url < ApplicationRecord
   def domain_user
     user = User.find_by(username: self.domain)
     unless user
-      user = User.new(username: self.domain, email: nil)
+      user = User.new(username: self.domain, email: nil, user_type: 1)
       user.save(validate: false)
     end
     unless Domain.where(domain: self.domain).count > 0
