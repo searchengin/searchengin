@@ -1,10 +1,16 @@
 class User < ApplicationRecord
+
+  before_create :set_user_handle
+
   has_many :urls
   has_and_belongs_to_many :subcategory
+  has_many :statuses
   has_many :likes
   has_many :dislikes
   acts_as_followable
   acts_as_follower
+
+  attr_writer :login
 
   enum user_type: [:normal, :domain]
 
@@ -18,6 +24,8 @@ class User < ApplicationRecord
   friendly_id :email, use: [:slugged, :finders]
   scope :by_non_domain, -> { where(user_type: 0)}
 
+
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create! do |user|
       user.email = auth.info.email
@@ -27,6 +35,15 @@ class User < ApplicationRecord
       # uncomment the line below to skip the confirmation emails.
       # user.skip_confirmation!
     end
+  end
+
+  def login
+    @login || self.username || self.email
+  end
+
+  def set_user_handle
+    random_string = rand.to_s[2..11]
+    self.handle = "@#{self.username}#{random_string}"
   end
 
 end

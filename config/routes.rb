@@ -3,11 +3,12 @@ require 'sidekiq/web'
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   mount Sidekiq::Web => '/sidekiq'
-  devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks', registrations: "users/registrations" }
+  devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks', registrations: "users/registrations", sessions: "users/sessions" }
 
   resources :users do
     collection do
       get :profile
+      post :post_status
     end
     member do
       patch :follow_user
