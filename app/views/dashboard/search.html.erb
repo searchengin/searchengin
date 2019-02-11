@@ -1,5 +1,5 @@
 <div class="content">
-   <% @urls_data.each_with_index do |(url, tags), ind| %>
+   <% @urls_data.each do |url, tags| %>
    <section class="searcheng wdth100">
       <% @url = url %>
       <% if url.present? %>

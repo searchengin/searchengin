@@ -20,6 +20,12 @@ class User < ApplicationRecord
     end
   end
 
+  def create_api_key
+    require 'securerandom'
+    self.api_key = SecureRandom.urlsafe_base64
+    self.save
+  end
+
 end
 
 

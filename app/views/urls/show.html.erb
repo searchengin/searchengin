@@ -83,24 +83,24 @@
               <%= tag.photo_datum.created_at.strftime('%A %B %d') %>
               </span>
           <% end %>
-            <ul class="post_likes">
-              <li>
-                <a class="url_data" data-remote="true" href="/dashboard/get_url_object/50">
-                  <i class="fas fa-code id=&quot;tag_details_50"></i>
-                </a>
-              </li>
-              <li>
-                <a data-remote="true" rel="nofollow" data-method="post" href="/dashboard/like?tag=182&amp;url=50">
-                  <i class="is-like  fas fa-thumbs-up user-like" id="like_50">1</i>
-                </a>
-              </li>
-              <li>
-                <a data-remote="true" rel="nofollow" data-method="post" href="/dashboard/dislike?tag=182&amp;url=50">
-                  <i class=" is-dislike fas fa-thumbs-down user-dislike" id="dislike_50">0
-                </i>
-                </a>
-              </li>
-            </ul>
+            <!-- <ul class="post_likes">
+               <li>
+                  <%#= link_to get_url_object_path(@url.id),remote: :true, class:  'url_data' do %>
+                  <i class='fas fa-code id="tag_details_<%= @url.id %>'></i>
+                  <%# end %>
+               </li>
+               <li>
+                  <%#= link_to like_path(url: @url, tag: tag), method: :post, remote: true do %>
+                  <i class="<%#= @url.likes.count > 0 ? 'is-like': '' %>  fas fa-thumbs-up user-like" id="like_<%= @url.id %>"><%= tag.like.count %></i>
+                  <%# end %>
+               </li>
+               <li>
+                  <%#= link_to dislike_path(url: @url, tag: tag), method: :post, remote: true do %>
+                  <i class=" <%#= @url.dislikes.count > 0 ? 'is-dislike' : '' %> fas fa-thumbs-down user-dislike" id="dislike_<%= @url.id %>"><%= tag.dislike.count %>
+                  </i>
+                  <%# end %>
+               </li>
+            </ul> -->
           </div>
           <div class="inner_tag">
             <% if tag.type == "WhereTag" %>

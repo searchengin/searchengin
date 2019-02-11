@@ -25,9 +25,7 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 #gem 'bing-search', '~> 2.0'
 gem 'cognitivebing'
-gem 'dnslookup'
 gem 'dnsruby'
-#gem 'mandrill-api', '~> 1.0', '>= 1.0.53'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
@@ -42,6 +40,7 @@ gem 'dnsruby'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false
+gem 'bootstrap'
 
 
 group :development, :test do
