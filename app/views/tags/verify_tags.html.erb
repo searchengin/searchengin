@@ -151,7 +151,7 @@
                   <% elsif tag.type == "PhotoTag" %>
                   <span class="inner_tag_lft"><i class="far fa-calendar-alt"></i></span>
                   <span>
-                  <%= tag.photo_datum.photo_url %>
+                  <%= tag.photo_datum.photo_url if tag.photo_datum.present? %>
                   </span>
                   <% end %>
 
