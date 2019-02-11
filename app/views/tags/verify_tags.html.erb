@@ -99,7 +99,7 @@
               <% elsif tag.type == "PhotoTag" %>
               <span>
                 <i class="far fa-clock"></i>
-              <%= tag.photo_datum.created_at.strftime('%A %B %d') %>
+              <%= tag.photo_datum.created_at.strftime('%A %B %d') if tag.photo_datum.present? %>
               </span>
           <% end %>
         </div>
