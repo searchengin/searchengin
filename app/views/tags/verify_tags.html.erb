@@ -159,7 +159,7 @@
               <span class="inner_tag_lft"><i class="far fa-calendar-alt"></i></span>
               <div class="inner_tag_rgt">
                 <span>
-                  <%= tag.photo_datum.photo_url %>
+                  <%= tag.photo_datum.photo_url if tag.photo_datum.present? %>
                 </span>
             <% end %>
                   <ul class="post_likes">
