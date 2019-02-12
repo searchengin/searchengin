@@ -105,56 +105,63 @@
         </div>
          <div class="inner_tag">
             <% if tag.type == "WhereTag" %>
-            <span class="inner_tag_lft"><i class="fas fa-map-marker-alt"></i></span>
-            <div class="inner_tag_rgt">
-               <span>
-               <%= tag.where_datum.location %><br>
-               <%#= tag.where_datum.description %>
-               </span>
-               <% elsif tag.type == "WhatTag" %>
-               <span class="inner_tag_lft"><i class="fas fa-info-circle"></i></span>
-               <div class="inner_tag_rgt">
+                <span class="inner_tag_lft"><i class="fas fa-map-marker-alt"></i></span>
+              <div class="inner_tag_rgt">
+                <span>
+                  <%= tag.where_datum.location %><br>
+                  <%#= tag.where_datum.description %>
+                </span>
+            <%elsif tag.type == "WhatTag" %>
+                <span class="inner_tag_lft"><i class="fas fa-tags text_info"></i></span>
+                <div class="inner_tag_rgt">
                   <span>
-                  <%= tag.what_datum.item_name %>
+                    <%= eval(tag.what_datum.category)[:value] %>
+                    <%= tag.what_datum.item_name %>
+                    <%#= tag.what_datum.website_url %>
+                    <%#= tag.what_datum.description %>
                   </span>
-                  <% elsif tag.type == "WhyTag" %>
-                  <span class="inner_tag_lft"><i class="fas fa-info-circle"></i></span>
-                  <span>
-                  <%= tag.why_datum.subject %>
+            <% elsif tag.type == "WhyTag" %>
+              <span class="inner_tag_lft"><i class="fas fa-info-circle"></i></span>
+              <div class="inner_tag_rgt">
+                <span>
+                  <%= eval(tag.why_datum.subject)[:value] %>
                   <%= tag.why_datum.subcategory %>
                   <%= tag.why_datum.title %>
-                  <%= tag.why_datum.description %>
-                  </span>
-                  <% elsif tag.type == "WhenTag" %>
-                  <span class="inner_tag_lft"><i class="far fa-calendar-alt"></i></span>
-                  <span>
-                  <%= tag.when_datum.date %>
-                  <%= tag.when_datum.time %>
-                  <%= tag.when_datum.description %>
-                  </span>
-                  <% elsif tag.type == "WhoTag" %>
-                  <span class="inner_tag_lft"><i class="far fa-calendar-alt"></i></span>
-                  <span>
-                  <%= tag.who_datum.name %>
-                  <%= tag.who_datum.account %>
-                  <%= tag.who_datum.website_url %>
-                  <%= tag.who_datum.description %>
-                  </span>
-                  <% elsif tag.type == "VideoTag" %>
-                  <span class="inner_tag_lft"><i class="far fa-calendar-alt"></i></span>
-                  <span>
-                  <%= tag.video_datum.video_url %>
-                  <%= tag.video_datum.category %>
-                  <%= tag.video_datum.html_code %>
-                  <%= tag.video_datum.description %>
-                  </span>
-                  <% elsif tag.type == "PhotoTag" %>
-                  <span class="inner_tag_lft"><i class="far fa-calendar-alt"></i></span>
-                  <span>
-                  <%= tag.photo_datum.photo_url if tag.photo_datum.present? %>
-                  </span>
-                  <% end %>
-
+                  <%#= tag.why_datum.description %>
+                </span>
+            <% elsif tag.type == "WhenTag" %>
+              <span class="inner_tag_lft"><i class="far fa-calendar-alt"></i></span>
+              <div class="inner_tag_rgt">
+                <span>
+                  <%#= tag.when_datum.date.strftime('%A %B %d') %>
+                  <%= tag.when_datum.time.strftime('%A %B %d') %>
+                  <%#= tag.when_datum.description %>
+                </span>
+            <% elsif tag.type == "WhoTag" %>
+              <span class="inner_tag_lft"><i class="far fa-calendar-alt"></i></span>
+               <div class="inner_tag_rgt">
+              <span>
+                <%= tag.who_datum.name %>
+                <%= tag.who_datum.account %>
+                <%= tag.who_datum.website_url %>
+                <%= tag.who_datum.description %>
+              </span>
+            <% elsif tag.type == "VideoTag" %>
+              <span class="inner_tag_lft"><i class="far fa-calendar-alt"></i></span>
+              <div class="inner_tag_rgt">
+              <span>
+                <%= tag.video_datum.video_url %>
+                <%= eval(tag.video_datum.category)[:value] %>
+                <%= tag.video_datum.html_code %>
+                <%= tag.video_datum.description %>
+              </span>
+            <% elsif tag.type == "PhotoTag" %>
+              <span class="inner_tag_lft"><i class="far fa-calendar-alt"></i></span>
+              <div class="inner_tag_rgt">
+                <span>
+                  <%= tag.photo_datum.photo_url %>
+                </span>
+            <% end %>
                   <ul class="post_likes">
                      <li>
                         <%= link_to get_url_object_path(url.id),remote: :true, class:  'url_data' do %>
