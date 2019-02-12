@@ -1,15 +1,27 @@
 class UsersController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_followable, only: [:follow_user, :unfollow_user]
-  before_action :post_params , only: [:post_status]
-
+  before_action :set_user, only: [:follow_user, :unfollow_user, :set_role]
   def index
     users = User.by_non_domain
     @users = current_user ? users.where.not(id: current_user.id) : users
   end
 
   def profile
-    @status = current_user.statuses.new
+    @user = User.find_by(handle: params[:id])
+    unless @user
+      domain = Domain.where("domain LIKE (?)", "#{params[:id]}%")
+      if domain.present?
+        domain_name = domain.first.domain
+      else
+        url = Url.find(params[:id])
+        domain = Domain.create(domain: url.domain)
+        domain_name = domain.domain
+      end
+      @urls = Url.where(domain: domain_name)
+    else
+      @status = @user.statuses.new
+    end
+
   end
 
   def follow_user
@@ -28,9 +40,14 @@ class UsersController < ApplicationController
     end
   end
 
+  def set_role
+    @user.roles.destroy_all
+    @user.add_role "#{Role.find(user_params[:roles]).name}"
+  end
+
   private
 
-  def set_followable
+  def set_user
     @user = User.find(params[:id])
   end
 
@@ -38,4 +55,8 @@ class UsersController < ApplicationController
     params.require(:status).permit(:post)
   end
 
+
+  def user_params
+    params.require(:user).permit(:roles)
+  end
 end

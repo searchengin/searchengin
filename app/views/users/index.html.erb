@@ -7,7 +7,22 @@
       <div class="searcheng_row wdth100">
         <span class="arrow left"></span>
         <div class = "searcheng_col panel-heading wdth100 bdr_btom0">
-          <h5><%= user.email %></h5>
+          <%= link_to profile_path(user.handle), class: 'search_desc' do %>
+            <h5><%= user.email %></h5>
+            <span><%= "@#{user.handle}" %></span>
+          <% end %>
+
+          <% if current_user %>
+            <% if current_user.has_role? :admin %>
+              <br/>
+              <%= simple_form_for(user, url: set_role_user_path(user.id)) do |f| %>
+                <div class=’form-group’>
+                  <%= f.input  :roles, collection: Role.all, as: :select, include_blank: false, label: false, selected: user.roles.last.id, input_html:{onchange: "this.form.submit();"} %>
+                </div>
+              <% end %>
+              <% end %>
+          <% end %>
+          <br/>
           <div id = "follow_unfollow_user_<%= user.slug %>">
             <%= render 'follow_unfollow_user', user: user %>
           </div>

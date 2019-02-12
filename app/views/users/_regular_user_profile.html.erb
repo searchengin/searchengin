@@ -1,0 +1,45 @@
+<div class="content">
+  <div class = "row">
+    <div class = "col-sm-12">
+      <h2>User Profile</h2>
+      <%= @user.email %>
+      <br/>
+      <%= "@#{@user.handle}" %>
+    </div>
+  </div>
+  <br/>
+  <div class = "row">
+    <div class = "col-sm-12">
+      <h4>Following <%= @user.follow_count %></h4>
+      <ul>
+        <% @user.all_follows.each do |follow| %>
+          <li>
+            <%= follow.followable.email %>
+            <div id = "follow_unfollow_user_<%= follow.followable.slug %>">
+              <%= render 'follow_unfollow_user', user: follow.followable %>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+  <br/>
+  <div class = "row">
+    <div class = "col-sm-12">
+      <h4>followers: <%= current_user.followers.count %></h4>
+      <% current_user.followers.each do |follow| %>
+        <li>
+          <%= follow.email %>
+        </li>
+      <% end %>
+    </div>
+  </div>
+  <br/>
+
+  <div class = "row">
+    <div class = "col-sm-12">
+      <h4><span class="badge badge-success">Posts:  <%= @user.statuses.count %></span></h4>
+    </div>
+    <%= render 'status_box' %>
+  </div>
+</div>

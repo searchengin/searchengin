@@ -1,54 +1,5 @@
-<div class="content">
-  <div class = "row">
-    <div class = "col-sm-12">
-      <h2>User Profile</h2>
-      <%= current_user.username %>
-      <%= current_user.email %>
-    </div>
-  </div>
-  <br/>
-  <div class = "row">
-    <div class = "col-sm-12">
-      <h4>You are following <%= current_user.follow_count %> Users</h4>
-      <ul>
-        <% current_user.all_follows.each do |follow| %>
-          <li>
-            <%= follow.followable.email %>
-            <div id = "follow_unfollow_user_<%= follow.followable.slug %>">
-              <%= render 'follow_unfollow_user', user: follow.followable %>
-            </div>
-          </li>
-        <% end %>
-      </ul>
-    </div>
-  </div>
-  <br/>
-  <div class = "row">
-    <div class = "col-sm-12">
-      <h4>Your followers: <%= current_user.followers.count %></h4>
-      <% current_user.followers.each do |follow| %>
-        <li>
-          <%= follow.email %>
-        </li>
-      <% end %>
-    </div>
-  </div>
-  <br/>
-
-
-  <div class = "row">
-    <div class = "col-sm-12">
-      <h4><span class="badge badge-success">Posts:  <%= current_user.statuses.count %></span></h4>
-      <h4>What's going On</h4>
-      <%= simple_form_for(@status, url: post_status_users_path ) do |f| %>
-        <div class="form-inputs">
-          <%= f.input :post, label: false %>
-        </div>
-
-        <div class="form-actions">
-          <%= f.button :submit, "Post" %>
-        </div>
-      <% end %>
-    </div>
-  </div>
-</div>
+<% unless @urls.nil? %>
+  <%= render 'domain_user_profile' %>
+<% else %>
+  <%= render 'regular_user_profile' %>
+<% end %>

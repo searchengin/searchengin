@@ -19,7 +19,7 @@
     <%= link_to destroy_user_session_path, method: :delete do %>
       <i class="fas fa-sign-out-alt"> Sign Out</i>
     <% end %>
-    <%= link_to profile_users_path do %>
+    <%= link_to profile_path(current_user.handle) do %>
       <i class="fas fa-user"> Profile</i>
     <% end %>
   <% else %>

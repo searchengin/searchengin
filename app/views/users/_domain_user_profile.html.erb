@@ -1,0 +1,99 @@
+<div class="content">
+
+
+  <% @urls.each do |url|  %>
+    <section class="searcheng wdth100">
+
+      <!-- <a href="javscript:void(0);"> -->
+      <a href="<%= url.url %>" target="_blank">
+        <%= image_tag url.favicon_url, class: 'pull-left thumb-sm m-r-sm img-circle favicon_img' %>
+      </a>
+
+      <div class="searcheng_row wdth100">
+        <span class="arrow left"></span>
+        <div class="searcheng_col panel-heading wdth100">
+          <a href="<%= profile_path(url.domain_user.username) %>" target="_blank">
+            <span> <%= "@" + url.domain %> </span>
+            <h5><%= url.title %></h5>
+          </a>
+        </div>
+          <%= link_to 'Verify Domain ', verify_domain_path(url) %>
+        <div class="searcheng_col2 wdth100">
+          <span class="img_box">
+            <%= image_tag url.screenshot_url, class: 'pull-left thumb-sm m-r-sm img-circle ' if url.screenshot_url.present? %>
+          </span>
+          <div class="search_desc wdth100">
+          <%= link_to url.url, class: 'search_desc' do %>
+            <span>
+              <i class="fab fa-searchengin"></i><%= url.description.truncate(130) if url.description.present? %>
+            </span>
+          <% end %>
+          <%= link_to url.url, class: 'search_desc' do %>
+            <span>
+              <i class="fas fa-external-link-alt"></i><%= url_concate(url.url) %>
+            </span>
+          <% end %>
+            <div class="searc_col_rt">
+              <ul class="post_likes">
+                <%= link_to get_url_object_path(url.id),remote: :true, class:  'url_data' do %>
+                 <i class='fas fa-code id="tag_details_<%= url.id %>'></i>
+                 <% end %>
+                  <li><%= link_to like_path(url: url), method: :post, remote: true do %>
+                    <i class="<%= url.likes.count > 0 ? 'is-like': '' %>  fas fa-thumbs-up user-like" id="like_<%= url.id %>"><%= url.likes.count %></i>
+                  <% end %>
+                </li>
+                <li><%= link_to dislike_path(url: url), method: :post, remote: true do %>
+                  <i class=" <%= url.dislikes.count > 0 ? 'is-dislike' : '' %> fas fa-thumbs-down user-dislike" id="dislike_<%= url.id %>"><%= url.dislikes.count %></i>
+                  <% end %></li>
+                </li>
+              </ul>
+            </div>
+        </div>
+          <div>
+            <div id="diff-tag_<%= url.id %>">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  <% end%>
+
+</div>
+
+
+<div class="modal fade" id="embed-modal" tabindex="-1" role="dialog" aria-labelledby="embed-modalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Embed Post</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+         <div id="select_id">
+         </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id= "main-tag-modal">
+
+</div>
+<script>
+  $(".user-like").click(function(){
+      $(this).toggleClass("is-like");
+    });
+
+    $(".user-dislike").click(function(){
+      $(this).toggleClass("is-dislike");
+    });
+</script>
+

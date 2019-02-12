@@ -4,6 +4,8 @@ require 'rails/all'
 require 'cognitivebing'
 require 'rubygems'
 require 'dnsruby'
+require 'carrierwave'
+require 'carrierwave/orm/activerecord'
 # require 'mandrill'
 
 # require 'bing-search'
