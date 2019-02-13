@@ -1,0 +1,2 @@
+<% js = escape_javascript(render('follow_unfollow_user', user: @user))%>
+$("#follow_unfollow_user_<%= @user.slug %>").html("<%= js %>");

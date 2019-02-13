@@ -1,0 +1,5 @@
+<% unless @urls.nil? %>
+  <%= render 'domain_user_profile' %>
+<% else %>
+  <%= render 'regular_user_profile' %>
+<% end %>
