@@ -14,7 +14,9 @@
   <a href="javascript:void(0)"><i class="fas fa-tag"> Tag Index </i></a>
   <a href="javascript:void(0)"><i class="fas fa-cogs"> API </i></a>
   <a href="javascript:void(0)"><i class="fas fa-cog"> Settings </i></a>
-  <a href="javascript:void(0)"><i class="fas fa-user-tag"> Verify Tags </i></a>
+  <%= link_to verify_tags_path, class: ('active' if controller_name == 'tags') do %>
+    <i class="fas fa-user-tag"> Verify Tags </i>
+  <% end %>
   <% if user_signed_in? %>
     <%= link_to destroy_user_session_path, method: :delete do %>
       <i class="fas fa-sign-out-alt"> Sign Out</i>

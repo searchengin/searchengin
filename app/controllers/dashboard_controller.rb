@@ -24,6 +24,25 @@ class DashboardController < ApplicationController
   end
 
   def search
+#     accessKey = ENV['BING_ACCESS_KEY']
+#     uri  = "https://api.cognitive.microsoft.com"
+#     path = "/bingcustomsearch/v7.0"
+#     term = params[:search]
+
+
+#     uri = URI(uri + path + "?q=" + URI.escape(term))
+#     puts "Searching the Web for: " + term
+#     binding.pry
+#     # Create the request.
+#     request = Net::HTTP::Get.new(uri)
+#     request['Ocp-Apim-Subscription-Key'] = accessKey
+
+#     # Get the response.
+#     response = Net::HTTP.start(uri.host, uri.port, :use_ssl => uri.scheme == 'https') do |http|
+# binding.pry
+#         http.request(request)
+#     end
+
     @urls_data = {}
     limit = 6
     offset = params[:page].to_i * limit
@@ -218,6 +237,14 @@ class DashboardController < ApplicationController
           end
         end
       else
+        dislikes = Dislike.where(tag_id: params[:tag])
+        if dislikes.count > 0
+          dislikes.each do | dislike |
+            if dislike.user_id == current_user.id
+              dislike.delete
+            end
+          end
+        end
         like = Like.create(user_id: current_user.id, tag_id: params[:tag])
       end
       @like_count =  Like.where(tag_id: params[:tag]).count
@@ -230,6 +257,14 @@ class DashboardController < ApplicationController
           end
         end
       else
+        dislikes = Dislike.where(url_id: params[:url])
+        if dislikes.count > 0
+          dislikes.each do | dislike |
+            if dislike.user_id == current_user.id
+              dislike.delete
+            end
+          end
+        end
         like = Like.create(user_id: current_user.id, url_id: params[:url])
       end
       @like_count =  Like.where(url_id: params[:url]).count
@@ -246,6 +281,14 @@ class DashboardController < ApplicationController
           end
         end
       else
+        likes = Like.where(tag_id: params[:tag])
+        if likes.count > 0
+          likes.each do | like |
+            if like.user_id == current_user.id
+              like.delete
+            end
+          end
+        end
        dislike = Dislike.create(user_id: current_user.id,tag_id: params[:tag])
       end
         @dislike_count = Dislike.where(url_id: params[:url]).count
@@ -258,10 +301,18 @@ class DashboardController < ApplicationController
           end
         end
       else
+        likes = Like.where(url_id: params[:url])
+        if likes.count > 0
+          likes.each do | like |
+            if like.user_id == current_user.id
+              like.delete
+            end
+          end
+        end
        dislike = Dislike.create(user_id: current_user.id, url_id: params[:url])
       end
         @dislike_count = Dislike.where(url_id: params[:url]).count
-      end
+    end
   end
 
 
@@ -270,11 +321,11 @@ class DashboardController < ApplicationController
     domain = url.domain
     verified = DomainService.new(domain).call
     if verified
-        flash[:success] = 'Site verified!'
-         redirect_to profile_path(domain)
-      else
-        flash[:Error] = 'Site verification failed!'
-         redirect_to profile_path(domain)
-      end
+      flash[:success] = 'Site verified!'
+       redirect_to profile_path(domain)
+    else
+      flash[:Error] = 'Site verification failed!'
+       redirect_to profile_path(domain)
+    end
   end
 end

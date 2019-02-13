@@ -1,5 +1,5 @@
 <div class="content">
-   <% @urls_data.each do |url, tags| %>
+   <% @urls.each do |url, tags| %>
    <section class="searcheng wdth100">
       <% @url = url %>
       <% if url.present? %>
@@ -63,61 +63,105 @@
          </div>
          <div id="diff-tag_<%= url.id %>">
          </div>
-         <% tags.each do |tag| %>
+        <% if url.tags.present? %>
+         <% url.tags.each do |tag| %>
+         <div class="inner_tag_rgt date_bar">
+          <% if tag.type == "WhereTag" %>
+              <span>
+                <i class="far fa-clock"></i>
+              <%= tag.where_datum.created_at.strftime('%A %B %d') %>
+              </span>
+              <% elsif tag.type == "WhatTag" %>
+              <span>
+                <i class="far fa-clock"></i>
+              <%= tag.what_datum.created_at.strftime('%A %B %d') %>
+              </span>
+              <% elsif tag.type == "WhyTag" %>
+              <span>
+                <i class="far fa-clock"></i>
+              <%= tag.why_datum.created_at.strftime('%A %B %d') %>
+              </span>
+              <% elsif tag.type == "WhenTag" %>
+              <span>
+                <i class="far fa-clock"></i>
+              <%= tag.when_datum.created_at.strftime('%A %B %d') %>
+              </span>
+              <% elsif tag.type == "WhoTag" %>
+              <span>
+                <i class="far fa-clock"></i>
+              <%= tag.who_datum.created_at.strftime('%A %B %d') %>
+              </span>
+              <% elsif tag.type == "VideoTag" %>
+              <span>
+                <i class="far fa-clock"></i>
+              <%= tag.video_datum.created_at.strftime('%A %B %d') %>
+              </span>
+              <% elsif tag.type == "PhotoTag" %>
+              <span>
+                <i class="far fa-clock"></i>
+              <%= tag.photo_datum.created_at.strftime('%A %B %d') if tag.photo_datum.present? %>
+              </span>
+          <% end %>
+        </div>
          <div class="inner_tag">
             <% if tag.type == "WhereTag" %>
-            <span class="inner_tag_lft"><i class="fas fa-map-marker-alt"></i></span>
-            <div class="inner_tag_rgt">
-               <span>
-               <%= tag.where_datum.location %><br>
-               <%#= tag.where_datum.description %>
-               </span>
-               <% elsif tag.type == "WhatTag" %>
-               <span class="inner_tag_lft"><i class="fas fa-info-circle"></i></span>
-               <div class="inner_tag_rgt">
+                <span class="inner_tag_lft"><i class="fas fa-map-marker-alt"></i></span>
+              <div class="inner_tag_rgt">
+                <span>
+                  <%= tag.where_datum.location %><br>
+                  <%#= tag.where_datum.description %>
+                </span>
+            <%elsif tag.type == "WhatTag" %>
+                <span class="inner_tag_lft"><i class="fas fa-tags text_info"></i></span>
+                <div class="inner_tag_rgt">
                   <span>
-                  <%= tag.what_datum.item_name %>
-                  <%#= tag.what_datum.category %>
-                  <%#= tag.what_datum.website_url %>
-                  <%#= tag.what_datum.description %>
+                    <%#= eval(tag.what_datum.category)[:value] %>
+                    <%= tag.what_datum.item_name %>
+                    <%#= tag.what_datum.website_url %>
+                    <%#= tag.what_datum.description %>
                   </span>
-                  <% elsif tag.type == "WhyTag" %>
-                  <span class="inner_tag_lft"><i class="fas fa-info-circle"></i></span>
-                  <span>
-                  <%= tag.why_datum.subject %>
+            <% elsif tag.type == "WhyTag" %>
+              <span class="inner_tag_lft"><i class="fas fa-info-circle"></i></span>
+              <div class="inner_tag_rgt">
+                <span>
+                  <%#= eval(tag.why_datum.subject)[:value] %>
                   <%= tag.why_datum.subcategory %>
                   <%= tag.why_datum.title %>
-                  <%= tag.why_datum.description %>
-                  </span>
-                  <% elsif tag.type == "WhenTag" %>
-                  <span class="inner_tag_lft"><i class="far fa-calendar-alt"></i></span>
-                  <span>
-                  <%= tag.when_datum.date %>
-                  <%= tag.when_datum.time %>
-                  <%= tag.when_datum.description %>
-                  </span>
-                  <% elsif tag.type == "WhoTag" %>
-                  <span class="inner_tag_lft"><i class="far fa-calendar-alt"></i></span>
-                  <span>
-                  <%= tag.who_datum.name %>
-                  <%= tag.who_datum.account %>
-                  <%= tag.who_datum.website_url %>
-                  <%= tag.who_datum.description %>
-                  </span>
-                  <% elsif tag.type == "VideoTag" %>
-                  <span class="inner_tag_lft"><i class="far fa-calendar-alt"></i></span>
-                  <span>
-                  <%= tag.video_datum.video_url %>
-                  <%= tag.video_datum.category %>
-                  <%= tag.video_datum.html_code %>
-                  <%= tag.video_datum.description %>
-                  </span>
-                  <% elsif tag.type == "PhotoTag" %>
-                  <span class="inner_tag_lft"><i class="far fa-calendar-alt"></i></span>
-                  <span>
-                  <%= tag.photo_datum.photo_url %>
-                  </span>
-                  <% end %>
+                  <%#= tag.why_datum.description %>
+                </span>
+            <% elsif tag.type == "WhenTag" %>
+              <span class="inner_tag_lft"><i class="far fa-calendar-alt"></i></span>
+              <div class="inner_tag_rgt">
+                <span>
+                  <%#= tag.when_datum.date.strftime('%A %B %d') %>
+                  <%= tag.when_datum.time.strftime('%A %B %d') %>
+                  <%#= tag.when_datum.description %>
+                </span>
+            <% elsif tag.type == "WhoTag" %>
+              <span class="inner_tag_lft"><i class="far fa-calendar-alt"></i></span>
+               <div class="inner_tag_rgt">
+              <span>
+                <%= tag.who_datum.name %>
+                <%= tag.who_datum.account %>
+                <%= tag.who_datum.website_url %>
+                <%= tag.who_datum.description %>
+              </span>
+            <% elsif tag.type == "VideoTag" %>
+              <span class="inner_tag_lft"><i class="far fa-calendar-alt"></i></span>
+              <div class="inner_tag_rgt">
+              <span>
+                <%= tag.video_datum.video_url %>
+                <%#= eval(tag.video_datum.category)[:value] %>
+                <%= tag.video_datum.html_code %>
+                <%= tag.video_datum.description %>
+              </span>
+            <% elsif tag.type == "PhotoTag" %>
+              <span class="inner_tag_lft"><i class="far fa-calendar-alt"></i></span>
+              <div class="inner_tag_rgt">
+                <span>
+                  <%= tag.photo_datum.photo_url if tag.photo_datum.present? %>
+                </span>
+            <% end %>
                   <ul class="post_likes">
                      <li>
                         <%= link_to get_url_object_path(url.id),remote: :true, class:  'url_data' do %>
@@ -126,19 +170,20 @@
                      </li>
                      <li>
                         <%= link_to like_path(url: url, tag: tag), method: :post, remote: true do %>
-                        <i class="<%= url.likes.count > 0 ? 'is-like': '' %>  fas fa-thumbs-up user-like" id="like_<%= url.id %>"><%= tag.like.count %></i>
+                        <i class="<%= url.likes.count > 0 ? 'is-like': '' %>  fas fa-thumbs-up user-like" id="like_<%= url.id %>"><%#= tag.like.count %></i>
                         <% end %>
                      </li>
                      <li>
                         <%= link_to dislike_path(url: url, tag: tag), method: :post, remote: true do %>
-                        <i class=" <%= url.dislikes.count > 0 ? 'is-dislike' : '' %> fas fa-thumbs-down user-dislike" id="dislike_<%= url.id %>"><%= tag.dislike.count %>
+                        <i class=" <%= url.dislikes.count > 0 ? 'is-dislike' : '' %> fas fa-thumbs-down user-dislike" id="dislike_<%= url.id %>"><%#= tag.dislike.count %>
                         </i>
                         <% end %>
                      </li>
                   </ul>
-            </div>
-         </div>
-         <% end %>
+                </div>
+              </div>
+            <% end %>
+           <% end %>
          <% end %>
       </div>
    </section>

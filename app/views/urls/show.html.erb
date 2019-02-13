@@ -16,7 +16,7 @@
   </div>
   <div class="news_details wdth100">
     <div class="post_media wdth100 news_img">
-      <% if @url.cover_data.present? %>
+      <%if @url.cover_data.present? %>
         <a href="javascript:void(0);">
           <%= link_to @url.url do %>
             <%= image_tag @url.cover_data %>
@@ -41,102 +41,86 @@
       </div>
     </div>
     <section class="searcheng wdth100">
-      <% if @url.present? %>
+      <%if @url.present? %>
         <div class="searcheng_row wdth100">
           <div id="diff-tag_<%= @url.id %>">
         </div>
         <% @tags.each do |tag| %>
-        <div class="inner_tag_rgt date_bar">
-          <% if tag.type == "WhereTag" %>
+          <div class="inner_tag_rgt date_bar">
+            <%if tag.type == "WhereTag" %>
               <span>
                 <i class="far fa-clock"></i>
-              <%= tag.where_datum.created_at.strftime('%A %B %d') %>
+                <%= tag.where_datum.created_at.strftime('%A %B %d') %>
               </span>
-              <% elsif tag.type == "WhatTag" %>
+            <%elsif tag.type == "WhatTag" %>
               <span>
                 <i class="far fa-clock"></i>
-              <%= tag.what_datum.created_at.strftime('%A %B %d') %>
+                <%= tag.what_datum.created_at.strftime('%A %B %d') %>
               </span>
-              <% elsif tag.type == "WhyTag" %>
+            <%elsif tag.type == "WhyTag" %>
               <span>
                 <i class="far fa-clock"></i>
-              <%= tag.why_datum.created_at.strftime('%A %B %d') %>
+                <%= tag.why_datum.created_at.strftime('%A %B %d') %>
               </span>
-              <% elsif tag.type == "WhenTag" %>
+            <%elsif tag.type == "WhenTag" %>
               <span>
                 <i class="far fa-clock"></i>
-              <%= tag.when_datum.created_at.strftime('%A %B %d') %>
+                <%= tag.when_datum.created_at.strftime('%A %B %d') %>
               </span>
-              <% elsif tag.type == "WhoTag" %>
+            <%elsif tag.type == "WhoTag" %>
               <span>
                 <i class="far fa-clock"></i>
-              <%= tag.who_datum.created_at.strftime('%A %B %d') %>
+                <%= tag.who_datum.created_at.strftime('%A %B %d') %>
               </span>
-              <% elsif tag.type == "VideoTag" %>
+            <%elsif tag.type == "VideoTag" %>
               <span>
                 <i class="far fa-clock"></i>
-              <%= tag.video_datum.created_at.strftime('%A %B %d') %>
+                <%= tag.video_datum.created_at.strftime('%A %B %d') %>
               </span>
-              <% elsif tag.type == "PhotoTag" %>
+            <%elsif tag.type == "PhotoTag" %>
               <span>
                 <i class="far fa-clock"></i>
-              <%= tag.photo_datum.created_at.strftime('%A %B %d') %>
+                <%= tag.photo_datum.created_at.strftime('%A %B %d') %>
               </span>
-          <% end %>
-            <ul class="post_likes">
-              <li>
-                <a class="url_data" data-remote="true" href="/dashboard/get_url_object/50">
-                  <i class="fas fa-code id=&quot;tag_details_50"></i>
-                </a>
-              </li>
-              <li>
-                <a data-remote="true" rel="nofollow" data-method="post" href="/dashboard/like?tag=182&amp;url=50">
-                  <i class="is-like  fas fa-thumbs-up user-like" id="like_50">1</i>
-                </a>
-              </li>
-              <li>
-                <a data-remote="true" rel="nofollow" data-method="post" href="/dashboard/dislike?tag=182&amp;url=50">
-                  <i class=" is-dislike fas fa-thumbs-down user-dislike" id="dislike_50">0
-                </i>
-                </a>
-              </li>
-            </ul>
+            <% end %>
           </div>
           <div class="inner_tag">
-            <% if tag.type == "WhereTag" %>
+            <%if tag.type == "WhereTag" %>
               <span class="inner_tag_lft"><i class="fas fa-map-marker-alt"></i></span>
               <div class="inner_tag_rgt">
-
-              <span>
-                <%= tag.where_datum.location %><br>
-                <%#= tag.where_datum.description %>
-              </span>
-            <% elsif tag.type == "WhatTag" %>
-              <span class="inner_tag_lft"><i class="fas fa-tags text_info"></i></span>
-              <div class="inner_tag_rgt">
-              <span>
-                <%= tag.what_datum.item_name %>
-                <%#= tag.what_datum.category %>
-                <%#= tag.what_datum.website_url %>
-                <%#= tag.what_datum.description %>
-              </span>
+                <span>
+                  <%= tag.where_datum.location %><br>
+                  <%#= tag.where_datum.description %>
+                </span>
+            <%elsif tag.type == "WhatTag" %>
+                <span class="inner_tag_lft"><i class="fas fa-tags text_info"></i></span>
+                <div class="inner_tag_rgt">
+                  <span>
+                    <%= eval(tag.what_datum.category)[:value] %>
+                    <%= tag.what_datum.item_name %>
+                    <%#= tag.what_datum.website_url %>
+                    <%#= tag.what_datum.description %>
+                  </span>
             <% elsif tag.type == "WhyTag" %>
               <span class="inner_tag_lft"><i class="fas fa-info-circle"></i></span>
-              <span>
-                <%= tag.why_datum.subject %>
-                <%= tag.why_datum.subcategory %>
-                <%= tag.why_datum.title %>
-                <%= tag.why_datum.description %>
-              </span>
+              <div class="inner_tag_rgt">
+                <span>
+                  <%= eval(tag.why_datum.subject)[:value] %>
+                  <%= tag.why_datum.subcategory %>
+                  <%= tag.why_datum.title %>
+                  <%#= tag.why_datum.description %>
+                </span>
             <% elsif tag.type == "WhenTag" %>
               <span class="inner_tag_lft"><i class="far fa-calendar-alt"></i></span>
-              <span>
-                <%= tag.when_datum.date %>
-                <%= tag.when_datum.time %>
-                <%= tag.when_datum.description %>
-              </span>
+              <div class="inner_tag_rgt">
+                <span>
+                  <%#= tag.when_datum.date.strftime('%A %B %d') %>
+                  <%= tag.when_datum.time.strftime('%A %B %d') %>
+                  <%#= tag.when_datum.description %>
+                </span>
             <% elsif tag.type == "WhoTag" %>
               <span class="inner_tag_lft"><i class="far fa-calendar-alt"></i></span>
+               <div class="inner_tag_rgt">
               <span>
                 <%= tag.who_datum.name %>
                 <%= tag.who_datum.account %>
@@ -145,41 +129,48 @@
               </span>
             <% elsif tag.type == "VideoTag" %>
               <span class="inner_tag_lft"><i class="far fa-calendar-alt"></i></span>
+              <div class="inner_tag_rgt">
               <span>
                 <%= tag.video_datum.video_url %>
-                <%= tag.video_datum.category %>
+                <%= eval(tag.video_datum.category)[:value] %>
                 <%= tag.video_datum.html_code %>
                 <%= tag.video_datum.description %>
               </span>
             <% elsif tag.type == "PhotoTag" %>
               <span class="inner_tag_lft"><i class="far fa-calendar-alt"></i></span>
-              <span>
-                <%= tag.photo_datum.photo_url %>
-              </span>
+              <div class="inner_tag_rgt">
+                <span>
+                  <%= tag.photo_datum.photo_url %>
+                </span>
             <% end %>
-            <ul class="post_likes">
-              <li>
-                <%= link_to get_url_object_path(@url.id),remote: :true, class:  'url_data' do %>
-                <i class='fas fa-code id="tag_details_<%= @url.id %>'></i>
-                <% end %>
-              </li>
-              <li>
-                <%= link_to like_path(url: @url, tag: tag), method: :post, remote: true do %>
-                <i class="<%= @url.likes.count > 0 ? 'is-like': '' %>  fas fa-thumbs-up user-like" id="like_<%= @url.id %>"><%= tag.like.count %></i>
-                <% end %>
-              </li>
-              <li>
-                <%= link_to dislike_path(url: @url, tag: tag), method: :post, remote: true do %>
-                <i class=" <%= @url.dislikes.count > 0 ? 'is-dislike' : '' %> fas fa-thumbs-down user-dislike" id="dislike_<%= @url.id %>"><%= tag.dislike.count %>
-                </i>
-                <% end %>
-              </li>
-            </ul>
+              <ul class="post_likes">
+                <li>
+                  <%= link_to get_url_object_path(@url.id),remote: :true, class:  'url_data' do %>
+                    <i class='fas fa-code id="tag_details_<%= @url.id %>'></i>
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to like_path(url: @url, tag: tag), method: :post, remote: true do %>
+                      <i class="<%= @url.likes.count > 0 ? 'is-like': '' %>  fas fa-thumbs-up user-like" id="like_<%= @url.id %>"><%= tag.like.count %></i>
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to dislike_path(url: @url, tag: tag), method: :post, remote: true do %>
+                    <i class=" <%= @url.dislikes.count > 0 ? 'is-dislike' : '' %> fas fa-thumbs-down user-dislike" id="dislike_<%= @url.id %>"><%= tag.dislike.count %>
+                    </i>
+                  <% end %>
+                </li>
+              </ul>
+            </div>
           </div>
-        </div>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
   </div>
+    </div>
+    </div>
+  </div>
+</div>
 </section>
 </div>
 <div id= "main-tag-modal">

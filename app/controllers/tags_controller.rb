@@ -25,6 +25,10 @@ class TagsController < ApplicationController
     #tags = url.tags.first.create(tag_params)
   end
 
+  def verify_tags
+    @urls = Url.all.order("created_at DESC")
+  end
+
 
   private
 

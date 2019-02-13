@@ -1,17 +1,14 @@
 require_relative 'boot'
 
 require 'rails/all'
-require 'cognitivebing'
 require 'rubygems'
 require 'dnsruby'
 require 'carrierwave'
 require 'carrierwave/orm/activerecord'
 # require 'mandrill'
-
-# require 'bing-search'
-# require 'net/https'
-# require 'uri'
-# require 'json'
+require 'net/https'
+require 'uri'
+require 'json'
 
 
 # Require the gems listed in Gemfile, including any gems

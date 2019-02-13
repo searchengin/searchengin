@@ -39,7 +39,12 @@
   <div class = "row">
     <div class = "col-sm-12">
       <h4><span class="badge badge-success">Posts:  <%= @user.statuses.count %></span></h4>
+      <% @user.statuses.order('id DESC').each do |user_status| %>
+        <%= user_status.post %>
+        <br/>
+      <% end %>
     </div>
+
     <%= render 'status_box' %>
   </div>
 </div>

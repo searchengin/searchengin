@@ -34,7 +34,7 @@ class UsersController < ApplicationController
 
   def post_status
     if current_user.statuses.create(post_params)
-      redirect_to profile_users_path, notice: 'Status has been posted'
+      redirect_to profile_path(current_user.handle), notice: 'Status has been posted'
     else
       redirect_to root_url, notice: 'Status cannot be saved'
     end

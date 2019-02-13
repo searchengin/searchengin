@@ -43,6 +43,7 @@ class User < ApplicationRecord
     end
   end
 
+
   def login
     @login || self.username || self.email
   end
@@ -65,6 +66,12 @@ class User < ApplicationRecord
   def set_user_handle
     random_string = rand.to_s[2..11]
     self.handle = "#{self.username}#{random_string}"
+  end
+
+  def create_api_key
+    require 'securerandom'
+    self.api_key = SecureRandom.urlsafe_base64
+    self.save
   end
 
 end
