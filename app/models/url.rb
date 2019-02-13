@@ -58,6 +58,8 @@ class Url < ApplicationRecord
     unless user
       user = User.new(username: self.domain, email: nil, user_type: 1)
       user.save(validate: false)
+      user.add_role :domain
+
     end
     unless Domain.where(domain: self.domain).count > 0
       self.update_domain

@@ -11,16 +11,17 @@
             <h5><%= user.email %></h5>
             <span><%= "@#{user.handle}" %></span>
           <% end %>
-
           <% if current_user %>
-            <% if current_user.has_role? :admin %>
+            <% if (current_user.has_role? :superadmin) || (current_user.has_role? :admin) &&(user.has_role? :regular) %>
               <br/>
               <%= simple_form_for(user, url: set_role_user_path(user.id)) do |f| %>
                 <div class=’form-group’>
-                  <%= f.input  :roles, collection: Role.all, as: :select, include_blank: false, label: false, selected: user.roles.last.id, input_html:{onchange: "this.form.submit();"} %>
+                  <%= f.input  :roles, collection: Role.not_admins, as: :select, include_blank: false, label: false, selected: user.roles.last.id, input_html:{onchange: "this.form.submit();"} %>
                 </div>
               <% end %>
-              <% end %>
+            <% else %>
+              <a class = "search_desc">role: <%= "#{user.roles.pluck(:name).join(', ')}" %></a>
+            <% end %>
           <% end %>
           <br/>
           <div id = "follow_unfollow_user_<%= user.slug %>">

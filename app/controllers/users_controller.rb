@@ -43,6 +43,7 @@ class UsersController < ApplicationController
   def set_role
     @user.roles.destroy_all
     @user.add_role "#{Role.find(user_params[:roles]).name}"
+    redirect_to users_path, notice: 'User role changed'
   end
 
   private

@@ -2,7 +2,6 @@ class User < ApplicationRecord
   rolify
 
   before_create :set_user_handle
-  after_action :assign_role, only:[:create]
   has_many :urls
   has_and_belongs_to_many :subcategory
   has_many :statuses
@@ -66,10 +65,6 @@ class User < ApplicationRecord
   def set_user_handle
     random_string = rand.to_s[2..11]
     self.handle = "#{self.username}#{random_string}"
-  end
-
-  def assign_role
-      current_user.add_role :regular
   end
 
 end
