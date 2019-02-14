@@ -1,4 +1,5 @@
 class TagsController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: %i( tag_verification )
 
   def new
 
@@ -27,6 +28,13 @@ class TagsController < ApplicationController
 
   def verify_tags
     @urls = Url.all.order("created_at DESC")
+  end
+
+  def tag_verification
+    tag = Tag.find params[:id]
+    if tag.verified == false
+      tag.update_attributes(verified_user_id: '39', rejected_user_id: '2', rejected_cancel_user_id: '8', verified: true)
+    end
   end
 
 

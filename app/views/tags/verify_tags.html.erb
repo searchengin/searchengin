@@ -1,193 +1,331 @@
 <div class="content">
-   <% @urls.each do |url, tags| %>
-   <section class="searcheng wdth100">
+  <% @urls.each do |url, tags| %>
+    <section class="searcheng wdth100">
       <% @url = url %>
       <% if url.present? %>
-      <a href="<%= url.url %>" target="_blank">
-      <%= image_tag url.favicon_url, class: 'pull-left thumb-sm m-r-sm img-circle favicon_img' %>
-      </a>
-      <div class="searcheng_row wdth100">
-         <span class="arrow left">
-         </span>
-         <div class="searcheng_col panel-heading wdth100 bdr_btom0">
+        <a href="<%= url.url %>" target="_blank">
+          <%= image_tag url.favicon_url, class: 'pull-left thumb-sm m-r-sm img-circle favicon_img' %>
+        </a>
+        <div class="searcheng_row wdth100">
+          <span class="arrow left">
+          </span>
+          <div class="searcheng_col panel-heading wdth100 bdr_btom0">
             <a href="<%= get_domain_path(url.domain_user.username) %>" target="_blank">
-               <span> <%= "@" + url.domain %>
-               </span>
-               <%= link_to url_concate(url.url) do %>
-               <h5><%= url.title %></h5>
-               <% end %>
+              <span> <%= "@" + url.domain %>
+              </span>
+              <%= link_to url.url do %>
+                <h5><%= url.title %></h5>
+              <% end %>
             </a>
-         </div>
-         <div class="searcheng_col2 flex_strt wdth100 mgtop0">
+          </div>
+          <div class="searcheng_col2 flex_strt wdth100 mgtop0">
             <span class="img_box">
-            <%= image_tag url.screenshot_url, class: 'pull-left thumb-sm m-r-sm img-circle ' if url.screenshot_url.present? %>
+              <%= image_tag url.screenshot_url, class: 'pull-left thumb-sm m-r-sm img-circle ' if url.screenshot_url.present? %>
             </span>
             <div class="search_desc wdth100">
-               <span class="dsp_flexx">
-               <%= link_to url_path(url.id) do %>
-               <i class="fab fa-searchengin"></i>
-               <% end %>
-               <%= link_to url.url, class: 'search_desc' do %>
-               <%= url.description.truncate(130) if url.description.present? %>
-               <% end %>
-               </span>
-               <%= link_to url.url, class: '' do %>
-               <span class="dash_border">
-               <i class="fas fa-external-link-alt"></i><%= url_concate(url.url) %>
-               </span>
-               <% end %>
-               <div class="searc_col_rt">
-                  <ul class="post_likes">
-                     <li>
-                        <%= link_to get_url_object_path(url.id),remote: :true, class:  'url_data' do %>
-                        <i class='fas fa-code id="tag_details_<%= url.id %>'></i>
-                        <% end %>
-                     </li>
-                     <li>
-                        <%= link_to like_path(url: url), method: :post, remote: true do %>
-                        <i class="<%= url.likes.count > 0 ? 'is-like': '' %>  fas fa-thumbs-up user-like" id="like_<%= url.id %>"><%= url.likes.count %></i>
-                        <% end %>
-                     </li>
-                     <li>
-                        <%= link_to dislike_path(url: url), method: :post, remote: true do %>
-                        <i class=" <%= url.dislikes.count > 0 ? 'is-dislike' : '' %> fas fa-thumbs-down user-dislike" id="dislike_<%= url.id %>"><%= url.dislikes.count %>
-                        </i>
-                        <% end %>
-                     </li>
-                  </ul>
-               </div>
-            </div>
-         </div>
-         <div class="cstm_tags">
-            <%= render  "tags/tags_links" %>
-         </div>
-         <div id="diff-tag_<%= url.id %>">
-         </div>
-        <% if url.tags.present? %>
-         <% url.tags.each do |tag| %>
-         <div class="inner_tag_rgt date_bar">
-          <% if tag.type == "WhereTag" %>
-              <span>
-                <i class="far fa-clock"></i>
-              <%= tag.where_datum.created_at.strftime('%A %B %d') %>
+              <span class="dsp_flexx">
+                <%= link_to url_path(url.id) do %>
+                  <i class="fab fa-searchengin"></i>
+                <% end %>
+                <%= link_to url.url, class: 'search_desc' do %>
+                  <%= url.description.truncate(130) if url.description.present? %>
+                <% end %>
               </span>
-              <% elsif tag.type == "WhatTag" %>
-              <span>
-                <i class="far fa-clock"></i>
-              <%= tag.what_datum.created_at.strftime('%A %B %d') %>
-              </span>
-              <% elsif tag.type == "WhyTag" %>
-              <span>
-                <i class="far fa-clock"></i>
-              <%= tag.why_datum.created_at.strftime('%A %B %d') %>
-              </span>
-              <% elsif tag.type == "WhenTag" %>
-              <span>
-                <i class="far fa-clock"></i>
-              <%= tag.when_datum.created_at.strftime('%A %B %d') %>
-              </span>
-              <% elsif tag.type == "WhoTag" %>
-              <span>
-                <i class="far fa-clock"></i>
-              <%= tag.who_datum.created_at.strftime('%A %B %d') %>
-              </span>
-              <% elsif tag.type == "VideoTag" %>
-              <span>
-                <i class="far fa-clock"></i>
-              <%= tag.video_datum.created_at.strftime('%A %B %d') %>
-              </span>
-              <% elsif tag.type == "PhotoTag" %>
-              <span>
-                <i class="far fa-clock"></i>
-              <%= tag.photo_datum.created_at.strftime('%A %B %d') if tag.photo_datum.present? %>
-              </span>
-          <% end %>
-        </div>
-         <div class="inner_tag">
-            <% if tag.type == "WhereTag" %>
-                <span class="inner_tag_lft"><i class="fas fa-map-marker-alt"></i></span>
-              <div class="inner_tag_rgt">
-                <span>
-                  <%= tag.where_datum.location %><br>
-                  <%#= tag.where_datum.description %>
+              <%= link_to url.url, class: '' do %>
+                <span class="dash_border">
+                <i class="fas fa-external-link-alt"></i><%= url_concate(url.url) %>
                 </span>
-            <%elsif tag.type == "WhatTag" %>
-                <span class="inner_tag_lft"><i class="fas fa-tags text_info"></i></span>
-                <div class="inner_tag_rgt">
-                  <span>
-                    <%#= eval(tag.what_datum.category)[:value] %>
-                    <%= tag.what_datum.item_name %>
-                    <%#= tag.what_datum.website_url %>
-                    <%#= tag.what_datum.description %>
-                  </span>
-            <% elsif tag.type == "WhyTag" %>
-              <span class="inner_tag_lft"><i class="fas fa-info-circle"></i></span>
-              <div class="inner_tag_rgt">
-                <span>
-                  <%#= eval(tag.why_datum.subject)[:value] %>
-                  <%= tag.why_datum.subcategory %>
-                  <%= tag.why_datum.title %>
-                  <%#= tag.why_datum.description %>
-                </span>
-            <% elsif tag.type == "WhenTag" %>
-              <span class="inner_tag_lft"><i class="far fa-calendar-alt"></i></span>
-              <div class="inner_tag_rgt">
-                <span>
-                  <%#= tag.when_datum.date.strftime('%A %B %d') %>
-                  <%= tag.when_datum.time.strftime('%A %B %d') %>
-                  <%#= tag.when_datum.description %>
-                </span>
-            <% elsif tag.type == "WhoTag" %>
-              <span class="inner_tag_lft"><i class="far fa-calendar-alt"></i></span>
-               <div class="inner_tag_rgt">
-              <span>
-                <%= tag.who_datum.name %>
-                <%= tag.who_datum.account %>
-                <%= tag.who_datum.website_url %>
-                <%= tag.who_datum.description %>
-              </span>
-            <% elsif tag.type == "VideoTag" %>
-              <span class="inner_tag_lft"><i class="far fa-calendar-alt"></i></span>
-              <div class="inner_tag_rgt">
-              <span>
-                <%= tag.video_datum.video_url %>
-                <%#= eval(tag.video_datum.category)[:value] %>
-                <%= tag.video_datum.html_code %>
-                <%= tag.video_datum.description %>
-              </span>
-            <% elsif tag.type == "PhotoTag" %>
-              <span class="inner_tag_lft"><i class="far fa-calendar-alt"></i></span>
-              <div class="inner_tag_rgt">
-                <span>
-                  <%= tag.photo_datum.photo_url if tag.photo_datum.present? %>
-                </span>
-            <% end %>
-                  <ul class="post_likes">
-                     <li>
-                        <%= link_to get_url_object_path(url.id),remote: :true, class:  'url_data' do %>
-                        <i class='fas fa-code id="tag_details_<%= url.id %>'></i>
-                        <% end %>
-                     </li>
-                     <li>
-                        <%= link_to like_path(url: url, tag: tag), method: :post, remote: true do %>
-                        <i class="<%= url.likes.count > 0 ? 'is-like': '' %>  fas fa-thumbs-up user-like" id="like_<%= url.id %>"><%#= tag.like.count %></i>
-                        <% end %>
-                     </li>
-                     <li>
-                        <%= link_to dislike_path(url: url, tag: tag), method: :post, remote: true do %>
-                        <i class=" <%= url.dislikes.count > 0 ? 'is-dislike' : '' %> fas fa-thumbs-down user-dislike" id="dislike_<%= url.id %>"><%#= tag.dislike.count %>
-                        </i>
-                        <% end %>
-                     </li>
-                  </ul>
+              <% end %>
+              <div class="searc_col_rt">
+                <div class="icon_tags">
+                  <%= render  "tags/tags_links" %>
                 </div>
+                <ul class="post_likes">
+                  <li>
+                    <%= link_to get_url_object_path(url.id),remote: :true, class:  'url_data' do %>
+                    <i class='fas fa-code id="tag_details_<%= url.id %>'></i>
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to like_path(url: url), method: :post, remote: true do %>
+                    <i class="<%= url.likes.count > 0 ? 'is-like': '' %>  fas fa-thumbs-up user-like" id="like_<%= url.id %>"><%= url.likes.count %>
+                    </i>
+                    <% end %>
+                  </li>
+                    <li>
+                    <%= link_to dislike_path(url: url), method: :post, remote: true do %>
+                    <i class=" <%= url.dislikes.count > 0 ? 'is-dislike' : '' %> fas fa-thumbs-down user-dislike" id="dislike_<%= url.id %>"><%= url.dislikes.count %>
+                    </i>
+                    <% end %>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div id="diff-tag_<%= url.id %>">
+          </div>
+           <% if url.tags.present? %>
+            <% url.tags.each do |tag| %>
+              <div class="inner_tag_rgt date_bar">
+                <% if tag.type == "WhereTag" %>
+                  <span>
+                    <i class="far fa-clock"></i>
+                  <%= tag.where_datum.created_at.strftime('%A %B %d') %>
+                  </span>
+                  <% elsif tag.type == "WhatTag" %>
+                  <span>
+                    <i class="far fa-clock"></i>
+                  <%= tag.what_datum.created_at.strftime('%A %B %d') %>
+                  </span>
+                  <% elsif tag.type == "WhyTag" %>
+                  <span>
+                    <i class="far fa-clock"></i>
+                  <%= tag.why_datum.created_at.strftime('%A %B %d') %>
+                  </span>
+                  <% elsif tag.type == "WhenTag" %>
+                  <span>
+                    <i class="far fa-clock"></i>
+                  <%= tag.when_datum.created_at.strftime('%A %B %d') %>
+                  </span>
+                  <% elsif tag.type == "WhoTag" %>
+                  <span>
+                    <i class="far fa-clock"></i>
+                  <%= tag.who_datum.created_at.strftime('%A %B %d') %>
+                  </span>
+                  <% elsif tag.type == "VideoTag" %>
+                  <span>
+                    <i class="far fa-clock"></i>
+                  <%= tag.video_datum.created_at.strftime('%A %B %d') %>
+                  </span>
+                  <% elsif tag.type == "PhotoTag" %>
+                  <span>
+                    <i class="far fa-clock"></i>
+                  <%= tag.photo_datum.created_at.strftime('%A %B %d') if tag.photo_datum.present? %>
+                  </span>
+                <% end %>
+              </div>
+              <div class="inner_tag">
+                <% if tag.type == "WhereTag" %>
+                  <span class="inner_tag_lft"><i class="fas fa-map-marker-alt"></i>
+                  </span>
+                  <div class="inner_tag_rgt">
+                    <span>
+                      <%= tag.where_datum.location %><br>
+                    </span>
+                    <ul class="post_likes">
+                      <li>
+                        <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>">
+                    </li>
+                      <li>
+                        <%= link_to get_url_object_path(url.id),remote: :true, class:  'url_data' do %>
+                        <i class='fas fa-code id="tag_details_<%= url.id %>'></i>
+                        <% end %>
+                      </li>
+                      <li>
+                        <%= link_to like_path(url: url, tag: tag), method: :post, remote: true do %>
+                        <i class="<%= url.likes.count > 0 ? 'is-like': '' %>  fas fa-thumbs-up user-like" id="like_<%= url.id %>"><%= tag.like.count %></i>
+                        <% end %>
+                      </li>
+                      <li>
+                        <%= link_to dislike_path(url: url, tag: tag), method: :post, remote: true do %>
+                        <i class=" <%= url.dislikes.count > 0 ? 'is-dislike' : '' %> fas fa-thumbs-down user-dislike" id="dislike_<%= url.id %>"><%= tag.dislike.count %>
+                        </i>
+                        <% end %>
+                      </li>
+                    </ul>
+                  </div>
+                <% elsif tag.type == "WhatTag" %>
+                  <span class="inner_tag_lft"><i class="fas fa-info-circle"></i>
+                  </span>
+                  <div class="inner_tag_rgt">
+                    <span>
+                      <%= tag.what_datum.item_name %>
+                    </span>
+                    <ul class="post_likes">
+                      <li>
+                        <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>">
+                    </li>
+                      <li>
+                        <%= link_to get_url_object_path(url.id),remote: :true, class:  'url_data' do %>
+                        <i class='fas fa-code id="tag_details_<%= url.id %>'></i>
+                        <% end %>
+                      </li>
+                      <li>
+                        <%= link_to like_path(url: url, tag: tag), method: :post, remote: true do %>
+                        <i class="<%= url.likes.count > 0 ? 'is-like': '' %>  fas fa-thumbs-up user-like" id="like_<%= url.id %>"><%= tag.like.count %></i>
+                        <% end %>
+                      </li>
+                      <li>
+                        <%= link_to dislike_path(url: url, tag: tag), method: :post, remote: true do %>
+                        <i class=" <%= url.dislikes.count > 0 ? 'is-dislike' : '' %> fas fa-thumbs-down user-dislike" id="dislike_<%= url.id %>"><%= tag.dislike.count %>
+                        </i>
+                        <% end %>
+                      </li>
+                    </ul>
+                  </div>
+                <% elsif tag.type == "WhyTag" %>
+                  <span class="inner_tag_lft"><i class="fas fa-info-circle"></i>
+                  </span>
+                  <div class="inner_tag_rgt">
+                    <span>
+                      <%#= tag.why_datum.subject %>
+                      <%= tag.why_datum.subcategory %>
+                      <%= tag.why_datum.title %>
+                      <%#= tag.why_datum.description %>
+                    </span>
+                    <ul class="post_likes">
+                      <li>
+                        <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>">
+                    </li>
+                      <li>
+                        <%= link_to get_url_object_path(url.id),remote: :true, class:  'url_data' do %>
+                        <i class='fas fa-code id="tag_details_<%= url.id %>'></i>
+                        <% end %>
+                      </li>
+                      <li>
+                        <%= link_to like_path(url: url, tag: tag), method: :post, remote: true do %>
+                        <i class="<%= url.likes.count > 0 ? 'is-like': '' %>  fas fa-thumbs-up user-like" id="like_<%= url.id %>"><%= tag.like.count %></i>
+                        <% end %>
+                      </li>
+                      <li>
+                        <%= link_to dislike_path(url: url, tag: tag), method: :post, remote: true do %>
+                        <i class=" <%= url.dislikes.count > 0 ? 'is-dislike' : '' %> fas fa-thumbs-down user-dislike" id="dislike_<%= url.id %>"><%= tag.dislike.count %>
+                        </i>
+                        <% end %>
+                      </li>
+                    </ul>
+                  </div>
+                <% elsif tag.type == "WhenTag" %>
+                  <span class="inner_tag_lft"><i class="far fa-calendar-alt"></i>
+                  </span>
+                  <div class="inner_tag_rgt">
+                    <span>
+                      <%= tag.when_datum.time.strftime('%A %B %d') %>
+                      <%= tag.when_datum.description %>
+                    </span>
+                    <ul class="post_likes">
+                      <li>
+                        <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>">
+                    </li>
+                      <li>
+                        <%= link_to get_url_object_path(url.id),remote: :true, class:  'url_data' do %>
+                        <i class='fas fa-code id="tag_details_<%= url.id %>'></i>
+                        <% end %>
+                      </li>
+                      <li>
+                        <%= link_to like_path(url: url, tag: tag), method: :post, remote: true do %>
+                        <i class="<%= url.likes.count > 0 ? 'is-like': '' %>  fas fa-thumbs-up user-like" id="like_<%= url.id %>"><%= tag.like.count %></i>
+                        <% end %>
+                      </li>
+                      <li>
+                        <%= link_to dislike_path(url: url, tag: tag), method: :post, remote: true do %>
+                        <i class=" <%= url.dislikes.count > 0 ? 'is-dislike' : '' %> fas fa-thumbs-down user-dislike" id="dislike_<%= url.id %>"><%= tag.dislike.count %>
+                        </i>
+                        <% end %>
+                      </li>
+                    </ul>
+                  </div>
+                <% elsif tag.type == "WhoTag" %>
+                  <span class="inner_tag_lft"><i class="far fa-calendar-alt"></i>
+                  </span>
+                  <div class="inner_tag_rgt">
+                    <span>
+                      <%= tag.who_datum.name %>
+                      <%= tag.who_datum.account %>
+                      <%= tag.who_datum.website_url %>
+                      <%= tag.who_datum.description %>
+                    </span>
+                    <ul class="post_likes">
+                      <li>
+                        <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>">
+                    </li>
+                      <li>
+                        <%= link_to get_url_object_path(url.id),remote: :true, class:  'url_data' do %>
+                        <i class='fas fa-code id="tag_details_<%= url.id %>'></i>
+                        <% end %>
+                      </li>
+                      <li>
+                        <%= link_to like_path(url: url, tag: tag), method: :post, remote: true do %>
+                        <i class="<%= url.likes.count > 0 ? 'is-like': '' %>  fas fa-thumbs-up user-like" id="like_<%= url.id %>"><%= tag.like.count %></i>
+                        <% end %>
+                      </li>
+                      <li>
+                        <%= link_to dislike_path(url: url, tag: tag), method: :post, remote: true do %>
+                        <i class=" <%= url.dislikes.count > 0 ? 'is-dislike' : '' %> fas fa-thumbs-down user-dislike" id="dislike_<%= url.id %>"><%= tag.dislike.count %>
+                        </i>
+                        <% end %>
+                      </li>
+                    </ul>
+                  </div>
+                <% elsif tag.type == "VideoTag" %>
+                  <span class="inner_tag_lft"><i class="far fa-calendar-alt"></i>
+                  </span>
+                  <div class="inner_tag_rgt">
+                    <span>
+                      <%= tag.video_datum.video_url %>
+                      <%= tag.video_datum.category %>
+                      <%= tag.video_datum.html_code %>
+                      <%= tag.video_datum.description %>
+                    </span>
+                    <ul class="post_likes">
+                      <li>
+                        <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>">
+                    </li>
+                      <li>
+                        <%= link_to get_url_object_path(url.id),remote: :true, class:  'url_data' do %>
+                        <i class='fas fa-code id="tag_details_<%= url.id %>'></i>
+                        <% end %>
+                      </li>
+                      <li>
+                        <%= link_to like_path(url: url, tag: tag), method: :post, remote: true do %>
+                        <i class="<%= url.likes.count > 0 ? 'is-like': '' %>  fas fa-thumbs-up user-like" id="like_<%= url.id %>"><%= tag.like.count %></i>
+                        <% end %>
+                      </li>
+                      <li>
+                        <%= link_to dislike_path(url: url, tag: tag), method: :post, remote: true do %>
+                        <i class=" <%= url.dislikes.count > 0 ? 'is-dislike' : '' %> fas fa-thumbs-down user-dislike" id="dislike_<%= url.id %>"><%= tag.dislike.count %>
+                        </i>
+                        <% end %>
+                      </li>
+                    </ul>
+                  </div>
+                <% elsif tag.type == "PhotoTag" %>
+                  <span class="inner_tag_lft"><i class="far fa-calendar-alt"></i>
+                  </span>
+                  <div class="inner_tag_rgt">
+                    <span>
+                      <%= tag.photo_datum.photo_url %>
+                    </span>
+                    <ul class="post_likes">
+                      <li>
+                        <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>">
+                    </li>
+                      <li>
+                        <%= link_to get_url_object_path(url.id),remote: :true, class:  'url_data' do %>
+                        <i class='fas fa-code id="tag_details_<%= url.id %>'></i>
+                        <% end %>
+                      </li>
+                      <li>
+                        <%= link_to like_path(url: url, tag: tag), method: :post, remote: true do %>
+                        <i class="<%= url.likes.count > 0 ? 'is-like': '' %>  fas fa-thumbs-up user-like" id="like_<%= url.id %>"><%= tag.like.count %></i>
+                        <% end %>
+                      </li>
+                      <li>
+                        <%= link_to dislike_path(url: url, tag: tag), method: :post, remote: true do %>
+                        <i class=" <%= url.dislikes.count > 0 ? 'is-dislike' : '' %> fas fa-thumbs-down user-dislike" id="dislike_<%= url.id %>"><%= tag.dislike.count %>
+                        </i>
+                        <% end %>
+                      </li>
+                    </ul>
+                  </div>
+                <% end %>
               </div>
             <% end %>
-           <% end %>
-         <% end %>
-      </div>
-   </section>
-   <% end %>
+          <% end %>
+        </div>
+      <% end %>
+    </section>
+  <% end %>
 </div>
 <div class="post_modal modal fade" id="embed-modal" tabindex="-1" role="dialog" aria-labelledby="embed-modalTitle" aria-hidden="true">
    <div class="modal-dialog modal-dialog-centered" role="document">
@@ -274,4 +412,14 @@
    $(".user-dislike").click(function() {
        $(this).toggleClass("is-dislike");
    });
+
+  $(".verified").click(function() {
+    var id = $(this).attr("id");
+    var verifiy = $(this).val()
+    $.ajax({
+      url: "/tags/tag_verification/"+id,
+      type: 'PATCH',
+      data: {id: id }
+    });
+  });
 </script>
