@@ -1,0 +1,7 @@
+<% unless current_user.following?(user) %>
+  <%= link_to follow_user_user_path(user.id), method: :patch, remote: true, class: "btn btn-sm  btn-primary" do %>  Follow
+  <% end %>
+<% else %>
+  <%= link_to unfollow_user_user_path(user.id), method: :patch, remote: true, class: "btn btn-sm btn-danger" do %>  Unfollow
+  <% end %>
+<% end %>

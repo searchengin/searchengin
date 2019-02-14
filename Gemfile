@@ -82,3 +82,7 @@ gem 'webshot'
 gem 'image_processing'
 gem 'mini_magick'
 gem 'carrierwave'
+gem "acts_as_follower", github: "tcocca/acts_as_follower"
+gem 'friendly_id'
+gem 'cancancan'
+gem 'rolify'

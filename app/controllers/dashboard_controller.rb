@@ -322,10 +322,10 @@ class DashboardController < ApplicationController
     verified = DomainService.new(domain).call
     if verified
       flash[:success] = 'Site verified!'
-      redirect_to get_domain_path(domain)
+       redirect_to profile_path(domain)
     else
       flash[:Error] = 'Site verification failed!'
-      redirect_to get_domain_path(domain)
+       redirect_to profile_path(domain)
     end
   end
 end
