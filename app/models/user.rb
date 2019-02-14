@@ -65,7 +65,7 @@ class User < ApplicationRecord
 
   def set_user_handle
     random_string = rand.to_s[2..11]
-    self.handle = self.email.present? ? "#{self.email[/^[^@]+/]}#{random_string}" : "#{self.username}#{random_string}"
+    self.handle = self.email.present? ? "#{self.email[/^[^@]+/].split(".").first}#{random_string}" : "#{self.username}#{random_string}"
   end
 
   def create_api_key
