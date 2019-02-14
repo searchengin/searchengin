@@ -48,6 +48,7 @@ div.content {
 .cntnt_wrap{
   position: relative;
   padding-top: 55px;
+
 }
 
 .cstm_navbar{
@@ -649,6 +650,30 @@ a.mg10 {
     width: 86%;
     float: right;
 }
+.icon_tags{
+   width: 100%;
+    display:inline;
+    border-right: 1px solid #000;
+
+}
+.icon_tags a{
+    margin: 0 8px;
+}
+.icon_tags .text_info {
+    color: #575757 !important;
+    /* font-size: 12px; */
+}
+/*section.searcheng.wdth100 {
+    display: flex;
+    flex-direction: column;
+}*/
+/*.searcheng_row.wdth100 {
+    margin-bottom: 30px;
+}
+*/
+
+
+
 
 @media screen and (max-width: 700px) {
   .sidebar {
