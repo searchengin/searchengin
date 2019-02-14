@@ -2,17 +2,17 @@ class User < ApplicationRecord
   rolify
 
   before_create :set_user_handle
-  has_many :urls
-  has_and_belongs_to_many :subcategory
-  has_many :statuses
-  has_many :likes
-  has_many :dislikes
+  has_many :urls, dependent: :destroy
+  #has_and_belongs_to_many :subcategory
+  has_many :statuses, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :dislikes, dependent: :destroy
   acts_as_followable
   acts_as_follower
 
-  validates :username, presence: :true, uniqueness: { case_sensitive: false }
+  validates :username, uniqueness: { case_sensitive: false }
   validate :validate_username
-  validates_presence_of   :avatar
+  #validates_presence_of   :avatar
 
   attr_writer :login
   mount_uploader :avatar, AvatarUploader
@@ -65,7 +65,7 @@ class User < ApplicationRecord
 
   def set_user_handle
     random_string = rand.to_s[2..11]
-    self.handle = "#{self.username}#{random_string}"
+    self.handle = self.email.present? ? "#{self.email[/^[^@]+/]}#{random_string}" : "#{self.username}#{random_string}"
   end
 
   def create_api_key

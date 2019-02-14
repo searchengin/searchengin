@@ -9,25 +9,29 @@ class UrlsController < ApplicationController
   end
 
   def create
-    url_object = LinkThumbnailer.generate(params[:url][:url])
-    @url = current_user.urls.new
-    @url.title = url_object.title
-    @url.url = url_object.url
-    @url.description = url_object.description
-    @url.favicon_url = url_object.favicon
-    # @url.domain = Url.store_domain_info
-    # @url.subdomain = Url.store_domain_info
-    # @url.protocol = Url.store_domain_info
-    # UrlWorker.perform_async(url_object)
-    respond_to do |format|
-      if @url.save
-        # ScreenshotWorker.perform_async(@url.id)
-        format.html { redirect_to root_url, notice: 'Url was successfully processed.' }
-        # format.json { render :show, status: :created, url: @url }
-      else
-        format.html { render :new }
-        format.json { render json: @url.errors, status: :unprocessable_entity }
+    if params[:url][:url].present?
+      url_object = LinkThumbnailer.generate(params[:url][:url])
+      @url = current_user.urls.new
+      @url.title = url_object.title
+      @url.url = url_object.url
+      @url.description = url_object.description
+      @url.favicon_url = url_object.favicon
+      # @url.domain = Url.store_domain_info
+      # @url.subdomain = Url.store_domain_info
+      # @url.protocol = Url.store_domain_info
+      # UrlWorker.perform_async(url_object)
+      respond_to do |format|
+        if @url.save
+          # ScreenshotWorker.perform_async(@url.id)
+          format.html { redirect_to root_url, notice: 'Url was successfully processed.' }
+          # format.json { render :show, status: :created, url: @url }
+        else
+          format.html { render :new }
+          format.json { render json: @url.errors, status: :unprocessable_entity }
+        end
       end
+    else
+      flash[:Error] = "please enter a url"
     end
   end
 
