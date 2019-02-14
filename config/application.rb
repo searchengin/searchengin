@@ -7,6 +7,8 @@ require 'dnsruby'
 require 'net/https'
 require 'uri'
 require 'json'
+require 'nokogiri'
+require 'open-uri'
 
 
 # Require the gems listed in Gemfile, including any gems
