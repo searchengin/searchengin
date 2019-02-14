@@ -26,6 +26,8 @@ gem 'jbuilder', '~> 2.5'
 #gem 'bing-search', '~> 2.0'
 gem 'cognitivebing'
 gem 'dnsruby'
+gem 'nokogiri'
+
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'

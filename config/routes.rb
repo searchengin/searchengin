@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   post 'tags/create', to: 'tags#create', as: :create
   get 'dashboard/verify_domain/:id', to: 'dashboard#verify_domain', as: :verify_domain
   get 'tags/verify_tags', to: 'tags#verify_tags', as: :verify_tags
+  patch 'tags/tag_verification/:id', to: 'tags#tag_verification', as: :tag_verification
   #get 'urls/url_details/:id', to: 'urls#url_details', as: :url_details
 
 

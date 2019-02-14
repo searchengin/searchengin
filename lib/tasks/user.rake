@@ -8,7 +8,7 @@ namespace :user do
   task set_user_handle_for_existing_regular_users: :environment do
     User.by_non_domain.where(handle: nil).each do |user|
       user.set_user_handle
-      user.save!
+      user.save(validate: false)
     end
   end
 end
