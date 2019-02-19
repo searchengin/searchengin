@@ -3,7 +3,7 @@ class DashboardController < ApplicationController
 
 
   def index
-    @urls = Url.all.order("created_at DESC")
+    @urls = Url.all.order("created_at DESC").paginate(page: params[:page], per_page: 15)
   end
 
   def get_url_object

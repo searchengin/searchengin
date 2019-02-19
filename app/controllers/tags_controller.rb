@@ -27,13 +27,18 @@ class TagsController < ApplicationController
   end
 
   def verify_tags
-    @urls = Url.all.order("created_at DESC")
+    @urls = Url.all.order("created_at DESC").paginate(page: params[:page], per_page: 5)
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def tag_verification
     tag = Tag.find params[:id]
-    if tag.verified == false
-      tag.update_attributes(verified_user_id: '39', rejected_user_id: '2', rejected_cancel_user_id: '8', verified: true)
+    if current_user.has_role?('regular')  && tag.verified == false
+      tag.update_attributes!(verified_user_id: current_user.id, verified: true)
+      flash[:success] = "Tag verified"
     end
   end
 

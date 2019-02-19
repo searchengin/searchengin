@@ -1,0 +1,7 @@
+$('#verify_url_tags').append('<%= j render @urls %>');
+<% if @urls.next_page %>
+  $('.pagination').replaceWith('<%= j will_paginate @urls %>');
+<% else %>
+  $(window).off('scroll');
+  $('.loader').remove();
+<% end %>
