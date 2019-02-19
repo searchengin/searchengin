@@ -113,7 +113,7 @@
                       <%= tag.where_datum.location %><br>
                     </span>
                     <ul class="post_likes">
-                      <% if current_user.has_role?('regular') %>
+                      <% if current_user.present? && current_user.has_role?('regular') %>
                         <li>
                           <% if tag.verified %>
                             <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>" checked>
@@ -148,7 +148,7 @@
                       <%= tag.what_datum.item_name %>
                     </span>
                     <ul class="post_likes">
-                      <% if current_user.has_role?('regular') %>
+                      <% if current_user.present? && current_user.has_role?('regular') %>
                         <li>
                           <% if tag.verified %>
                             <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>" checked>
@@ -186,7 +186,7 @@
                       <%#= tag.why_datum.description %>
                     </span>
                     <ul class="post_likes">
-                      <% if current_user.has_role?('regular') %>
+                      <% if current_user.present? && current_user.has_role?('regular') %>
                         <li>
                           <% if tag.verified %>
                             <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>" checked>
@@ -222,7 +222,7 @@
                       <%= tag.when_datum.description %>
                     </span>
                     <ul class="post_likes">
-                      <% if current_user.has_role?('regular') %>
+                      <% if current_user.present? && current_user.has_role?('regular') %>
                         <li>
                         <% if tag.verified %>
                             <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>" checked>
@@ -259,7 +259,7 @@
                       <%= tag.who_datum.description %>
                     </span>
                     <ul class="post_likes">
-                      <% if current_user.has_role?('regular') %>
+                      <% if current_user.present? && current_user.has_role?('regular') %>
                        <% if tag.verified %>
                             <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>" checked>
                           <% else %>
@@ -295,7 +295,7 @@
                       <%= tag.video_datum.description %>
                     </span>
                     <ul class="post_likes">
-                      <% if current_user.has_role?('regular') %>
+                      <% if current_user.present? && current_user.has_role?('regular') %>
                         <li>
                          <% if tag.verified %>
                             <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>" checked>
@@ -330,7 +330,7 @@
                       <%#= tag.photo_datum.photo_url %>
                     </span>
                     <ul class="post_likes">
-                      <% if current_user.has_role?('regular') %>
+                      <% if current_user.present? && current_user.has_role?('regular') %>
                         <li>
                          <% if tag.verified %>
                             <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>" checked>
