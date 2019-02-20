@@ -1,4 +1,3 @@
-<% #binding.pry %>
 <% @urls.each do |url| %>
     <section class="searcheng wdth100">
       <% @url = url %>
@@ -65,45 +64,45 @@
           <div id="diff-tag_<%= url.id %>">
           </div>
            <% if url.tags.present? %>
-            <% limit_tags(url).each do |tag| %>
-             <!--  <div class="inner_tag_rgt date_bar">
-                <%# if tag.type == "WhereTag" %>
+            <% url.tags.each do |tag| %>
+              <div class="inner_tag_rgt date_bar">
+                <% if tag.type == "WhereTag" %>
                   <span>
                     <i class="far fa-clock"></i>
-                  <%#= tag.where_datum.created_at.strftime('%A %B %d') %>
+                  <%= tag.where_datum.created_at.strftime('%A %B %d') %>
                   </span>
-                  <%# elsif tag.type == "WhatTag" %>
+                  <% elsif tag.type == "WhatTag" %>
                   <span>
                     <i class="far fa-clock"></i>
-                  <%#= tag.what_datum.created_at.strftime('%A %B %d') %>
+                  <%= tag.what_datum.created_at.strftime('%A %B %d') %>
                   </span>
-                  <%# elsif tag.type == "WhyTag" %>
+                  <% elsif tag.type == "WhyTag" %>
                   <span>
                     <i class="far fa-clock"></i>
-                  <%#= tag.why_datum.created_at.strftime('%A %B %d') %>
+                  <%= tag.why_datum.created_at.strftime('%A %B %d') %>
                   </span>
-                  <%# elsif tag.type == "WhenTag" %>
+                  <% elsif tag.type == "WhenTag" %>
                   <span>
                     <i class="far fa-clock"></i>
-                  <%#= tag.when_datum.created_at.strftime('%A %B %d') %>
+                  <%= tag.when_datum.created_at.strftime('%A %B %d') %>
                   </span>
-                  <%# elsif tag.type == "WhoTag" %>
+                  <% elsif tag.type == "WhoTag" %>
                   <span>
                     <i class="far fa-clock"></i>
-                  <%#= tag.who_datum.created_at.strftime('%A %B %d') %>
+                  <%= tag.who_datum.created_at.strftime('%A %B %d') %>
                   </span>
-                  <%# elsif tag.type == "VideoTag" %>
+                  <% elsif tag.type == "VideoTag" %>
                   <span>
                     <i class="far fa-clock"></i>
-                  <%#= tag.video_datum.created_at.strftime('%A %B %d') %>
+                  <%= tag.video_datum.created_at.strftime('%A %B %d') %>
                   </span>
-                  <%# elsif tag.type == "PhotoTag" %>
+                  <% elsif tag.type == "PhotoTag" %>
                   <span>
                     <i class="far fa-clock"></i>
-                  <%#= tag.photo_datum.created_at.strftime('%A %B %d') if tag.photo_datum.present? %>
+                  <%= tag.photo_datum.created_at.strftime('%A %B %d') if tag.photo_datum.present? %>
                   </span>
-                <%# end %>
-              </div> -->
+                <% end %>
+              </div>
               <div class="inner_tag">
                 <% if tag.type == "WhereTag" %>
                   <span class="inner_tag_lft"><i class="fas fa-map-marker-alt"></i>
@@ -113,7 +112,7 @@
                       <%= tag.where_datum.location %><br>
                     </span>
                     <ul class="post_likes">
-                      <% if current_user.present? && current_user.has_role?('regular') %>
+                      <% if current_user.has_role?('regular') %>
                         <li>
                           <% if tag.verified %>
                             <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>" checked>
@@ -148,7 +147,7 @@
                       <%= tag.what_datum.item_name %>
                     </span>
                     <ul class="post_likes">
-                      <% if current_user.present? && current_user.has_role?('regular') %>
+                      <% if current_user.has_role?('regular') %>
                         <li>
                           <% if tag.verified %>
                             <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>" checked>
@@ -186,7 +185,7 @@
                       <%#= tag.why_datum.description %>
                     </span>
                     <ul class="post_likes">
-                      <% if current_user.present? && current_user.has_role?('regular') %>
+                      <% if current_user.has_role?('regular') %>
                         <li>
                           <% if tag.verified %>
                             <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>" checked>
@@ -222,7 +221,7 @@
                       <%= tag.when_datum.description %>
                     </span>
                     <ul class="post_likes">
-                      <% if current_user.present? && current_user.has_role?('regular') %>
+                      <% if current_user.has_role?('regular') %>
                         <li>
                         <% if tag.verified %>
                             <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>" checked>
@@ -259,7 +258,7 @@
                       <%= tag.who_datum.description %>
                     </span>
                     <ul class="post_likes">
-                      <% if current_user.present? && current_user.has_role?('regular') %>
+                      <% if current_user.has_role?('regular') %>
                        <% if tag.verified %>
                             <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>" checked>
                           <% else %>
@@ -295,7 +294,7 @@
                       <%= tag.video_datum.description %>
                     </span>
                     <ul class="post_likes">
-                      <% if current_user.present? && current_user.has_role?('regular') %>
+                      <% if current_user.has_role?('regular') %>
                         <li>
                          <% if tag.verified %>
                             <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>" checked>
@@ -330,7 +329,7 @@
                       <%#= tag.photo_datum.photo_url %>
                     </span>
                     <ul class="post_likes">
-                      <% if current_user.present? && current_user.has_role?('regular') %>
+                      <% if current_user.has_role?('regular') %>
                         <li>
                          <% if tag.verified %>
                             <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>" checked>

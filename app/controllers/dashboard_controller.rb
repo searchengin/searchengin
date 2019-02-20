@@ -131,7 +131,7 @@ class DashboardController < ApplicationController
                   why_data.description ilike '%#{@query}%'
                 ) and
                 (
-                  t.verified = 'false'
+                  t.verified = 'true'
                 )
                 order by points desc
                 limit 3
@@ -211,7 +211,7 @@ class DashboardController < ApplicationController
                 why_data.description ilike '%#{@query}%'
               ) and
               (
-                t.verified = 'false'
+                t.verified = 'true'
               )
               order by points desc
               limit 3
