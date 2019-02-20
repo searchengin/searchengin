@@ -37,6 +37,7 @@
 div.content {
   margin-left: 185px;
   padding: 25px 16px;
+  height: calc(100vh - 70px);
   /*height: 1000px;*/
 }
 
@@ -48,7 +49,18 @@ div.content {
 .cntnt_wrap{
   position: relative;
   padding-top: 55px;
+  width: 100%;
+  float: left;
+}
 
+.loader{
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  margin-left: -8px;
 }
 
 .cstm_navbar{
@@ -672,6 +684,14 @@ a.mg10 {
 }
 */
 
+.today_date{
+  text-align: right;
+  position: relative;
+  bottom: 42px;
+}
+.pagination{
+  display: none !important;
+}
 
 
 

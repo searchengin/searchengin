@@ -3,7 +3,7 @@ class DashboardController < ApplicationController
 
 
   def index
-    @urls = Url.all.order("created_at DESC")
+    @urls = Url.all.order("created_at DESC").paginate(page: params[:page], per_page: 15)
   end
 
   def get_url_object
@@ -131,7 +131,7 @@ class DashboardController < ApplicationController
                   why_data.description ilike '%#{@query}%'
                 ) and
                 (
-                  t.verified = 'false'
+                  t.verified = 'true'
                 )
                 order by points desc
                 limit 3
@@ -211,7 +211,7 @@ class DashboardController < ApplicationController
                 why_data.description ilike '%#{@query}%'
               ) and
               (
-                t.verified = 'false'
+                t.verified = 'true'
               )
               order by points desc
               limit 3

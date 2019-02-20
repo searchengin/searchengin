@@ -20,3 +20,19 @@
 //= require bootstrap
 //= require toastr_rails
 //= require_tree .
+
+
+$(document).ready(function() {
+  if ($('.pagination').length) {
+    $(window).scroll(function() {
+      var url = $('.pagination .next_page').attr('href');
+      console.log("out",url && $(window).scrollTop() > $(document).height() - $(window).height() - 50)
+      if (url && $(window).scrollTop() > $(document).height() - $(window).height() - 50) {
+        console.log("in",url && $(window).scrollTop() > $(document).height() - $(window).height() - 50)
+        $('.loader').html('<img src="/assets/ajax-loader.gif" alt="Loading..." title="Loading..." />')
+        return $.getScript(url);
+      }
+    });
+    return $(window).scroll();
+  }
+});
