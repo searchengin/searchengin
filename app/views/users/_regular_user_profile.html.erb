@@ -1,50 +1,227 @@
 <div class="content">
-  <div class = "row">
-    <div class = "col-sm-12">
-      <h2>User Profile</h2>
-      <%= @user.email %>
-      <br/>
-      <%= "@#{@user.handle}" %>
-    </div>
-  </div>
-  <br/>
-  <div class = "row">
-    <div class = "col-sm-12">
-      <h4>Following <%= @user.follow_count %></h4>
-      <ul>
-        <% @user.all_follows.each do |follow| %>
-          <li>
-            <%= follow.followable.email %>
-            <div id = "follow_unfollow_user_<%= follow.followable.slug %>">
-              <%= render 'follow_unfollow_user', user: follow.followable %>
+  <div class="page_wrapper">
+    <header class="twitter_header">
+      <div class="container cstm_container">
+        <div class="header_inner wdth100">
+          <ul class="user_profile">
+            <li>
+              <a href="javascript:void(0)">
+                <img src="images/profile.png">
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <section class="timeline_cover">
+      <div class="timeline_wwrapper wdth100">
+        <div class="timeline_bg wdth100">
+
+        </div>
+        <div class="timeline_bar wdth100">
+          <div class="container cstm_container">
+            <div class="inner_bar wdth100">
+              <div class="inner_bar_left">
+                <div class="profile_avatar">
+                  <a href="javascript:void(0)" class="bank_avatar">
+                    <%= image_tag current_user.avatar_url %>
+                    <!-- <img src="images/person.jpg"> -->
+                  </a>
+                </div>
+              </div>
+              <div class="inner_bar_right">
+                <ul class="profile_stats">
+                  <li class="#">
+                    <a href="javscript:void();">Following<span><%= @user.follow_count %></span></a>
+                  </li>
+
+                  <li>
+                    <a href="javscript:void();">Followers<span><%= current_user.followers.count %></span></a>
+                  </li>
+
+                  <!-- <li>
+                    <a href="javscript:void();">Likes<span>2</span></a>
+                  </li>
+
+                  <li>
+                    <a href="javscript:void();">Lists<span>0</span></a>
+                  </li>
+
+                  <li>
+                    <a href="javscript:void();">Moments<span>0</span></a>
+                  </li> -->
+                </ul>
+
+                <!-- <a href="javascript:void(0);"><%#= link_to 'Edit Profile', edit_user_registration_path, class: "grey_brdr_btn"%></a> -->
+              </div>
             </div>
-          </li>
-        <% end %>
-      </ul>
-    </div>
-  </div>
-  <br/>
-  <div class = "row">
-    <div class = "col-sm-12">
-      <h4>followers: <%= current_user.followers.count %></h4>
-      <% current_user.followers.each do |follow| %>
-        <li>
-          <%= follow.email %>
-        </li>
-      <% end %>
-    </div>
-  </div>
-  <br/>
+          </div>
+        </div>
+      </div>
+    </section>
 
-  <div class = "row">
-    <div class = "col-sm-12">
-      <h4><span class="badge badge-success">Posts:  <%= @user.statuses.count %></span></h4>
-      <% @user.statuses.order('id DESC').each do |user_status| %>
-        <%= user_status.post %>
-        <br/>
-      <% end %>
-    </div>
+    <section class="posts">
+      <div class="container cstm_container">
+        <div class="grid_wrapper wdth100">
+          <div class="grid_left">
+            <h1 class="profile_name"><%= @user.email %></h1>
+            <h4 class="profile_id"><%= "@#{@user.handle}" %></h4>
+            <!-- <p>Front-End Developer</p> -->
+            <p class="joining_date"><img class="calender_icn" src="images/calender.png">
+            Joined <%= current_user.created_at.strftime('%B %d') %></p>
+          </div>
+          <div class="grid_right">
+            <div class="posts_wall">
+              <h1 class="posts_heading">send your first Message</h1>
+              <p class="joining_date">We've got your first status ready to go. The hashtag #myfirsttweet will help others find and chat with you.</p>
 
-    <%= render 'status_box' %>
+              <div>
+                <h2 class="badge badge-success">Posts:  <%= @user.statuses.count %></h2>
+              </div>
+            <% @user.statuses.order('id DESC').each do |user_status| %>
+              <div class="tweet_row wdth100">
+                <div class="tweet_box wdth100">
+                  <a href="javascript:void(0)" class="profile_icn">
+                    <img src="images/profile.png">
+                  </a>
+                  <div class="tweet_cntnt">
+                    <div class="profile_name wdth100">
+                      <a href="javascript:void(0)" class="profile_name font_14"><%= post_user_name(user_status) %></a>
+                      <span class="profile_id"></span>
+                    </div>
+                    <p><%= user_status.post %></p>
+                    <!-- <a href="javscript:void(0)" class="hashtag">#myfirsttweet</a> -->
+                  </div>
+                </div>
+
+                <!-- <button type="button" class="default_blue_btn">tweet</button> -->
+              </div>
+            <% end %>
+              <!-- <div class="tweet_row wdth100">
+                <div class="tweet_box wdth100">
+                  <a href="javascript:void(0)" class="profile_icn">
+                    <img src="images/profile.png">
+                  </a>
+                  <div class="tweet_cntnt">
+                    <div class="profile_name wdth100">
+                      <a href="javascript:void(0)" class="profile_name font_14">nizam</a>
+                      <span class="profile_id">@Nizam47462425</span>
+                    </div>
+                    <p>Hello twitter</p>
+                    <a href="javscript:void(0)" class="hashtag">#myfirsttweet</a>
+                  </div>
+                </div>
+
+                <button type="button" class="default_blue_btn">tweet</button>
+              </div>
+ -->
+              <p class="joining_date">Or write your own</p>
+
+              <div class="compose_tweet wdth100">
+                <!-- <div class="msg_composer wdth100">
+                  <a href="javascript:void(0)" class="profile_icn">
+                    <img src="images/profile.png">
+                  </a>
+                  <div class="msg_cntnt">
+                    <textarea class="cstm_ta" rows="3" placeholder="What's happening?"></textarea>
+
+                    <div class="msg_footer_wrapper wdth100">
+
+                      <ul class="attachments_list">
+                        <li>
+                          <a href="javascript:void(0)">
+                            <img src="images/thumbnail.png">
+                          </a>
+                        </li>
+
+                        <li>
+                          <a href="javascript:void(0)">
+                            <img src="images/gif.png">
+                          </a>
+                        </li>
+
+                        <li>
+                          <a href="javascript:void(0)">
+                            <img src="images/bar.png">
+                          </a>
+                        </li>
+
+                        <li>
+                          <a href="javascript:void(0)">
+                            <img src="images/location.png">
+                          </a>
+                        </li>
+                      </ul>
+                      <div class="msg_btns">
+                        <a href="javascript:void(0)" class="add_msg">
+                          <img src="images/plus.png">
+                        </a>
+                        <button type="button" class="default_blue_btn">tweet</button>
+                      </div>
+
+                    </div>
+                  </div>
+                </div> -->
+                <%= render 'status_box' %>
+              </div>
+
+            </div>
+            <div class="trending_wall">
+
+              <div class="trending_hashtags wdth100">
+                <span class="profile_name">People you Follow</span>
+                <!-- <a href="javascript:void(0)" class="hashtag">Change</a> -->
+
+                <ul class="hashtag_list wdth100">
+                  <li>
+                    <a href="javascript:void(0);" class="hashtag">Following <%= @user.follow_count %>
+                      <span><% @user.all_follows.each do |follow| %>
+                          <%= follow.followable.email %>
+                          <div id = "follow_unfollow_user_<%= follow.followable.slug %>">
+                            <%= render 'follow_unfollow_user', user: follow.followable %>
+                          </div>
+                      <% end %>
+                    </span></a>
+                  </li>
+
+                  <li>
+                    <p class="profile_name">People who Follows</p>
+                    <a href="javascript:void(0);" class="hashtag">Followers: <%= current_user.followers.count %>
+                      <span><% current_user.followers.each do |follow| %>
+                          <%= follow.email %>
+                      <% end %>
+                    </span></a>
+                  </li>
+
+                  <!-- <li>
+                    <a href="javascript:void(0);" class="hashtag">#Budgam
+                      <span>20.4K Tweets</span></a>
+                  </li>
+
+                  <li>
+                    <a href="javascript:void(0);" class="hashtag">#BalkotAirStrike
+                      <span>20.4K Tweets</span></a>
+                  </li>
+
+                  <li>
+                    <a href="javascript:void(0);" class="hashtag">Amritsar
+                      <span>2.4K Tweets</span></a>
+                  </li>
+
+                  <li>
+                    <a href="javascript:void(0);" class="hashtag">Jodhpur
+                      <span>1.4K Tweets</span></a>
+                  </li> -->
+
+                </ul>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
+
 </div>

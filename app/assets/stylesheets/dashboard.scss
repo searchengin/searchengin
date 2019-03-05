@@ -693,6 +693,511 @@ a.mg10 {
   display: none !important;
 }
 
+* {
+     margin: 0;
+     padding: 0;
+     -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+     -o-box-sizing: border-box;
+}
+html, body {
+     width: 100%;
+     height: 100%;
+}
+
+
+h1, h2, h3, h4, h5, p {
+     margin: 0;
+     padding: 0;
+}
+
+
+ ul {
+     margin: 0;
+     padding: 0;
+}
+ ul li {
+     list-style: none;
+}
+ a, a:hover, a:focus {
+     text-decoration: none;
+}
+ .pad_lt {
+     padding-left: 0px !important;
+}
+ .pad_rt {
+     padding-right: 0px !important;
+}
+
+ section, header, footer {
+     width: 100%;
+     float: left;
+}
+
+ .page_wrapper {
+     width: 100%;
+     float: left;
+     min-height: 100%;
+}
+
+.wdth100{
+     width:100%;
+     float: left;
+}
+
+.container.cstm_container{
+    max-width: 1190px;
+    width: 100%;
+    height: 100%;
+}
+
+.pos_rel{position: relative;}
+
+.font_14{font-size: 14px !important;}
+
+/*==============================Header Css=======================================*/
+
+.twitter_header{
+    border-bottom: 1px solid rgba(0,0,0,0.25);
+    height: 46px;
+    position: relative;
+    padding: 0px;
+
+}
+
+.header_inner {
+  display: flex;
+  display: -webkit-flex;
+  -moz-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  justify-content: flex-end;
+  height: 100%;
+}
+
+.user_profile{
+  width: auto;
+  display: inline-block;
+  float: right;
+}
+
+.user_profile li{
+  display: inline-block;
+}
+
+.user_profile li a{
+  width: 32px;
+  height: 32px;
+  display: inline-block;
+}
+
+.user_profile li a>img{
+  max-width: 100%;
+  border-radius: 50%;
+}
+
+.timeline_bg{
+  background-color: #1DA1F2 !important;
+  height: 175px;
+}
+
+.timeline_bar{
+  background-color: #fff;
+  height: 60px;
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.25);
+}
+
+
+.inner_bar_left{
+  width: 25%;
+  float: left;
+  position: relative;
+}
+
+.profile_avatar{
+  position: relative;
+  display: inline-block;
+}
+
+.inner_bar_right{
+  width: 75%;
+  float: left;
+  display: flex;
+  display: -webkit-flex;
+  -moz-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.bank_avatar{
+  background-color: #1DA1F2;
+  border: 5px solid #fff;
+  border-radius: 50%;
+  height: 200px;
+  position: absolute;
+  width: 200px;
+  top: -114px;
+  left: 0;
+  overflow: hidden;
+}
+
+.bank_avatar>img{max-width: 100%;}
+
+
+.profile_stats{
+  width: auto;
+  float: left;
+}
+
+.profile_stats li{
+  display: inline-block;
+  text-align: center;
+}
+
+.profile_stats li a{
+  display: block;
+  padding: 9px 15px 7px;
+  color: #657786;
+  font-weight: bold;
+  font-size: 12px;
+  border-bottom: 2px solid transparent;
+}
+
+.profile_stats li.active a{border-bottom: 2px solid #1DA1F2;}
+
+.profile_stats li.active a>span{color: #1DA1F2;}
+
+.profile_stats li a>span{
+  display: block;
+  color: #66757f;
+  font-size: 18px;
+  font-weight: bold;
+  padding-top: 0px;
+}
+
+.grey_brdr_btn{
+  background-color: #fff;
+  border: 1px solid #66757f;
+  color: #66757f;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 20px;
+  padding: 8px 16px;
+  position: relative;
+  text-align: center;
+  white-space: nowrap;
+  border-radius: 30px;
+  text-transform: capitalize;
+}
+
+.posts{
+  background: #e6ecf0;
+  height: calc(100% - 281px);
+}
+
+.posts_heading{
+  font-size: 20px;
+  text-transform: capitalize;
+  font-weight: 700;
+  color: #000;
+}
+
+.posts .joining_date{
+  padding-left: 0px;
+  margin:10px 0;
+}
+
+.grid_left{
+  width: 25%;
+  float: left;
+  padding-top: 50px;
+}
+
+.profile_name{
+  font-size: 21px;
+  font-weight: bold;
+  line-height: 28px;
+  margin-right: 2px;
+  word-wrap: break-word;
+  text-transform: capitalize;
+  color: #000;
+}
+
+.profile_id{
+  font-size: 14px;
+  color: #657786;
+  margin-bottom: 12px;
+  font-weight: 400;
+}
+
+.grid_left p{
+  color: #14171a;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 20px;
+  margin-bottom: 12px;
+  word-wrap: break-word;
+}
+
+.grid_right{
+  width: 75%;
+  float: left;
+}
+
+.grid_left .joining_date,
+.joining_date{
+  position: relative;
+  padding-left: 25px;
+  color: #657786;
+  font-size: 14px;
+  line-height: 20px;
+  margin-bottom: 8px;
+}
+
+.joining_date>img{
+  position: absolute;
+  left: 0;
+  width: 16px;
+}
+
+.posts_wall{
+  width: 66.66%;
+  float: left;
+  padding-top: 40px;
+  margin-right: 10px;
+  position: relative;
+  padding-bottom: 160px;
+}
+
+.trending_wall{
+  width: calc(33.34% - 10px);
+  float: left;
+}
+
+.tweet_row{
+  display: flex;
+  display: -webkit-flex;
+  -moz-box-align: center;
+  -ms-flex-align: center;
+  align-items:  center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.tweet_box{
+  background: #fff;
+  padding: 12px;
+  border-radius: 4px;
+  display: flex;
+  display: -webkit-flex;
+  -moz-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items:  flex-start;
+  justify-content: flex-start;
+  max-width: 392px;
+  width: 100%;
+
+}
+
+.profile_icn{
+  width: 40px;
+  height: 40px;
+  display: inline-block;
+}
+
+.profile_icn>img{
+  max-width: 100%;
+  border-radius: 100%;
+}
+
+.tweet_cntnt{
+  margin-left: 10px;
+}
+
+.tweet_cntnt .profile_name{
+  line-height: normal;
+}
+
+.tweet_cntnt>p{
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: normal;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+
+.hashtag{
+  color: #1DA1F2;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.hashtag:hover{
+  color: #1DA1F2;
+  text-decoration: underline;
+}
+
+.default_blue_btn{
+  width: auto;
+  display: inline-block;
+  background-color: #4AB3F4;
+  border-color: transparent;
+  border-radius: 100px;
+  box-shadow: none;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+  padding: 6px 16px;
+  color: #fff;
+  position: relative;
+  text-align: center;
+  white-space: nowrap;
+  text-transform: capitalize;
+}
+
+.default_blue_btn:focus{
+    background-color: #4AB3F4;
+    border-color: transparent;
+    outline: none;
+}
+
+.trending_hashtags{
+  background: #fff;
+  padding: 12px;
+  border: 1px solid #e6ecf0;
+  margin-top: 10px;
+}
+
+.trending_hashtags .profile_name{
+  font-size: 18px;
+}
+
+.hashtag_list{margin-top: 10px;}
+
+.hashtag_list li{
+  display: block;
+  margin-bottom: 10px;
+}
+
+.hashtag_list li>a{font-weight: 700;}
+
+.hashtag_list li a>span{
+    color: #657786;
+    font-size: 12px;
+    line-height: 16px;
+    display: block;
+    text-decoration: none;
+}
+
+.hashtag_list li a:hover>span{
+  text-decoration: none !important;
+}
+
+
+.msg_composer{
+    background-color: #1DA1F2;
+    background: rgba(29,161,242,0.1);
+    max-height: calc(90vh - 124px);
+    min-height: 142px;
+    overflow-y: auto;
+    padding: 8px 12px;
+    display: flex;
+    border-radius: 4px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.msg_cntnt{
+    position: relative;
+    margin-bottom: 8px;
+    margin-left: 8px;
+    width: calc(100% - 40px);
+}
+
+.cstm_ta{
+    min-height: 80px;
+    padding: 8px;
+    vertical-align: top;
+    background: #fff;
+    border: 1px solid #e6ecf0;
+    border-radius: 8px;
+    resize: none;
+    width: 100%;
+}
+
+.cstm_ta:focus{
+  border: 1px solid #C6E7FB;
+}
+
+.msg_footer_wrapper{
+  display: flex;
+  -moz-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.attachments_list{
+  width: auto;
+  margin-top: 15px;
+  display: inline-block;
+}
+
+.attachments_list li{
+  display: inline-block;
+  margin:0 10px;
+}
+
+.attachments_list li:first-child{
+  margin-left: 0px;
+}
+
+.attachments_list li:last-child{
+  margin-right: 0px;
+}
+
+.attachments_list li a{
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+}
+
+.attachments_list li a>img{
+  max-width: 100%;
+}
+
+.msg_cntnt .default_blue_btn{
+  float: right;
+}
+
+.msg_btns{
+  display: flex;
+  margin-top: 15px;
+}
+
+.add_msg{
+  width: 34px;
+  height: 34px;
+  background: #fff;
+  border: 1px solid #45b1f4;
+  border-radius: 100%;
+  display: flex;
+   -moz-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+}
+
+.add_msg>img{
+    max-width: 100%;
+    width: 19px;
+}
+
 
 
 @media screen and (max-width: 700px) {
