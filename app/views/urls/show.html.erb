@@ -8,7 +8,7 @@
       <div class="form-group">
         <label>Short Url</label>
         <div class="input_wrappr">
-          <%= text_field_tag  @url, nil, placeholder: 'http://searcheng.in/' + 'urls/' +(@url.id).to_s, class: "form-control cstm_input" %>
+          <%= text_field_tag  @url, nil, placeholder: 'http://searcheng.in/' + 'e/' +(@url.slug).to_s, class: "form-control cstm_input" %>
           <span class="plugin"><img src="images/plugin.png"></span>
         </div>
       </div>
@@ -45,7 +45,7 @@
         <div class="searcheng_row wdth100">
           <div id="diff-tag_<%= @url.id %>">
         </div>
-        <% @tags.group_by{ |m| m.created_at.to_date }.each do |date, tags| %>
+        <% @url.tags.group_by{ |m| m.created_at.to_date }.each do |date, tags| %>
           <div class="inner_tag_rgt date_bar">
             <%= date.strftime('%A %B %d')  %>
           </div>

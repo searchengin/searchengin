@@ -1,5 +1,7 @@
 class Url < ApplicationRecord
   require 'webshot'
+  after_create :set_url_id
+
 
   belongs_to :user
   has_many :tags, dependent: :destroy
@@ -114,6 +116,13 @@ class Url < ApplicationRecord
   #   url.update(screenshot: thumb)
   #   File.delete "#{domain_list}.png"
   # end
+
+  def set_url_id
+    require 'securerandom'
+    hexvalue = SecureRandom.hex
+    self.slug = hexvalue.slice(12 .. -13)
+    self.save
+  end
 
 
 end

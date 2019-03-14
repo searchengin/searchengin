@@ -23,7 +23,7 @@
             </span>
             <div class="search_desc wdth100">
               <span class="dsp_flexx">
-                <%= link_to url_path(url.id) do %>
+                <%= link_to urls_show_path(url.slug) do %>
                   <i class="fab fa-searchengin"></i>
                 <% end %>
                 <%= link_to url.url, class: 'search_desc' do %>

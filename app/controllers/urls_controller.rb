@@ -36,46 +36,12 @@ class UrlsController < ApplicationController
   end
 
   def show
-    @url = Url.find(params[:id])
+    @url = Url.find_by(slug: params[:slug])
   end
 
   def tags
     @url = Url.find(params[:url])
     @type = params[:title]
-  end
-
-  def show
-    @url = Url.find(params[:id])
-    @user = User.find_or_create_by(username: @url.domain)
-    unless @url.domain.include? (".")
-      @url.store_domain_info
-    end
-  # hack for old or crashed urls and tags
-    if @user == nil
-      @user = User.find(username: 'roger')
-    end
-    @is_admin = false
-    if signed_in?
-      @request_user = current_user
-      @is_admin = @request_user.admin
-    else
-      @request_user = nil
-    end
-    if @url[:title]
-      @title = "| " + @url[:title]
-      if @url.domain
-        @title += " · " + @url.domain
-      end
-    end
-    # call to scrapinghub
-    if not @url.title or (not @url.screenshot_url and not @url.cover_data)
-      system("curl -u 95064c54aa18481a8638143870f39e5d: https://app.scrapinghub.com/api/run.json -d project=143676 -d spider=searchengine -d url='#{@url.url}' -d mode=-1 -d depth=1")
-    end
-    # limit = 10
-    # @tags = Tag.where(url_id: @url[:id]).reverse_order(:id).
-    #     limit(limit).offset( ((params[:page] || 1).to_i - 1) * limit )
-    @tags = Tag.where(url_id: @url[:id]).reverse_order
-
   end
 
   private
