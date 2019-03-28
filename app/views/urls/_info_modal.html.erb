@@ -15,7 +15,7 @@
               <%= f.fields_for :why_datum do |i| %>
                 <%= i.input :subject %>
                 <div class="form-group">
-                      <label>Subject</label>
+                      <label>Category</label>
                       <div class="row">
                         <div class="col-md-4">
                           <div class="radio">
@@ -176,24 +176,8 @@
                         <div class="col-md-4">
                           <div class="radio">
                             <label>
-                              <%= i.radio_button :subject, id: 'subject', name: 'subject', type: 'radio', value: 'Sports' %>
-                                <span>Sports</span>
-                            </label>
-                          </div>
-                        </div>
-                        <div class="col-md-4">
-                          <div class="radio">
-                            <label>
                               <%= i.radio_button :subject, id: 'subject', name: 'subject', type: 'radio', value: 'Travel' %>
                                 <span>Travel</span>
-                              </label>
-                          </div>
-                        </div>
-                        <div class="col-md-4">
-                          <div class="radio">
-                            <label>
-                              <%= i.radio_button :subject, id: 'subject', name: 'subject', type: 'radio', value: 'Kids & Teens' %>
-                                <span>Society</span>
                               </label>
                           </div>
                         </div>
