@@ -108,9 +108,12 @@
                   <span class="inner_tag_lft"><i class="fas fa-map-marker-alt"></i>
                   </span>
                   <div class="inner_tag_rgt">
-                    <span>
-                      <%= tag.where_datum.location %><br>
-                    </span>
+                   <span class="location_where bg-danger">
+                    <%= tag.where_datum.location %>
+                  </span>
+                  <span class = "why_descp">
+                    <%= tag.where_datum.description %>
+                  </span>
                     <ul class="post_likes">
                       <% if current_user.present? && current_user.has_role?('regular') %>
                         <li>
@@ -143,9 +146,12 @@
                   <span class="inner_tag_lft"><i class="fas fa-info-circle"></i>
                   </span>
                   <div class="inner_tag_rgt">
-                    <span>
-                      <%= tag.what_datum.item_name %>
-                    </span>
+                    <span class="what_item_name bg-success">
+                        <%= tag.what_datum.item_name %>
+                      </span>
+                      <span class = "why_descp">
+                        <%= tag.what_datum.description %>
+                      </span>
                     <ul class="post_likes">
                       <% if current_user.present? && current_user.has_role?('regular') %>
                         <li>
@@ -178,11 +184,11 @@
                   <span class="inner_tag_lft"><i class="fas fa-info-circle"></i>
                   </span>
                   <div class="inner_tag_rgt">
-                    <span>
-                      <%#= tag.why_datum.subject %>
+                    <span class="info_subcategory bg-primary">
                       <%= tag.why_datum.subcategory %>
-                      <%= tag.why_datum.title %>
-                      <%#= tag.why_datum.description %>
+                    </span>
+                    <span class = "why_descp">
+                      <%= tag.why_datum.description %>
                     </span>
                     <ul class="post_likes">
                       <% if current_user.present? && current_user.has_role?('regular') %>
@@ -216,10 +222,13 @@
                   <span class="inner_tag_lft"><i class="far fa-calendar-alt"></i>
                   </span>
                   <div class="inner_tag_rgt">
-                    <span>
-                      <%= tag.when_datum.time.strftime('%A %B %d') %>
-                      <%= tag.when_datum.description %>
-                    </span>
+                  <span class = "when_time bg-dark">
+                    <%#= tag.when_datum.date.strftime('%A %B %d') %>
+                    <%= tag.when_datum.time.strftime('%F') %>
+                  </span>
+                  <span class = "why_descp">
+                    <%= tag.when_datum.description %>
+                  </span>
                     <ul class="post_likes">
                       <% if current_user.present? && current_user.has_role?('regular') %>
                         <li>
