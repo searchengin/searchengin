@@ -182,12 +182,12 @@
                           </div>
                         </div>
                     </div>
-                    <div class="radio">
-                        <label>
-                           <%= i.radio_button :subject, id: 'subject', name: 'subject', type: 'radio', value: 'Other' %>
+                    <div class="radio ">
+                        <label class= "add_category" >
+                           <%= i.radio_button :subject, id: 'subject', name: 'subject', type: 'radio', value: 'Other'%>
                             <span>Other</span></label>
                     </div>
-                    <div class="form-group other">
+                    <div class="form-group other other_category">
                         <input class="form-control" id="subject" name="subject" type="text">
                     </div>
                       <%= i.input :subcategory %>
@@ -206,3 +206,9 @@
     </div>
   </div>
 </div>
+<script>
+  $('.other_category').hide()
+  $('.add_category').click(function(){
+    $('.other_category').toggle()
+  })
+</script>

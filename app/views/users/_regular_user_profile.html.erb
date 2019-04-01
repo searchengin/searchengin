@@ -13,11 +13,9 @@
         </div>
       </div>
     </header>
-
     <section class="timeline_cover">
       <div class="timeline_wwrapper wdth100">
         <div class="timeline_bg wdth100">
-
         </div>
         <div class="timeline_bar wdth100">
           <div class="container cstm_container">
@@ -25,8 +23,7 @@
               <div class="inner_bar_left">
                 <div class="profile_avatar">
                   <a href="javascript:void(0)" class="bank_avatar">
-                    <%= image_tag current_user.avatar_url %>
-                    <!-- <img src="images/person.jpg"> -->
+                    <%= image_tag current_user.avatar_url if current_user.avatar_url.present? %>
                   </a>
                 </div>
               </div>
@@ -35,32 +32,26 @@
                   <li class="#">
                     <a href="javscript:void();">Following<span><%= @user.follow_count %></span></a>
                   </li>
-
                   <li>
                     <a href="javscript:void();">Followers<span><%= current_user.followers.count %></span></a>
                   </li>
-
                   <!-- <li>
                     <a href="javscript:void();">Likes<span>2</span></a>
                   </li>
-
                   <li>
                     <a href="javscript:void();">Lists<span>0</span></a>
                   </li>
-
                   <li>
                     <a href="javscript:void();">Moments<span>0</span></a>
                   </li> -->
                 </ul>
-
-                <!-- <a href="javascript:void(0);"><%#= link_to 'Edit Profile', edit_user_registration_path, class: "grey_brdr_btn"%></a> -->
+                <a href="javascript:void(0);"><%= link_to 'Edit Profile', edit_user_registration_path, class: "grey_brdr_btn"%></a>
               </div>
             </div>
           </div>
         </div>
       </div>
     </section>
-
     <section class="posts">
       <div class="container cstm_container">
         <div class="grid_wrapper wdth100">
@@ -75,7 +66,6 @@
             <div class="posts_wall">
               <h1 class="posts_heading">send your first Message</h1>
               <p class="joining_date">We've got your first status ready to go. The hashtag #myfirsttweet will help others find and chat with you.</p>
-
               <div>
                 <h2 class="badge badge-success">Posts:  <%= @user.statuses.count %></h2>
               </div>
@@ -94,7 +84,6 @@
                     <!-- <a href="javscript:void(0)" class="hashtag">#myfirsttweet</a> -->
                   </div>
                 </div>
-
                 <!-- <button type="button" class="default_blue_btn">tweet</button> -->
               </div>
             <% end %>
@@ -117,7 +106,6 @@
               </div>
  -->
               <p class="joining_date">Or write your own</p>
-
               <div class="compose_tweet wdth100">
                 <!-- <div class="msg_composer wdth100">
                   <a href="javascript:void(0)" class="profile_icn">
@@ -165,14 +153,11 @@
                 </div> -->
                 <%= render 'status_box' %>
               </div>
-
             </div>
             <div class="trending_wall">
-
               <div class="trending_hashtags wdth100">
                 <span class="profile_name">People you Follow</span>
                 <!-- <a href="javascript:void(0)" class="hashtag">Change</a> -->
-
                 <ul class="hashtag_list wdth100">
                   <li>
                     <a href="javascript:void(0);" class="hashtag">Following <%= @user.follow_count %>
@@ -184,7 +169,6 @@
                       <% end %>
                     </span></a>
                   </li>
-
                   <li>
                     <p class="profile_name">People who Follows</p>
                     <a href="javascript:void(0);" class="hashtag">Followers: <%= current_user.followers.count %>
@@ -193,35 +177,399 @@
                       <% end %>
                     </span></a>
                   </li>
-
                   <!-- <li>
                     <a href="javascript:void(0);" class="hashtag">#Budgam
                       <span>20.4K Tweets</span></a>
                   </li>
-
                   <li>
                     <a href="javascript:void(0);" class="hashtag">#BalkotAirStrike
                       <span>20.4K Tweets</span></a>
                   </li>
-
                   <li>
                     <a href="javascript:void(0);" class="hashtag">Amritsar
                       <span>2.4K Tweets</span></a>
                   </li>
-
                   <li>
                     <a href="javascript:void(0);" class="hashtag">Jodhpur
                       <span>1.4K Tweets</span></a>
                   </li> -->
-
                 </ul>
               </div>
-
             </div>
           </div>
         </div>
       </div>
     </section>
-  </div>
+    <% current_user.urls.each do |url| %>
+    <section class="searcheng wdth100">
+      <% @url = url %>
+      <% if url.present? %>
+        <a href="<%= url.url %>" target="_blank">
+          <%= image_tag url.favicon_url, class: 'pull-left thumb-sm m-r-sm img-circle favicon_img' %>
+        </a>
+        <div class="searcheng_row wdth100">
+          <span class="arrow left">
+          </span>
+          <div class="searcheng_col panel-heading wdth100 bdr_btom0">
+            <a href="<%= profile_path(url.domain_user.username) %>" target="_blank">
+              <span> <%= "@" + url.domain %>
+              </span>
+              <%= link_to url.url do %>
+                <h5><%= url.title %></h5>
+              <% end %>
+            </a>
+          </div>
+          <div class="searcheng_col2 flex_strt wdth100 mgtop0">
+            <span class="img_box">
+              <%= image_tag url.screenshot_url, class: 'pull-left thumb-sm m-r-sm img-circle ' if url.screenshot_url.present? %>
+            </span>
+            <div class="search_desc wdth100">
+              <span class="dsp_flexx">
+                <%= link_to url_path(url.id) do %>
+                  <i class="fab fa-searchengin"></i>
+                <% end %>
+                <%= link_to url.url, class: 'search_desc' do %>
+                  <%= url.description.truncate(130) if url.description.present? %>
+                <% end %>
+              </span>
+              <%= link_to url.url, class: '' do %>
+                <span class="dash_border">
+                <i class="fas fa-external-link-alt"></i><%= url_concate(url.url) %>
+                </span>
+              <% end %>
+              <div class="searc_col_rt">
+                <div class="icon_tags">
+                  <%= render  "tags/tags_links" %>
+                </div>
+                <ul class="post_likes">
+                  <li>
+                    <%= link_to get_url_object_path(url.id),remote: :true, class:  'url_data' do %>
+                    <i class='fas fa-code id="tag_details_<%= url.id %>'></i>
+                    <% end %>
+                  </li>
+                  <li>
+                    <%= link_to like_path(url: url), method: :post, remote: true do %>
+                    <i class="<%= url.likes.count > 0 ? 'is-like': '' %>  fas fa-thumbs-up user-like" id="like_<%= url.id %>"><%= url.likes.count %>
+                    </i>
+                    <% end %>
+                  </li>
+                    <li>
+                    <%= link_to dislike_path(url: url), method: :post, remote: true do %>
+                    <i class=" <%= url.dislikes.count > 0 ? 'is-dislike' : '' %> fas fa-thumbs-down user-dislike" id="dislike_<%= url.id %>"><%= url.dislikes.count %>
+                    </i>
+                    <% end %>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div id="diff-tag_<%= url.id %>">
+          </div>
+           <% if url.tags.present? %>
+            <% limit_tags(url).each do |tag| %>
+             <!--  <div class="inner_tag_rgt date_bar">
+                <%# if tag.type == "WhereTag" %>
+                  <span>
+                    <i class="far fa-clock"></i>
+                  <%#= tag.where_datum.created_at.strftime('%A %B %d') %>
+                  </span>
+                  <%# elsif tag.type == "WhatTag" %>
+                  <span>
+                    <i class="far fa-clock"></i>
+                  <%#= tag.what_datum.created_at.strftime('%A %B %d') %>
+                  </span>
+                  <%# elsif tag.type == "WhyTag" %>
+                  <span>
+                    <i class="far fa-clock"></i>
+                  <%#= tag.why_datum.created_at.strftime('%A %B %d') %>
+                  </span>
+                  <%# elsif tag.type == "WhenTag" %>
+                  <span>
+                    <i class="far fa-clock"></i>
+                  <%#= tag.when_datum.created_at.strftime('%A %B %d') %>
+                  </span>
+                  <%# elsif tag.type == "WhoTag" %>
+                  <span>
+                    <i class="far fa-clock"></i>
+                  <%#= tag.who_datum.created_at.strftime('%A %B %d') %>
+                  </span>
+                  <%# elsif tag.type == "VideoTag" %>
+                  <span>
+                    <i class="far fa-clock"></i>
+                  <%#= tag.video_datum.created_at.strftime('%A %B %d') %>
+                  </span>
+                  <%# elsif tag.type == "PhotoTag" %>
+                  <span>
+                    <i class="far fa-clock"></i>
+                  <%#= tag.photo_datum.created_at.strftime('%A %B %d') if tag.photo_datum.present? %>
+                  </span>
+                <%# end %>
+              </div> -->
+              <div class="inner_tag">
+                <% if tag.type == "WhereTag" %>
+                  <span class="inner_tag_lft"><i class="fas fa-map-marker-alt"></i>
+                  </span>
+                  <div class="inner_tag_rgt">
+                    <span>
+                      <%= tag.where_datum.location %><br>
+                    </span>
+                    <ul class="post_likes">
+                      <% if current_user.present? && current_user.has_role?('regular') %>
+                        <li>
+                          <% if tag.verified %>
+                            <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>" checked>
+                          <% else %>
+                            <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>">
+                          <% end%>
+                      </li>
+                      <% end %>
+                      <li>
+                        <%= link_to get_url_object_path(url.id),remote: :true, class:  'url_data' do %>
+                        <i class='fas fa-code id="tag_details_<%= url.id %>'></i>
+                        <% end %>
+                      </li>
+                      <li>
+                        <%= link_to like_path(url: url, tag: tag), method: :post, remote: true do %>
+                        <i class="<%= url.likes.count > 0 ? 'is-like': '' %>  fas fa-thumbs-up user-like" id="like_<%= url.id %>"><%= tag.like.count %></i>
+                        <% end %>
+                      </li>
+                      <li>
+                        <%= link_to dislike_path(url: url, tag: tag), method: :post, remote: true do %>
+                        <i class=" <%= url.dislikes.count > 0 ? 'is-dislike' : '' %> fas fa-thumbs-down user-dislike" id="dislike_<%= url.id %>"><%= tag.dislike.count %>
+                        </i>
+                        <% end %>
+                      </li>
+                    </ul>
+                  </div>
+                <% elsif tag.type == "WhatTag" %>
+                  <span class="inner_tag_lft"><i class="fas fa-info-circle"></i>
+                  </span>
+                  <div class="inner_tag_rgt">
+                    <span>
+                      <%= tag.what_datum.item_name %>
+                    </span>
+                    <ul class="post_likes">
+                      <% if current_user.present? && current_user.has_role?('regular') %>
+                        <li>
+                          <% if tag.verified %>
+                            <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>" checked>
+                          <% else %>
+                            <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>">
+                          <% end%>
+                        </li>
+                      <% end %>
+                      <li>
+                        <%= link_to get_url_object_path(url.id),remote: :true, class:  'url_data' do %>
+                        <i class='fas fa-code id="tag_details_<%= url.id %>'></i>
+                        <% end %>
+                      </li>
+                      <li>
+                        <%= link_to like_path(url: url, tag: tag), method: :post, remote: true do %>
+                        <i class="<%= url.likes.count > 0 ? 'is-like': '' %>  fas fa-thumbs-up user-like" id="like_<%= url.id %>"><%= tag.like.count %></i>
+                        <% end %>
+                      </li>
+                      <li>
+                        <%= link_to dislike_path(url: url, tag: tag), method: :post, remote: true do %>
+                        <i class=" <%= url.dislikes.count > 0 ? 'is-dislike' : '' %> fas fa-thumbs-down user-dislike" id="dislike_<%= url.id %>"><%= tag.dislike.count %>
+                        </i>
+                        <% end %>
+                      </li>
+                    </ul>
+                  </div>
+                <% elsif tag.type == "WhyTag" %>
+                  <span class="inner_tag_lft"><i class="fas fa-info-circle"></i>
+                  </span>
+                  <div class="inner_tag_rgt">
+                    <span>
+                      <%#= tag.why_datum.subject %>
+                      <%= tag.why_datum.subcategory %>
+                      <%= tag.why_datum.title %>
+                      <%#= tag.why_datum.description %>
+                    </span>
+                    <ul class="post_likes">
+                      <% if current_user.present? && current_user.has_role?('regular') %>
+                        <li>
+                          <% if tag.verified %>
+                            <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>" checked>
+                          <% else %>
+                            <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>">
+                          <% end%>
+                        </li>
+                      <% end %>
+                      <li>
+                        <%= link_to get_url_object_path(url.id),remote: :true, class:  'url_data' do %>
+                        <i class='fas fa-code id="tag_details_<%= url.id %>'></i>
+                        <% end %>
+                      </li>
+                      <li>
+                        <%= link_to like_path(url: url, tag: tag), method: :post, remote: true do %>
+                        <i class="<%= url.likes.count > 0 ? 'is-like': '' %>  fas fa-thumbs-up user-like" id="like_<%= url.id %>"><%= tag.like.count %></i>
+                        <% end %>
+                      </li>
+                      <li>
+                        <%= link_to dislike_path(url: url, tag: tag), method: :post, remote: true do %>
+                        <i class=" <%= url.dislikes.count > 0 ? 'is-dislike' : '' %> fas fa-thumbs-down user-dislike" id="dislike_<%= url.id %>"><%= tag.dislike.count %>
+                        </i>
+                        <% end %>
+                      </li>
+                    </ul>
+                  </div>
+                <% elsif tag.type == "WhenTag" %>
+                  <span class="inner_tag_lft"><i class="far fa-calendar-alt"></i>
+                  </span>
+                  <div class="inner_tag_rgt">
+                    <span>
+                      <%= tag.when_datum.time.strftime('%A %B %d') %>
+                      <%= tag.when_datum.description %>
+                    </span>
+                    <ul class="post_likes">
+                      <% if current_user.present? && current_user.has_role?('regular') %>
+                        <li>
+                        <% if tag.verified %>
+                            <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>" checked>
+                          <% else %>
+                            <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>">
+                          <% end%>
+                      <% end %>
+                      <li>
+                        <%= link_to get_url_object_path(url.id),remote: :true, class:  'url_data' do %>
+                        <i class='fas fa-code id="tag_details_<%= url.id %>'></i>
+                        <% end %>
+                      </li>
+                      <li>
+                        <%= link_to like_path(url: url, tag: tag), method: :post, remote: true do %>
+                        <i class="<%= url.likes.count > 0 ? 'is-like': '' %>  fas fa-thumbs-up user-like" id="like_<%= url.id %>"><%= tag.like.count %></i>
+                        <% end %>
+                      </li>
+                      <li>
+                        <%= link_to dislike_path(url: url, tag: tag), method: :post, remote: true do %>
+                        <i class=" <%= url.dislikes.count > 0 ? 'is-dislike' : '' %> fas fa-thumbs-down user-dislike" id="dislike_<%= url.id %>"><%= tag.dislike.count %>
+                        </i>
+                        <% end %>
+                      </li>
+                    </ul>
+                  </div>
+                <% elsif tag.type == "WhoTag" %>
+                  <span class="inner_tag_lft"><i class="far fa-calendar-alt"></i>
+                  </span>
+                  <div class="inner_tag_rgt">
+                    <span>
+                      <%= tag.who_datum.name %>
+                      <%= tag.who_datum.account %>
+                      <%= tag.who_datum.website_url %>
+                      <%= tag.who_datum.description %>
+                    </span>
+                    <ul class="post_likes">
+                      <% if current_user.present? && current_user.has_role?('regular') %>
+                       <% if tag.verified %>
+                            <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>" checked>
+                          <% else %>
+                            <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>">
+                          <% end%>
+                      <% end %>
+                      <li>
+                        <%= link_to get_url_object_path(url.id),remote: :true, class:  'url_data' do %>
+                        <i class='fas fa-code id="tag_details_<%= url.id %>'></i>
+                        <% end %>
+                      </li>
+                      <li>
+                        <%= link_to like_path(url: url, tag: tag), method: :post, remote: true do %>
+                        <i class="<%= url.likes.count > 0 ? 'is-like': '' %>  fas fa-thumbs-up user-like" id="like_<%= url.id %>"><%= tag.like.count %></i>
+                        <% end %>
+                      </li>
+                      <li>
+                        <%= link_to dislike_path(url: url, tag: tag), method: :post, remote: true do %>
+                        <i class=" <%= url.dislikes.count > 0 ? 'is-dislike' : '' %> fas fa-thumbs-down user-dislike" id="dislike_<%= url.id %>"><%= tag.dislike.count %>
+                        </i>
+                        <% end %>
+                      </li>
+                    </ul>
+                  </div>
+                <% elsif tag.type == "VideoTag" %>
+                  <span class="inner_tag_lft"><i class="far fa-calendar-alt"></i>
+                  </span>
+                  <div class="inner_tag_rgt">
+                    <span>
+                      <%#= tag.video_datum.video_url %>
+                      <%#= tag.video_datum.category %>
+                      <%= tag.video_datum.html_code %>
+                      <%= tag.video_datum.description %>
+                    </span>
+                    <ul class="post_likes">
+                      <% if current_user.present? && current_user.has_role?('regular') %>
+                        <li>
+                         <% if tag.verified %>
+                            <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>" checked>
+                          <% else %>
+                            <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>">
+                          <% end%>
+                        </li>
+                      <% end %>
+                      <li>
+                        <%= link_to get_url_object_path(url.id),remote: :true, class:  'url_data' do %>
+                        <i class='fas fa-code id="tag_details_<%= url.id %>'></i>
+                        <% end %>
+                      </li>
+                      <li>
+                        <%= link_to like_path(url: url, tag: tag), method: :post, remote: true do %>
+                        <i class="<%= url.likes.count > 0 ? 'is-like': '' %>  fas fa-thumbs-up user-like" id="like_<%= url.id %>"><%= tag.like.count %></i>
+                        <% end %>
+                      </li>
+                      <li>
+                        <%= link_to dislike_path(url: url, tag: tag), method: :post, remote: true do %>
+                        <i class=" <%= url.dislikes.count > 0 ? 'is-dislike' : '' %> fas fa-thumbs-down user-dislike" id="dislike_<%= url.id %>"><%= tag.dislike.count %>
+                        </i>
+                        <% end %>
+                      </li>
+                    </ul>
+                  </div>
+                <% elsif tag.type == "PhotoTag" %>
+                  <span class="inner_tag_lft"><i class="far fa-calendar-alt"></i>
+                  </span>
+                  <div class="inner_tag_rgt">
+                    <span>
+                      <%#= tag.photo_datum.photo_url %>
+                    </span>
+                    <ul class="post_likes">
+                      <% if current_user.present? && current_user.has_role?('regular') %>
+                        <li>
+                         <% if tag.verified %>
+                            <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>" checked>
+                          <% else %>
+                            <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>">
+                          <% end%>
+                        </li>
+                      <% end %>
+                      <li>
+                        <%= link_to get_url_object_path(url.id),remote: :true, class:  'url_data' do %>
+                        <i class='fas fa-code id="tag_details_<%= url.id %>'></i>
+                        <% end %>
+                      </li>
+                      <li>
+                        <%= link_to like_path(url: url, tag: tag), method: :post, remote: true do %>
+                        <i class="<%= url.likes.count > 0 ? 'is-like': '' %>  fas fa-thumbs-up user-like" id="like_<%= url.id %>"><%= tag.like.count %></i>
+                        <% end %>
+                      </li>
+                      <li>
+                        <%= link_to dislike_path(url: url, tag: tag), method: :post, remote: true do %>
+                        <i class=" <%= url.dislikes.count > 0 ? 'is-dislike' : '' %> fas fa-thumbs-down user-dislike" id="dislike_<%= url.id %>"><%= tag.dislike.count %>
+                        </i>
+                        <% end %>
+                      </li>
+                    </ul>
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+    </section>
+  <% end %>
 
+  </div>
 </div>
+<%= render "dashboard/embed_post_modal" %>
+<div id= "main-tag-modal">
+</div>
+

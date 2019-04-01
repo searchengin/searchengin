@@ -36,7 +36,7 @@ class UrlsController < ApplicationController
   end
 
   def show
-    @url = Url.find(params[:id])
+    @url = Url.find_by(slug: params[:slug])
   end
 
   def tags
@@ -86,6 +86,7 @@ class UrlsController < ApplicationController
       flash[:Error] = "please enter a url"
     end
   end
+
 
   private
     def url_params

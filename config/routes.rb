@@ -17,7 +17,7 @@ Rails.application.routes.draw do
       patch :set_role
     end
   end
-  resources :urls
+  resources :urls, except: [:show]
   resources :news
   get 'dashboard/index'
   # get '/@:id', to: 'dashboard#get_domain', as: :get_domain
@@ -33,7 +33,10 @@ Rails.application.routes.draw do
   get 'tags/verify_tags', to: 'tags#verify_tags', as: :verify_tags
   patch 'tags/tag_verification/:id', to: 'tags#tag_verification', as: :tag_verification
   #get 'urls/url_details/:id', to: 'urls#url_details', as: :url_details
+
   get '/:id', to: "urls#display_main_url"
+
+  get 'e/:slug', to: 'urls#show', as: 'urls_show'
 
 
   root 'dashboard#index'
