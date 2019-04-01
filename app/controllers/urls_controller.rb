@@ -78,6 +78,15 @@ class UrlsController < ApplicationController
 
   end
 
+  def display_main_url
+    @url = Url.find_by(slug: params[:id])
+    if @url.present?
+      redirect_to @url.url
+    else
+      flash[:Error] = "please enter a url"
+    end
+  end
+
   private
     def url_params
       params.require(:url).permit(:url)

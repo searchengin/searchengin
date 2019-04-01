@@ -8,7 +8,7 @@
       <div class="form-group">
         <label>Short Url</label>
         <div class="input_wrappr">
-          <%= text_field_tag  @url, nil, placeholder: 'http://searcheng.in/' + 'urls/' +(@url.id).to_s, class: "form-control cstm_input" %>
+          <%= text_field_tag  @url, nil, placeholder: 'http://searcheng.in/' +(@url.slug).to_s, class: "form-control cstm_input" %>
           <span class="plugin"><img src="images/plugin.png"></span>
         </div>
       </div>
