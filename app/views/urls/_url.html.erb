@@ -299,8 +299,8 @@
                     <span>
                       <%#= tag.video_datum.video_url %>
                       <%#= tag.video_datum.category %>
-                      <%= tag.video_datum.html_code %>
-                      <%= tag.video_datum.description %>
+                      <%= tag.try(:video_datum).try(:html_code) %>
+                      <%= tag.try(:video_datum).try(:description) %>
                     </span>
                     <ul class="post_likes">
                       <% if current_user.present? && current_user.has_role?('regular') %>

@@ -1,6 +1,8 @@
 class DashboardController < ApplicationController
   # before_action :authenticate_user!
-
+  require 'net/https'
+  require 'uri'
+  require 'json'
 
   def index
     @urls = Url.all.order("created_at DESC").paginate(page: params[:page], per_page: 15)
@@ -24,24 +26,35 @@ class DashboardController < ApplicationController
   end
 
   def search
-#     accessKey = ENV['BING_ACCESS_KEY']
-#     uri  = "https://api.cognitive.microsoft.com"
-#     path = "/bingcustomsearch/v7.0"
-#     term = params[:search]
-
-
-#     uri = URI(uri + path + "?q=" + URI.escape(term))
-#     puts "Searching the Web for: " + term
-#     binding.pry
-#     # Create the request.
-#     request = Net::HTTP::Get.new(uri)
-#     request['Ocp-Apim-Subscription-Key'] = accessKey
-
-#     # Get the response.
-#     response = Net::HTTP.start(uri.host, uri.port, :use_ssl => uri.scheme == 'https') do |http|
-# binding.pry
-#         http.request(request)
-#     end
+    accessKey = ENV['BING_ACCESS_KEY']
+    uri  = "https://api.cognitive.microsoft.com"
+    path = "/bingcustomsearch/v7.0/search"
+    custconfig = "&customconfig=484468f0-e05a-4242-9145-8374c2939e12&mkt=en-US"
+    term = params[:search]
+    if accessKey.length != 32 then
+        puts "Invalid Bing Search API subscription key!"
+        abort
+    end
+    uri = URI(uri + path + "?q=" + URI.escape(term)+ custconfig)
+    request = Net::HTTP::Get.new(uri)
+    request['Ocp-Apim-Subscription-Key'] = accessKey
+    response = Net::HTTP.start(uri.host, uri.port, :use_ssl => uri.scheme == 'https') do |http|
+        http.request(request)
+    end
+    response.each_header do |key, value|
+        if key.start_with?("bingapis-") or key.start_with?("x-msedge-") then
+            puts key + ": " + value
+        end
+    end
+    puts "\nJSON Response:\n\n"
+    @results = []
+    search_results = JSON.parse(response.body)
+    if search_results.present? && search_results['webPages'].present? && search_results['webPages']['value'].present?
+      search_results['webPages']['value'].each do |search_result|
+        @results << search_result
+      end
+      @results = @results.flatten
+    end
 
     @urls_data = {}
     limit = 6

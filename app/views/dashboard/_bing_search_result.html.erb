@@ -1,0 +1,29 @@
+<% @results.each do |result| %>
+  <section class="searcheng wdth100">
+    <span class= 'pull-left thumb-sm m-r-sm img-circle favicon_img'></span>
+    <div class="searcheng_row wdth100">
+      <span class="arrow left"></span>
+        <div class="searcheng_col panel-heading wdth100 bdr_btom0">
+          <%= link_to result['url'] do %>
+            <h5><%= result['name'] %></h5>
+          <% end %>
+        </div>
+        <div class="searcheng_col2 flex_strt wdth100 mgtop0">
+        <span class="img_box"></span>
+        <span class='pull-left thumb-sm m-r-sm img-circle '></span>
+        <div class="search_desc wdth100">
+          <span class="dsp_flexx">
+          <i class="fab fa-searchengin"></i>
+          <%= link_to result['url'], class: 'search_desc' do %>
+            <%= result['snippet'].truncate(130)%>
+          <% end %>
+          </span>
+          <%= link_to result['url'], class: '' do %>
+            <span class="dash_border">
+            <i class="fas fa-external-link-alt"></i><%= url_concate(result['url']) %>
+            </span>
+          <% end %>
+        </div>
+    </div>
+  </section>
+<% end %>
