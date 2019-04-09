@@ -3,9 +3,9 @@
     <section class="searcheng wdth100">
       <% @url = url %>
       <% if url.present? %>
-        <!-- <a href="<%#= url.url %>" target="_blank">
-          <%#= image_tag url.favicon_url, class: 'pull-left thumb-sm m-r-sm img-circle favicon_img' %>
-        </a> -->
+        <a href="<%= url.url %>" target="_blank">
+          <%= image_tag url.favicon_url, class: 'pull-left thumb-sm m-r-sm img-circle favicon_img' %>
+        </a>
         <div class="searcheng_row wdth100">
           <span class="arrow left">
           </span>

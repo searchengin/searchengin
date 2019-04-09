@@ -1,8 +1,8 @@
 <% @urls.each do |url|  %>
     <section class="searcheng wdth100">
-      <!-- <a href="<%#= url.url %>" target="_blank">
-        <%#= image_tag url.favicon_url, class: 'pull-left thumb-sm m-r-sm img-circle favicon_img' %>
-      </a> -->
+      <a href="<%= url.url %>" target="_blank">
+        <%= image_tag url.favicon_url, class: 'pull-left thumb-sm m-r-sm img-circle favicon_img' %>
+      </a>
       <div class="searcheng_row wdth100">
       <span class="arrow left"></span>
       <div class="searcheng_col panel-heading wdth100 bdr_btom0">
