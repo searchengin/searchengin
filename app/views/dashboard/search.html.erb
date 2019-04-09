@@ -4,7 +4,7 @@
       <% @url = url %>
       <% if url.present? %>
         <a href="<%= url.url %>" target="_blank">
-          <%= image_tag url.favicon_url, class: 'pull-left thumb-sm m-r-sm img-circle favicon_img' %>
+          <%= image_tag url.try(:favicon_url), class: 'pull-left thumb-sm m-r-sm img-circle favicon_img' %>
         </a>
         <div class="searcheng_row wdth100">
           <span class="arrow left">
@@ -265,6 +265,7 @@
       <% end %>
     </section>
   <% end %>
+  <%= render 'bing_search_result'%>
 </div>
 
 
