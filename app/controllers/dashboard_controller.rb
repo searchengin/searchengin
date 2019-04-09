@@ -24,25 +24,6 @@ class DashboardController < ApplicationController
   end
 
   def search
-#     accessKey = ENV['BING_ACCESS_KEY']
-#     uri  = "https://api.cognitive.microsoft.com"
-#     path = "/bingcustomsearch/v7.0"
-#     term = params[:search]
-
-
-#     uri = URI(uri + path + "?q=" + URI.escape(term))
-#     puts "Searching the Web for: " + term
-#     binding.pry
-#     # Create the request.
-#     request = Net::HTTP::Get.new(uri)
-#     request['Ocp-Apim-Subscription-Key'] = accessKey
-
-#     # Get the response.
-#     response = Net::HTTP.start(uri.host, uri.port, :use_ssl => uri.scheme == 'https') do |http|
-# binding.pry
-#         http.request(request)
-#     end
-
     @urls_data = {}
     limit = 6
     offset = params[:page].to_i * limit
