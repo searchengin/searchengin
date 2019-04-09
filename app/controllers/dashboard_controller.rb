@@ -31,10 +31,6 @@ class DashboardController < ApplicationController
     path = "/bingcustomsearch/v7.0/search"
     custconfig = "&customconfig=484468f0-e05a-4242-9145-8374c2939e12&mkt=en-US"
     term = params[:search]
-    if accessKey.length != 32 then
-        puts "Invalid Bing Search API subscription key!"
-        abort
-    end
     uri = URI(uri + path + "?q=" + URI.escape(term)+ custconfig)
     request = Net::HTTP::Get.new(uri)
     request['Ocp-Apim-Subscription-Key'] = accessKey
