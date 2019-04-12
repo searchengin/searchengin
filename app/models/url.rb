@@ -1,7 +1,7 @@
 class Url < ApplicationRecord
   require 'webshot'
   after_create :set_url_id
-
+  validates_uniqueness_of :url
 
   belongs_to :user
   has_many :tags, dependent: :destroy

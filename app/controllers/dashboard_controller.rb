@@ -43,13 +43,14 @@ class DashboardController < ApplicationController
         end
     end
     puts "\nJSON Response:\n\n"
-    @results = []
+    results = []
     search_results = JSON.parse(response.body)
     if search_results.present? && search_results['webPages'].present? && search_results['webPages']['value'].present?
       search_results['webPages']['value'].each do |search_result|
-        @results << search_result
+        results << search_result
       end
-      @results = @results.flatten
+      results = results.flatten
+      add_bing_result(results)
     end
 
     @urls_data = {}
@@ -234,6 +235,13 @@ class DashboardController < ApplicationController
         end
       @title = "\"#{@query}\" Search Results | "
       @urls_data
+  end
+
+  def add_bing_result(results)
+    results.each do |result|
+      url = current_user.urls.new(title: result['name'], url: result['url'], description: result['snippet'], favicon_url: '')
+      url.save
+    end
   end
 
   def like

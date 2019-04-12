@@ -31,7 +31,7 @@ class UrlsController < ApplicationController
         end
       end
     else
-      flash[:Error] = "please enter a url"
+      flash.now[:Error] = "please enter a url"
     end
   end
 
@@ -83,7 +83,7 @@ class UrlsController < ApplicationController
     if @url.present?
       redirect_to @url.url
     else
-      flash[:Error] = "please enter a url"
+      flash.now[:Error] = "please enter a url"
     end
   end
 
