@@ -115,7 +115,7 @@
                     <%= tag.where_datum.description %>
                   </span>
                     <ul class="post_likes">
-                      <% if current_user.present? && current_user.has_role?('regular') %>
+                      <% if current_user.present? && current_user.has_role?('superadmin') %>
                         <li>
                           <% if tag.verified %>
                             <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>" checked>
@@ -153,7 +153,8 @@
                         <%= tag.what_datum.description %>
                       </span>
                     <ul class="post_likes">
-                      <% if current_user.present? && current_user.has_role?('regular') %>
+                      <%# if current_user.present? && current_user.has_role?('regular') %>
+                      <% if current_user.present? && current_user.has_role?('superadmin') %>
                         <li>
                           <% if tag.verified %>
                             <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>" checked>
@@ -191,7 +192,7 @@
                       <%= tag.why_datum.description %>
                     </span>
                     <ul class="post_likes">
-                      <% if current_user.present? && current_user.has_role?('regular') %>
+                      <% if current_user.present? && current_user.has_role?('superadmin') %>
                         <li>
                           <% if tag.verified %>
                             <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>" checked>
@@ -230,7 +231,7 @@
                     <%= tag.when_datum.description %>
                   </span>
                     <ul class="post_likes">
-                      <% if current_user.present? && current_user.has_role?('regular') %>
+                      <% if current_user.present? && current_user.has_role?('superadmin') %>
                         <li>
                         <% if tag.verified %>
                             <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>" checked>
@@ -266,8 +267,8 @@
                       <%= tag.who_datum.website_url %>
                       <%= tag.who_datum.description %>
                     </span>
-                    <ul class="post_likes">try(:
-          )            <% if current_user.present? && current_user.has_role?('regular') %>
+                    <ul class="post_likes">
+                      <% if current_user.present? && current_user.has_role?('superadmin') %>
                        <% if tag.verified %>
                             <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>" checked>
                           <% else %>
@@ -303,7 +304,7 @@
                       <%= tag.try(:video_datum).try(:description) %>
                     </span>
                     <ul class="post_likes">
-                      <% if current_user.present? && current_user.has_role?('regular') %>
+                      <% if current_user.present? && current_user.has_role?('superadmin') %>
                         <li>
                          <% if tag.verified %>
                             <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>" checked>
@@ -338,7 +339,7 @@
                       <%#= tag.photo_datum.photo_url %>
                     </span>
                     <ul class="post_likes">
-                      <% if current_user.present? && current_user.has_role?('regular') %>
+                      <% if current_user.present? && current_user.has_role?('superadmin') %>
                         <li>
                          <% if tag.verified %>
                             <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>" checked>
@@ -373,3 +374,5 @@
       <% end %>
     </section>
   <% end %>
+
+

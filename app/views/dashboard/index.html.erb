@@ -55,7 +55,17 @@
       $(this).toggleClass("is-dislike");
     });
 
+    $('.verified').click(function() {
+      var id = $(this).attr('id')
+      console.log("id>>", id);
+      $.ajax({
+          url: "/tags/tag_verification/"+id,
+          type: "PATCH",
+          data: { id: $(this).attr('id')}
+      });
+    });
 </script>
+
 
 
 

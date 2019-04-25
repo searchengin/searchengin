@@ -22,6 +22,11 @@ class TagsController < ApplicationController
     elsif params[:video_tag]
       @data = @url.video_tags.build(tag_params)
     end
+    if current_user.has_role?('regular') || current_user.has_role?('superadmin') && @data.is_bot == false
+      @data.points = 3
+    elsif @data.is_bot == true
+      @data.points = 1
+    end
     @data.save!(validate: false)
     #tags = url.tags.first.create(tag_params)
   end
@@ -36,8 +41,9 @@ class TagsController < ApplicationController
 
   def tag_verification
     tag = Tag.find params[:id]
-    if current_user.has_role?('regular')  && tag.verified == false
-      tag.update_attributes!(verified_user_id: current_user.id, verified: true)
+    points = tag.points + 5
+    if current_user.has_role?('superadmin') && tag.verified == false
+      tag.update_attributes!(verified_user_id: current_user.id, verified: true,points: points)
       flash[:success] = "Tag verified"
     end
   end
