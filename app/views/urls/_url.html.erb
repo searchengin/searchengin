@@ -233,11 +233,12 @@
                     <ul class="post_likes">
                       <% if current_user.present? && current_user.has_role?('superadmin') %>
                         <li>
-                        <% if tag.verified %>
+                          <% if tag.verified %>
                             <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>" checked>
                           <% else %>
                             <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>">
                           <% end%>
+                        </li>
                       <% end %>
                       <li>
                         <%= link_to get_url_object_path(url.id),remote: :true, class:  'url_data' do %>

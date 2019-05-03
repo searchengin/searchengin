@@ -13,4 +13,10 @@ class Tag < ApplicationRecord
   # has_many :where_datum, foreign_key: :where_tag_id
   # has_many :video_datum, foreign_key: :video_tag_id
   # has_many :photo_datum, foreign_key: :photo_tag_id
+  after_create :set_url_point
+
+  def set_url_point
+    points = self.url.points + self.points
+    self.url.update(points: points)
+  end
 end
