@@ -29,6 +29,7 @@ class TagsController < ApplicationController
     end
     @data.save!(validate: false)
     #tags = url.tags.first.create(tag_params)
+    flash[:success] = "Tag successfully added."
     redirect_to root_url
   end
 
@@ -42,16 +43,22 @@ class TagsController < ApplicationController
 
   def tag_verification
     tag = Tag.find params[:id]
-    points = tag.points + 5
     if current_user.has_role?('superadmin') && tag.verified == false
+      points = tag.points + 5
       tag.update_attributes!(verified_user_id: current_user.id, verified: true,points: points)
       url_points = tag.url.points + 5
       tag.url.update_attributes!(points: url_points)
       flash[:success] = "Tag verified"
-      redirect_to root_url
+    else
+      current_user.has_role?('superadmin') && tag.verified == true
+      points = tag.points - 5
+      tag.update_attributes!(verified: false, points: points)
+      url_points = tag.url.points - 5
+      tag.url.update_attributes!(points: url_points)
+      flash[:success] = "Tag Unverified"
     end
+      redirect_to root_url
   end
-
 
   private
 
