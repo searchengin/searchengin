@@ -57,7 +57,14 @@ class TagsController < ApplicationController
       tag.url.update_attributes!(points: url_points)
       flash[:success] = "Tag Unverified"
     end
+    if params[:page] == "profile"
+      redirect_to profile_path(current_user.handle)
+    elsif params[:page] == "show"
+      redirect_to urls_show_path(tag.url.slug)
+    else
       redirect_to root_url
+    end
+
   end
 
   private

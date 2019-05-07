@@ -3,3 +3,16 @@
 <% else %>
   <%= render 'regular_user_profile' %>
 <% end %>
+
+<script type="text/javascript">
+  $('.verified').click(function() {
+      var id = $(this).attr('id')
+      var page = 'profile'
+      console.log("id>>", id);
+      $.ajax({
+          url: "/tags/tag_verification/"+id,
+          type: "PATCH",
+          data: { id: $(this).attr('id'), page: page}
+      });
+   });
+</script>
