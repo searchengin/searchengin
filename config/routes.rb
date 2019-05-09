@@ -33,7 +33,7 @@ Rails.application.routes.draw do
   get 'tags/verify_tags', to: 'tags#verify_tags', as: :verify_tags
   patch 'tags/tag_verification/:id', to: 'tags#tag_verification', as: :tag_verification
   #get 'urls/url_details/:id', to: 'urls#url_details', as: :url_details
-
+  patch 'users/set_editor/:id', to: 'users#set_editor', as: :set_editor
   get '/:id', to: "urls#display_main_url"
 
   get 'e/:slug', to: 'urls#show', as: 'urls_show'

@@ -43,14 +43,13 @@ class TagsController < ApplicationController
 
   def tag_verification
     tag = Tag.find params[:id]
-    if current_user.has_role?('superadmin') && tag.verified == false
+    if current_user.has_role?('superadmin') || current_user.editor && tag.verified == false
       points = tag.points + 5
       tag.update_attributes!(verified_user_id: current_user.id, verified: true,points: points)
       url_points = tag.url.points + 5
       tag.url.update_attributes!(points: url_points)
       flash[:success] = "Tag verified"
-    else
-      current_user.has_role?('superadmin') && tag.verified == true
+    elsif current_user.has_role?('superadmin') || current_user.editor && tag.verified == true
       points = tag.points - 5
       tag.update_attributes!(verified: false, points: points)
       url_points = tag.url.points - 5

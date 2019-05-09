@@ -115,18 +115,20 @@
                     <%= tag.where_datum.description %>
                   </span>
                     <ul class="post_likes">
-                      <% if current_user.present? && current_user.has_role?('superadmin') %>
-                        <li class="cstm_checkbox">
-                          <% if tag.verified %>
-                            <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>" checked>
-                            <label for="<%= tag.id %>"></label>
-                          <% else %>
-                            <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>">
-                            <label for="<%= tag.id %>"></label>
-                          <% end %>
-                            <!-- <input type="checkbox" id="test1" />
-                            <label for="test1"></label> -->
-                        </li>
+                      <% if current_user.present? %>
+                        <% if current_user.has_role?('superadmin')|| current_user.editor %>
+                          <li class="cstm_checkbox">
+                            <% if tag.verified %>
+                              <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>" checked>
+                              <label for="<%= tag.id %>"></label>
+                            <% else %>
+                              <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>">
+                              <label for="<%= tag.id %>"></label>
+                            <% end %>
+                              <!-- <input type="checkbox" id="test1" />
+                              <label for="test1"></label> -->
+                          </li>
+                        <% end %>
                       <% end %>
                       <li>
                         <%= link_to get_url_object_path(url.id),remote: :true, class:  'url_data' do %>
@@ -158,16 +160,18 @@
                       </span>
                     <ul class="post_likes">
                       <%# if current_user.present? && current_user.has_role?('regular') %>
-                      <% if current_user.present? && current_user.has_role?('superadmin') %>
-                        <li class="cstm_checkbox">
-                          <% if tag.verified %>
-                            <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>" checked>
-                            <label for="<%= tag.id %>"></label>
-                          <% else %>
-                            <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>">
-                            <label for="<%= tag.id %>"></label>
-                          <% end%>
-                        </li>
+                      <% if current_user.present? %>
+                        <% if current_user.has_role?('superadmin') || current_user.editor %>
+                          <li class="cstm_checkbox">
+                            <% if tag.verified %>
+                              <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>" checked>
+                              <label for="<%= tag.id %>"></label>
+                            <% else %>
+                              <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>">
+                              <label for="<%= tag.id %>"></label>
+                            <% end%>
+                          </li>
+                        <% end %>
                       <% end %>
                       <li>
                         <%= link_to get_url_object_path(url.id),remote: :true, class:  'url_data' do %>
@@ -198,16 +202,18 @@
                       <%= tag.why_datum.description %>
                     </span>
                     <ul class="post_likes">
-                      <% if current_user.present? && current_user.has_role?('superadmin') %>
-                        <li class="cstm_checkbox">
-                          <% if tag.verified %>
-                            <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>" checked>
-                            <label for="<%= tag.id %>"></label>
-                          <% else %>
-                            <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>">
-                            <label for="<%= tag.id %>"></label>
-                          <% end%>
-                        </li>
+                      <% if current_user.present? %>
+                        <% if current_user.has_role?('superadmin') || current_user.editor %>
+                          <li class="cstm_checkbox">
+                            <% if tag.verified %>
+                              <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>" checked>
+                              <label for="<%= tag.id %>"></label>
+                            <% else %>
+                              <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>">
+                              <label for="<%= tag.id %>"></label>
+                            <% end%>
+                          </li>
+                        <% end %>
                       <% end %>
                       <li>
                         <%= link_to get_url_object_path(url.id),remote: :true, class:  'url_data' do %>
@@ -239,16 +245,18 @@
                     <%= tag.when_datum.description %>
                   </span>
                     <ul class="post_likes">
-                      <% if current_user.present? && current_user.has_role?('superadmin') %>
-                        <li class="cstm_checkbox">
-                          <% if tag.verified %>
-                            <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>" checked>
-                            <label for="<%= tag.id %>"></label>
-                          <% else %>
-                            <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>">
-                            <label for="<%= tag.id %>"></label>
-                          <% end%>
-                        </li>
+                      <% if current_user.present? %>
+                        <% if current_user.has_role?('superadmin') || current_user.editor %>
+                          <li class="cstm_checkbox">
+                            <% if tag.verified %>
+                              <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>" checked>
+                              <label for="<%= tag.id %>"></label>
+                            <% else %>
+                              <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>">
+                              <label for="<%= tag.id %>"></label>
+                            <% end%>
+                          </li>
+                        <% end %>
                       <% end %>
                       <li>
                         <%= link_to get_url_object_path(url.id),remote: :true, class:  'url_data' do %>
@@ -279,16 +287,18 @@
                       <%= tag.who_datum.description %>
                     </span>
                     <ul class="post_likes">
-                      <% if current_user.present? && current_user.has_role?('superadmin') %>
-                        <li class="cstm_checkbox">
-                          <% if tag.verified %>
-                            <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>" checked>
-                            <label for="<%= tag.id %>"></label>
-                          <% else %>
-                            <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>">
-                            <label for="<%= tag.id %>"></label>
-                          <% end%>
-                        </li>
+                      <% if current_user.present? %>
+                        <% if current_user.has_role?('superadmin') || current_user.editor %>
+                          <li class="cstm_checkbox">
+                            <% if tag.verified %>
+                              <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>" checked>
+                              <label for="<%= tag.id %>"></label>
+                            <% else %>
+                              <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>">
+                              <label for="<%= tag.id %>"></label>
+                            <% end%>
+                          </li>
+                        <% end %>
                       <% end %>
                       <li>
                         <%= link_to get_url_object_path(url.id),remote: :true, class:  'url_data' do %>
@@ -319,16 +329,18 @@
                       <%= tag.try(:video_datum).try(:description) %>
                     </span>
                     <ul class="post_likes">
-                      <% if current_user.present? && current_user.has_role?('superadmin') %>
-                        <li class="cstm_checkbox">
-                         <% if tag.verified %>
-                            <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>" checked>
-                            <label for="<%= tag.id %>"></label>
-                          <% else %>
-                            <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>">
-                            <label for="<%= tag.id %>"></label>
-                          <% end%>
-                        </li>
+                      <% if current_user.present? %>
+                        <% if current_user.has_role?('superadmin') || current_user.editor %>
+                          <li class="cstm_checkbox">
+                           <% if tag.verified %>
+                              <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>" checked>
+                              <label for="<%= tag.id %>"></label>
+                            <% else %>
+                              <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>">
+                              <label for="<%= tag.id %>"></label>
+                            <% end%>
+                          </li>
+                        <% end %>
                       <% end %>
                       <li>
                         <%= link_to get_url_object_path(url.id),remote: :true, class:  'url_data' do %>
@@ -356,16 +368,18 @@
                       <%#= tag.photo_datum.photo_url %>
                     </span>
                     <ul class="post_likes">
-                      <% if current_user.present? && current_user.has_role?('superadmin') %>
-                        <li class="cstm_checkbox">
-                         <% if tag.verified %>
-                            <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>" checked>
-                            <label for="<%= tag.id %>"></label>
-                          <% else %>
-                            <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>">
-                            <label for="<%= tag.id %>"></label>
-                          <% end%>
-                        </li>
+                      <% if current_user.present? %>
+                        <% if current_user.has_role?('superadmin') || current_user.editor %>
+                          <li class="cstm_checkbox">
+                           <% if tag.verified %>
+                              <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>" checked>
+                              <label for="<%= tag.id %>"></label>
+                            <% else %>
+                              <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>">
+                              <label for="<%= tag.id %>"></label>
+                            <% end%>
+                          </li>
+                        <% end %>
                       <% end %>
                       <li>
                         <%= link_to get_url_object_path(url.id),remote: :true, class:  'url_data' do %>

@@ -15,4 +15,13 @@
           data: { id: $(this).attr('id'), page: page}
       });
    });
+
+  $('.editor').click(function(){
+    var id = $(this).attr('id')
+    $.ajax({
+      url: "/users/set_editor/"+id,
+      type: "PATCH",
+      data: { id: id}
+    });
+  });
 </script>

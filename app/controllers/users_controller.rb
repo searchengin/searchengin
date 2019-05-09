@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: %i( set_editor )
   before_action :authenticate_user!
   before_action :set_user, only: [:follow_user, :unfollow_user, :set_role]
   def index
@@ -44,6 +45,17 @@ class UsersController < ApplicationController
     @user.roles.destroy_all
     @user.add_role "#{Role.find(user_params[:roles]).name}"
     redirect_to users_path, notice: 'User role changed'
+  end
+
+  def set_editor
+    user = User.find params[:id]
+    if current_user.has_role?('superadmin') && user.editor == false
+      user.update_attributes!(editor: true)
+      flash[:success] = "Set Editor"
+    elsif current_user.has_role?('superadmin') && user.editor == true
+      user.update_attributes!(editor: false)
+      flash[:success] = "Unset Editor"
+    end
   end
 
   private

@@ -122,16 +122,18 @@
                   </span>
               <% end %>
                 <ul class="post_likes">
-                  <% if current_user.present? && current_user.has_role?('superadmin') %>
-                    <li class="cstm_checkbox">
-                      <% if tag.verified %>
-                        <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>" checked>
-                        <label for="<%= tag.id %>"></label>
-                      <% else %>
-                        <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>">
-                        <label for="<%= tag.id %>"></label>
-                      <% end%>
-                    </li>
+                  <% if current_user.present? %>
+                    <% if current_user.has_role?('superadmin') || current_user.editor %>
+                      <li class="cstm_checkbox">
+                        <% if tag.verified %>
+                          <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>" checked>
+                          <label for="<%= tag.id %>"></label>
+                        <% else %>
+                          <input type="checkbox" id="<%= tag.id %>" class="verified" name="verified" value="<%= tag.verified %>">
+                          <label for="<%= tag.id %>"></label>
+                        <% end%>
+                      </li>
+                    <% end %>
                   <% end %>
                   <li>
                     <%= link_to get_url_object_path(@url.id),remote: :true, class:  'url_data' do %>
