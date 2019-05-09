@@ -99,10 +99,11 @@
               <% elsif tag.type == "WhoTag" %>
                 <span class="inner_tag_lft"><i class="far fa-calendar-alt"></i></span>
                  <div class="inner_tag_rgt">
-                <span>
-                  <%= tag.who_datum.name %>
-                  <%= tag.who_datum.account %>
-                  <%= tag.who_datum.website_url %>
+                <span class="what_item_name bg-primary">
+                  <%= tag.name %>
+                </span>
+                <span class= "why_descp">
+                  <%#= tag.who_datum.website_url %>
                   <%= tag.who_datum.description %>
                 </span>
               <% elsif tag.type == "VideoTag" %>

@@ -14,7 +14,6 @@
               <%= f.input :name, label: "Name/Business", :label_html => { :class => "name_pill" }%>
               <%= f.hidden_field :user_id, value: current_user.id %>
               <%= f.fields_for :who_datum do |i| %>
-                <%#= i.input :account %>
                 <%= i.input :website_url %>
                 <%= i.input :description %>
               <% end %>
